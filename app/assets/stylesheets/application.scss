@@ -1,0 +1,94 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$x_right_gap: 5px;
+$x_left_gap: 5px;
+
+@mixin card($box_shadow) {
+	position: relative;
+	padding: 15px 7.5px;
+	background: white;
+	max-width: 550px;
+	margin: 0 auto;
+	margin-bottom: 12.5px;
+	width: 94.5%;
+}
+
+@mixin corner_link {
+	font-size: 10px;
+	position: absolute;
+}
+
+html {
+	background: black;
+	font-family: Helvetica;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+	color: black;
+}
+
+.card {
+	@include card(white);
+}
+
+.notice_card {
+	@include card(rgb(50, 175, 225));
+}
+
+.error_card {
+	@include card(red);
+}
+
+.top_right_link {
+	@include corner_link;
+	right: $x_right_gap;
+	top: 10px;
+}
+
+.top_left_link {
+	@include corner_link;
+	left: $x_left_gap;
+	top: 10px;
+}
+
+.bottom_right_link {
+	@include corner_link;
+	right: $x_right_gap;
+	bottom: 10px;
+}
+
+.bottom_left_link {
+	@include corner_link;
+	left: $x_left_gap;
+	bottom: 10px;
+}
+
+#spacing_header {
+	padding-bottom: 32px;
+}
+
+#card_corner_cut_out {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: black;
+	height: 30px;
+	width: 32px;
+}

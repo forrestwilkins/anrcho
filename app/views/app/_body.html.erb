@@ -1,0 +1,13 @@
+<!-- app -->
+
+<% for word in item.body.split(" ") %>
+	<% unless word.include? "#" and word.size > 1 %>
+		<%= render "app/embed", word: word %>
+	<% else %>
+		<% tag = item.hashtags.find_by_tag word %>
+		<% if tag and tag.index == item.body.index(word) %>
+			<%= link_to tag.tag, search_path(query: tag.tag) %>
+			<%= " " %>
+		<% end %>
+	<% end %>
+<% end %>

@@ -1,0 +1,10 @@
+// app
+
+setInterval(function() {
+	var id = Math.round(Math.random() * 5000);
+	var r = Math.round(Math.random() * 255);
+	var g = Math.round(Math.random() * 255);
+	var b = Math.round(Math.random() * 255);
+	var pixel = $("#<%=j id %>" + id);
+	pixel.css("background", "rgb(" + r + ", " + g + ", " + b + ")");
+}, 1);

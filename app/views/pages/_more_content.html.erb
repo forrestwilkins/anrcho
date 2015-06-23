@@ -1,0 +1,7 @@
+<!-- pages -->
+
+<% if @home_shown %>
+	<%= render "proposals/feed" %>
+<% elsif @group_shown %>
+	<%= render "groups/feed" %>
+<% end %>

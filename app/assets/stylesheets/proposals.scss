@@ -1,0 +1,27 @@
+// Place all the styles related to the proposals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top_right_glimmer {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 5.5px;
+	height: 5.5px;
+}
+
+.bottom_left_glimmer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 5.5px;
+	height: 5.5px;
+}
+
+.bottom_right_glimmer {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 5.5px;
+	height: 5.5px;
+}

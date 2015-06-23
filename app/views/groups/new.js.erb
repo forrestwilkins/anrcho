@@ -1,0 +1,30 @@
+// groups
+
+var form_anchor = $("#insert_form_anchor");
+var nav_anchor = $("#nav_table_anchor");
+var nav_table = $("#header_nav_table");
+var proposal_form = $("#new_proposal_form");
+var search_form = $("#new_search_form");
+var group_form = $("#new_group_form");
+
+if (!group_form.length) {
+	if (proposal_form.length) {
+		proposal_form.remove();
+	}
+
+	if (search_form.length) {
+		search_form.remove();
+	}
+
+	form_anchor.after("<%=j render 'groups/new' %>");
+	nav_table.remove();
+	nav_anchor.after("<%=j render 'app/nav_table', grouping: true %>");
+
+	var group_link = $("#create_a_group_link");
+	var proposal_link = $("#make_a_proposal_link");
+	var search_link = $("#search_link");
+
+	group_link.css("font-size", "17.5px");
+	proposal_link.css("font-size", "15px");
+	search_link.css("font-size", "15px");
+}

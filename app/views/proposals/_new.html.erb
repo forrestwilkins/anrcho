@@ -1,0 +1,20 @@
+<!-- proposals -->
+
+<div align="center" id="new_proposal_form">
+	<%= form_for @proposal do |f| %>
+		<%= hidden_field_tag :group_id, @group.id if @group %>
+		
+		<p><%= f.text_field :title, placeholder: "Title" %></p>
+		
+		<p><%= f.text_area :body, placeholder: "Body" %></p>
+		
+		<p><%= f.select :action, options_for_select(action_types(@group)) %></p>
+		
+		<p>
+			<%= f.label "Local proposal" %>
+			<%= check_box_tag :local %>
+		</p>
+		
+		<%= f.submit "Submit" %>
+	<% end %>
+</div>
