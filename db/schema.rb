@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622173247) do
+ActiveRecord::Schema.define(version: 20150623211347) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20150622173247) do
     t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "location"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "hashtags", force: :cascade do |t|

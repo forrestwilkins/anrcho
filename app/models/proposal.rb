@@ -76,7 +76,7 @@ class Proposal < ActiveRecord::Base
   
   def _ratification_point
   	if self.ratification_point.to_i.zero?
-  		return 1
+  		return 3
   	else
   		return self.ratification_point
   	end

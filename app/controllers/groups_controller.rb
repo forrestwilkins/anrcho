@@ -6,6 +6,9 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     if @group.save
+      if params[:location]
+        @group.get_location(request.remote_ip.to_s)
+      end
       redirect_to group_path(@group.token)
     else
       redirect_to :back
