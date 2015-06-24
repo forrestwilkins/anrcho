@@ -31,7 +31,7 @@ gem 'bcrypt'
 gem 'gpgme'
 
 # uploading images
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'carrierwave'
 
 # for location data
