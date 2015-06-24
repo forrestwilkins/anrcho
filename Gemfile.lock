@@ -226,7 +226,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails
-  rmagick
+  rmagick (~> 2.15.0)
   sass-rails
   sdoc (~> 0.4.0)
   spring
