@@ -16,6 +16,9 @@ class ProposalsController < ApplicationController
     @proposal.group_id = params[:group_id]
     @proposal.token = security_token
     if @proposal.save
+      if params[:location]
+        get_location @proposal  
+      end    	
       Hashtag.extract @proposal
       if @proposal.group
         redirect_to group_path(@proposal.group.token)

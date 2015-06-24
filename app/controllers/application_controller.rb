@@ -3,7 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :security_token, :paginate, :page_size, :reset_page, :char_codes
+  helper_method :security_token, :paginate, :page_size, :reset_page, :char_codes, :get_location
+  
+  def get_location item
+    geoip = GeoIP.new('GeoLiteCity.dat').city(request.remote_ip.to_s)
+    if defined? geoip and geoip
+      item.update latitude: geoip.latitude, longitude: geoip.longitude
+      if item.latitude and item.longitude
+        geocoder = Geocoder.search("#{item.latitude}, #{item.longitude}").first
+        if geocoder and geocoder.formatted_address
+          item.update location: geocoder.formatted_address
+        end
+      end
+    end
+  end
   
   # still needs to account for ip in case of bots
   def security_token
