@@ -31,7 +31,7 @@ gem 'bcrypt'
 gem 'gpgme'
 
 # uploading images
-gem 'rmagick', '2.13.4'
+gem 'rmagick'
 gem 'carrierwave'
 
 # for location data
@@ -53,6 +53,9 @@ gem 'whatlanguage'
 gem 'bing_translator'
 gem 'google-translate'
 gem 'easy_translate'
+
+# fonts and glyphs
+gem 'font-awesome-sass'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

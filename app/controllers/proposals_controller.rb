@@ -1,4 +1,7 @@
 class ProposalsController < ApplicationController
+  def add_image
+  end
+  
   def index
     reset_page
     @all_items = Proposal.globals.sort_by { |proposal| proposal.rank }

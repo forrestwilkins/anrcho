@@ -14,7 +14,7 @@ class SearchController < ApplicationController
           end
         end
         # searches by token or location
-        if @query.eql? item.token or item.location.to_s.include? @query
+        if @query.eql? item.token or item.location.to_s.include? @query.to_s
           @results << item
         end
       end

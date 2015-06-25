@@ -3,8 +3,20 @@
 <div align="center" id="new_proposal_form">
 	<%= form_for @proposal do |f| %>
 		<%= hidden_field_tag :group_id, @group.id if @group %>
+		<table>
+			<tr>
+				<td>
+					<%= f.text_field :title, placeholder: "Title" %>
+				</td>
+				<td>
+					<%= link_to add_proposal_image_path, remote: true do %>
+						<i class="fa fa-picture-o"></i>
+					<% end %>
+				</td>
+			</tr>
+		</table>
 		
-		<p><%= f.text_field :title, placeholder: "Title" %></p>
+		<p hidden><%= f.file_field :image %></p>
 		
 		<p><%= f.text_area :body, placeholder: "Body" %></p>
 		
