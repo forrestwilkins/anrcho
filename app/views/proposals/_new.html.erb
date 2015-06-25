@@ -3,10 +3,13 @@
 <div align="center" id="new_proposal_form">
 	<%= form_for @proposal do |f| %>
 		<%= hidden_field_tag :group_id, @group.id if @group %>
+		<p>
+			<%= f.text_field :title, placeholder: "Title" %>
+		</p>
 		<table>
 			<tr>
 				<td>
-					<%= f.text_field :title, placeholder: "Title" %>
+					<%= f.text_area :body, placeholder: "Body" %>
 				</td>
 				<td>
 					<%= link_to add_proposal_image_path, remote: true do %>
@@ -16,9 +19,7 @@
 			</tr>
 		</table>
 		
-		<p hidden><%= f.file_field :image %></p>
-		
-		<p><%= f.text_area :body, placeholder: "Body" %></p>
+		<p id="hidden_file_field" hidden><%= f.file_field :image %></p>
 		
 		<p><%= f.select :action, options_for_select(action_types(@group)) %></p>
 		

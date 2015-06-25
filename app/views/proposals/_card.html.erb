@@ -9,6 +9,9 @@
 		<% if proposal.title.present? %>
 			<p><%= proposal.title %></p>
 		<% end %>
+		<% if proposal.image.url %>
+			<p><%= image_tag proposal.image, id: :proposal_image %></p>
+		<% end %>
 		<p><%= render "app/body", item: proposal %></p>
 		<!-- anchor for reinserting the link table -->
 		<div id="link_table_anchor_<%= proposal.id %>"></div>
