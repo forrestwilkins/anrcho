@@ -1,7 +1,7 @@
 <!-- token -->
 
 <% chars = token.slice(0..15).split("") %>
-<%= link_to search_path(token), class: "#{position}", id: "#{defined?(id) ? id : nil}" do %>
+<%= link_to search_path(query: token), class: "#{position}", id: "#{defined?(id) ? id : nil}" do %>
 	<div id="avatar_container">
 		<% for char in chars %>
 			<div class="avatar_pixel" style="background:rgb(<%= awesome_colors char, chars %>);"></div>
