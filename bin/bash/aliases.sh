@@ -1,37 +1,25 @@
 # aliases - for awesomely maximized laziness
 
-alias no_worries='afplay /Users/ethanwilkins/Music/Legend/Bob\ Marley\ -\ Legend\ -\ 04\ -\ Three\ Little\ Birds.mp3'
+alias cdrails='cd /home/rails'
 
-alias immigrant_song='afplay /Users/ethanwilkins/Music/Led\ Zeppelin\ Discography\ \(iTunes-Rip\)\ \[theLEAK\]/Led\ Zeppelin/Led\ Zeppelin\ III\ \(Remastered\)/01\ Immigrant\ Song.mp3'
+alias railc='cdrails && rails c production'
 
-alias fucking='sudo'
+alias logs='cdrails && vi log/production.log'
 
-alias commit='sh commit.sh'
+alias pull='git pull'
 
-alias cdrails='cd /Users/ethanwilkins/Code/rails'
+alias fresh_bash='source ~/.bashrc'
 
-alias rakes='rake db:migrate'
+alias profile='nano ~/.bash_aliases'
 
-alias routes='rake routes'
+alias rakes='rake db:migrate RAILS_ENV=production && rake assets:precompile RAILS_ENV=production'
 
-alias railss='rails s'
+alias unicornnn='service unicorn start'
 
-alias railc='rails c'
+alias killunicorn='service unicorn stop'
 
-alias news='cdrails && cd elheroe'
+alias fresh='killunicorn && cdrails && pull && bundle install && rakes && unicornnn'
 
-alias social='cdrails && cd kopimia'
+alias nginx_conf='nano /etc/nginx/nginx.conf'
 
-alias newss='news && railss'
 
-alias socials='social && railss'
-
-alias kopimia='ssh root@kopimia.com'
-
-alias elheroe='ssh root@elheroe.net'
-
-alias lsa='ls -a'
-
-alias migrate='rails g migration'
-
-alias ip='ifconfig'
