@@ -19,7 +19,7 @@ class ProposalsController < ApplicationController
     @proposal.group_id = params[:group_id]
     @proposal.token = security_token
     if @proposal.save
-      if params[:location]
+      if params[:local]
         get_location @proposal  
       end    	
       Hashtag.extract @proposal

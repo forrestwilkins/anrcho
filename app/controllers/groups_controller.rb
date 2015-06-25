@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     if @group.save
-      if params[:location]
+      if params[:local]
         get_location @group
       end
       redirect_to group_path(@group.token)
