@@ -1,0 +1,22 @@
+<!-- app -->
+
+<% proposal_link_path = defined?(proposing) ? '#' : new_proposal_path %>
+<% group_link_path = defined?(grouping) ? '#' : new_group_path %>
+<% search_link_path = defined?(searching) ? '#' : new_search_path %>
+
+<div id="nav_table_anchor"></div>
+<table id="header_nav_table">
+	<tr>
+		<td>
+			<%= link_to "Make a proposal", proposal_link_path, remote: true, id: :make_a_proposal_link %>
+		</td>
+		<td>·</td>
+		<td>
+			<%= link_to "Create a group", group_link_path, remote: true, id: :create_a_group_link %>
+		</td>
+		<td>·</td>
+		<td>
+			<%= link_to "Search", search_link_path, remote: true, id: :search_link %>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,42 @@
+// Place all the styles related to the token controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#pixel_grid_banner {
+	position: relative;
+	max-width: 550px;
+	margin: 0 auto;
+	width: 94.5%;
+	min-height: 200px;
+}
+
+.current_token_link {
+	position: absolute;
+	right: 25px;
+	top: 10px;
+}
+
+#update_token_link {
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	color: white;
+	font-size: 13px;
+}
+
+#avatar_container {
+	width: 25px;
+	height: 25px;
+}
+
+.avatar_pixel {
+	width: 5.5px;
+	height: 5.5px;
+	float: right;
+}
+
+.token_card_link {
+	position: absolute;
+	left: -2px;
+	top: 0px;
+}

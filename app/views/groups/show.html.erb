@@ -1,0 +1,17 @@
+<!-- groups -->
+
+<% unless @expired %>
+	<script>
+		<%= render "groups/infinite_scroll.js" %>
+	</script>
+
+	<%= render "groups/card", group: @group %>
+
+	<%= render "groups/feed" %>
+
+	<%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>
+<% else %>
+	<div class="card">
+		<p align="center">This group has expired.</p>
+	</div>
+<% end %>

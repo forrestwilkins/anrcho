@@ -1,0 +1,7 @@
+<!-- proposals -->
+
+<% proposal_link_path = defined?(proposing) ? '#' : new_proposal_path(group_id: group.id) %>
+
+<p id="new_group_proposal_link">
+	<%= link_to "Make a proposal", proposal_link_path, remote: true %>
+</p>

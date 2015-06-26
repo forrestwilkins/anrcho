@@ -1,0 +1,12 @@
+<!-- token -->
+
+<script>
+	<%= render "app/glimmer.js", id: "grid_banner_pixel_", red: @red, green: @green, blue: @blue %>
+</script>
+
+<% 5500.times do |num| %>
+	<div class="avatar_pixel" id="grid_banner_pixel_<%= num %>"
+		style="background:rgb(<%= "#{Random.rand 1..255},
+		#{Random.rand 1..255}, #{Random.rand 1..255}" %>);">
+	</div>
+<% end %>

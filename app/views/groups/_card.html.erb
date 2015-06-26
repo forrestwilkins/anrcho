@@ -1,0 +1,13 @@
+<!-- groups -->
+
+<div class="card">
+	<div id="card_corner_cut_out"></div>
+	<%= render "token/avatar", token: group.token, position: :token_card_link %>
+	<div align="center">
+		<p><%= link_to "Group #{group.token}", search_path(group.token) %></p>
+		
+		<div id="proposal_link_anchor"></div>
+		<%= render "proposals/new_group_proposal_link", group: group %>
+	</div>
+	<div id="insert_form_anchor"></div>
+</div>

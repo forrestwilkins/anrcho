@@ -1,0 +1,9 @@
+<!-- proposals -->
+
+<% for proposal in @items %>
+	<%= render "proposals/card", proposal: proposal %>
+<% end %>
+
+<% unless @items.size < page_size %>
+	<div id="more_content_anchor"></div>
+<% end %>

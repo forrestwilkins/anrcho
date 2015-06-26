@@ -1,0 +1,13 @@
+// comments
+
+var proposal_id = <%= @proposal.id %>;
+var table = $("#link_table_" + proposal_id);
+var comment_anchor = $("#new_comment_anchor_" + proposal_id);
+var table_anchor = $("#link_table_anchor_" + proposal_id);
+var comment_form = $("#new_comment_form_" + proposal_id);
+
+if (!comment_form.length) {
+	table.remove();
+	table_anchor.after("<%=j render 'proposals/link_table', proposal: @proposal, commenting: true %>");
+	comment_anchor.after("<%=j render 'comments/new' %>");
+}
