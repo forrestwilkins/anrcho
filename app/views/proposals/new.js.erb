@@ -2,22 +2,21 @@
 
 var form_anchor = $("#insert_form_anchor");
 var proposal_form = $("#new_proposal_form");
+var nav_anchor = $("#nav_table_anchor");
 
 
 if (!proposal_form.length) {
 	// for group proposals
-	if ("<%=j @group.to_s %>".length) {
-		var new_proposal_link = $("#new_group_proposal_link");
-		var new_proposal_anchor = $("#proposal_link_anchor");
+	<% if @group.present? %>
+		var nav_table = $("#group_nav_table");
+		var proposal_link = $("#new_group_proposal_link");
 	
-		form_anchor.after("<%=j render 'proposals/new' %>"); new_proposal_link.remove();
-		new_proposal_anchor.after("<%=j render 'proposals/new_group_proposal_link',
-			group: @group, proposing: true %>")
-	
-	}
-	// for global proposals
-	else {
-		var nav_anchor = $("#nav_table_anchor");
+		form_anchor.after("<%=j render 'proposals/new' %>"); nav_table.remove();
+		nav_anchor.after("<%=j render 'groups/nav_table', group: @group, proposing: true %>");
+		proposal_link.css("font-size", "17.5px");
+	<% else %>
+		// for global proposals
+		
 		var nav_table = $("#header_nav_table");
 		var group_form = $("#new_group_form");
 		var search_form = $("#new_search_form");
@@ -41,5 +40,5 @@ if (!proposal_form.length) {
 		group_link.css("font-size", "15px");
 		proposal_link.css("font-size", "17.5px");
 		search_link.css("font-size", "15px");
-	}
+	<% end %>
 }

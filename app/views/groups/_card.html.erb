@@ -17,18 +17,7 @@
 		<% end %>
 		
 		<% if @group_shown %>
-			<div id="group_links_table_anchor"></div>
-			<table id="group_links_table">
-				<tr>
-					<td>
-						<%= render "proposals/new_group_proposal_link", group: group %>
-					</td>
-					<td>·</td>
-					<td>
-						<%= link_to "Chat", group_chat_path(group.token) %>
-					</td>
-				</tr>
-			</table>
+			<%= render "groups/nav_table", group: group %>
 			<div id="insert_form_anchor"></div>
 		<% end %>
 	</div>
