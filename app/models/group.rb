@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   has_many :hashtags
   has_many :proposals
+  has_many :messages
   before_save :generate_token
   
   def expires?

@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   get 'token', to: 'token#index', as: 'token'
   
   # page paths
-  get "pages/more", as: "more"
+  get 'pages/more', as: 'more'
+  
+  # group paths
+  get 'groups/:token/chat', to: 'groups#chat', as: 'group_chat'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
