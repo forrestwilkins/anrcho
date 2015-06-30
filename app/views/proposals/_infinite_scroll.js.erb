@@ -1,0 +1,17 @@
+// proposals
+
+$(window).bindWithDelay("scroll", function() {
+	if($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
+		if ($("#more_content_anchor").length) {
+			var param = null;
+			param = $.param({ proposals: true });
+			if (param) {
+				$.ajax({
+					type: "GET",
+					url: "/pages/more",
+					data: param
+				});
+			}
+		}
+	}
+}, 200);

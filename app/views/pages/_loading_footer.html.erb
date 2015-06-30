@@ -1,0 +1,19 @@
+<!-- pages -->
+
+<script>
+	<%= render "pages/grid_glimmer.js" %>
+</script>
+
+<% if all_items.present? and all_items.size > page_size %>
+	<div align="center" id="loading_footer">
+		<div id="avatar_container">
+			<% 16.times do |num| %>
+				<% rgb = []; 3.times { rgb << Random.rand(1..255) } %>
+				<div class="avatar_pixel" id="loading_grid_pixel_<%= num %>"
+					style="background:rgb(<%= "#{rgb[0]}, #{rgb[1]}, #{rgb[2]}" %>);"></div>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+<div id="footer_spacing"></div>

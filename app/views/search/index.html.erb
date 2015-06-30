@@ -1,0 +1,20 @@
+<!-- search -->
+
+<div class="card">
+	<%= render "search/new" %>
+</div>
+
+<% for item in @results %>
+	<% if item.present? and item.class.present? %>
+		<% _class = item.class.to_s.downcase %>
+		<%= render "#{_class.pluralize}/card", _class.to_sym => item %>
+	<% end %>
+<% end %>
+
+<% if @results.empty? and @query.present? %>
+	<div class="card">
+		<p align="center">
+			There aren't any items associated with this search.
+		</p>
+	</div>
+<% end %>

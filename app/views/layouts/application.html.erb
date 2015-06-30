@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Anrcho</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	</head>
+	<body>
+		<div id="current_token_link_anchor"></div>
+		<%= render "token/avatar", token: security_token,
+			position: :current_token_link, id: :current_token_link %>
+		<%= link_to "+", update_token_path, id: :update_token_link, remote: true %>
+		<div id="spacing_header"></div>
+		<%= yield %>
+	</body>
+</html>

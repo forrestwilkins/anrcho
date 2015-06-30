@@ -1,0 +1,23 @@
+<!-- proposals -->
+
+<div class="card" id="proposal_card_<%= proposal.id %>">
+	<div id="card_corner_cut_out"></div>
+	<div id="ratification_glimmer_anchor_<%= proposal.id %>"></div>
+	<%= render "proposals/ratification_glimmer", proposal: proposal %>
+	<%= render "token/avatar", token: proposal.token, position: :token_card_link %>
+	<div align="center">
+		<% if proposal.title.present? %>
+			<p><%= proposal.title %></p>
+		<% end %>
+		<% if proposal.image.url %>
+			<p><%= image_tag proposal.image, id: :proposal_image %></p>
+		<% end %>
+		<p><%= render "app/body", item: proposal %></p>
+		<!-- anchor for reinserting the link table -->
+		<div id="link_table_anchor_<%= proposal.id %>"></div>
+		<!-- link table encapsulated as partial -->
+		<%= render "proposals/link_table", proposal: proposal %>
+		<!-- anchor for inserting new comment form -->
+		<div id="new_comment_anchor_<%= proposal.id %>"></div>
+	</div>
+</div>

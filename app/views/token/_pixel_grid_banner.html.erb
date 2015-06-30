@@ -1,0 +1,9 @@
+<!-- token -->
+
+<div id="pixel_grid_banner">
+	<% 1000.times do |num| %>
+		<div class="avatar_pixel" id="grid_banner_pixel_<%= num %>"
+			style="background:rgb(<%= "#{Random.rand 1..255},
+			#{Random.rand 1..255}, #{Random.rand 1..255}" %>);"></div>
+	<% end %>
+</div>

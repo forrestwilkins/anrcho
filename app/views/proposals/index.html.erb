@@ -1,0 +1,19 @@
+<!-- proposals -->
+
+<script>
+	<%= render "proposals/infinite_scroll.js" %>
+</script>
+
+<div class="card">
+	<div align="center">
+		<%= render "app/nav_table" %>
+		<% if @all_items.empty? %>
+			<p>There aren't any proposals yet.</p>
+		<% end %>
+		<div id="insert_form_anchor"></div>
+	</div>
+</div>
+
+<%= render "proposals/feed" %>
+
+<%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>

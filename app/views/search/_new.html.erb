@@ -1,0 +1,17 @@
+<!-- search -->
+
+<div align="center" id="new_search_form">
+	<% placeholder = (session[:query] ? "Last query: #{session[:query]}" : "Search") %>
+	<%= form_tag search_path, method: :get do |f| %>
+		<table id="search_form_table">
+			<tr>
+				<td>
+					<%= text_field_tag :query, nil, placeholder: placeholder %>
+				</td>
+				<td>
+					<%= submit_tag "Search" %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>

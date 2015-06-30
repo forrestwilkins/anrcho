@@ -1,0 +1,24 @@
+<!-- groups -->
+
+<div class="card">
+	<div id="card_corner_cut_out"></div>
+	<%= render "token/avatar", token: group.token, position: :token_card_link %>
+	<div align="center">
+		<% group_link_path = @group_shown ? search_path(group.token) : group_path(group.token) %>
+		<p><%= link_to "Group #{group.token}", group_link_path %></p>
+		
+		<% if group.hashtags.present? %>
+			<p>
+				<% for tag in group.hashtags %>
+					<%= link_to tag.tag, search_path(query: tag.tag) %>
+					<%= " " %>
+				<% end %>
+			</p>
+		<% end %>
+		
+		<% if @group_shown %>
+			<%= render "groups/nav_table", group: group %>
+			<div id="insert_form_anchor"></div>
+		<% end %>
+	</div>
+</div>

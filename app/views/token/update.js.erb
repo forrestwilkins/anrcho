@@ -1,0 +1,5 @@
+// token
+
+$("#current_token_link").remove();
+$("#current_token_link_anchor").
+	after("<%=j render 'token/avatar', token: @token, position: :current_token_link, id: :current_token_link %>");

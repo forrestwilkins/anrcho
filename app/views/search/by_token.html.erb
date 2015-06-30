@@ -1,0 +1,16 @@
+<!-- search -->
+
+<% for item in @results %>
+	<% if item.present? and item.class.present? %>
+		<% _class = item.class.to_s.downcase %>
+		<%= render "#{_class.pluralize}/card", _class.to_sym => item %>
+	<% end %>
+<% end %>
+
+<% if @results.empty? %>
+	<div class="card">
+		<p align="center">
+			There aren't any items associated with this token.
+		</p>
+	</div>
+<% end %>
