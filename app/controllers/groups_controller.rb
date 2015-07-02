@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
   
   def show
     reset_page
+    @is_a_token = (params[:id].size > 5) ? true : false
     @group = Group.find_by_token(params[:id])
     unless @group.nil? or @group.expires?
       @all_items = @group.proposals.sort_by { |proposal| proposal.rank }
