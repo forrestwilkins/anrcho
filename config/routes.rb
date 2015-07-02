@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   
   # group paths
   get 'groups/:token/chat', to: 'groups#chat', as: 'group_chat'
+  
+  # manifestos
+  get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

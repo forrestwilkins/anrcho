@@ -1,5 +1,5 @@
 class ManifestosController < ApplicationController
-  def index
+  def toggle_manifesto
     @manifesto = Manifesto.last
   end
 end
