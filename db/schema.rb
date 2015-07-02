@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628022636) do
+ActiveRecord::Schema.define(version: 20150702205024) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150628022636) do
     t.text     "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "manifesto_id"
   end
 
   create_table "votes", force: :cascade do |t|

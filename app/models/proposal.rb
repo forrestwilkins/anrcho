@@ -1,5 +1,6 @@
 class Proposal < ActiveRecord::Base
   belongs_to :group
+  belongs_to :manifesto
   has_many :votes
   has_many :comments
   has_many :hashtags
