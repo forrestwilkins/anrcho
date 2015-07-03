@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   
   # messages
   post 'messages/create', as: 'messages'
+  get 'messages/instant_messages/:token', to: 'messages#instant_messages'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

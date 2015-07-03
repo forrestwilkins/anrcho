@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+  def instant_messages
+    @instant_messages = Messsage.all
+  end
+  
   def create
     @group = Group.find_by_id params[:group_id]
     @message = @group.messages.new(params[:message].permit(:body)) if @group

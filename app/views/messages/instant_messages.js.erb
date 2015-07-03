@@ -1,0 +1,7 @@
+// messages
+
+<% if @instant_messages.present? %>
+	$("#instant_messages_anchor").after("<%= render 'messages/instant_messages' %>");
+	$("#instant_messages_anchor").remove(); // removes the first anchor so the latest will be targeted
+	$('#instant_messages_anchor').scrollView();
+<% end %>

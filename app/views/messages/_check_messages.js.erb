@@ -1,0 +1,11 @@
+// messages
+
+setInterval(function() {
+	if ($("#instant_messages_anchor").length) {
+		$.ajax({
+			type: "GET",
+			url: "/messages/instant_messages",
+			data: $.param({token: "<%=j @group.token %>"});
+		});
+	}
+}, 1000);

@@ -1,7 +1,13 @@
 <!-- groups -->
 
+<script>
+  <%= render "messages/check_messages.js" %>
+</script>
+
 <% for message in @messages %>
   <%= render "messages/card", message: message %>
 <% end %>
+
+<div id="instant_messages_anchor"></div>
 
 <%= render "messages/new" %>
