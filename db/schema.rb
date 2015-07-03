@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702205024) do
+ActiveRecord::Schema.define(version: 20150703050731) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150702205024) do
     t.binary   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "token"
   end
 
   create_table "notes", force: :cascade do |t|

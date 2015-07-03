@@ -5,27 +5,30 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'proposals#index'
   
-  # proposal paths
+  # proposals
   get 'proposals/:id/votes/up_vote', to: 'proposals#up_vote', as: 'up_vote'
   get 'proposals/:id/votes/down_vote', to: 'proposals#down_vote', as: 'down_vote'
   get 'proposals/add_image', as: 'add_proposal_image'
   
-  # search paths
+  # searchs
   get 'search', to: 'search#index', as: 'search'
   get 'search/new', to: 'search#new', as: 'new_search'
   
-  # token paths
+  # tokens
   get 'token/update', as: 'update_token'
   get 'token', to: 'token#index', as: 'token'
   
-  # page paths
+  # pages
   get 'pages/more', as: 'more'
   
-  # group paths
+  # groups
   get 'groups/:token/chat', to: 'groups#chat', as: 'group_chat'
   
   # manifestos
   get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'
+  
+  # messages
+  post 'messages/create', as: 'messages'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

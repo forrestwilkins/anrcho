@@ -1,3 +1,19 @@
+<!-- messages -->
+
 <div class="card">
-	
+	<div align="center" id="new_group_form">
+		<%= form_for @message do |f| %>
+			<%= hidden_field_tag :group_id, @group.id %>
+			<table>
+				<tr>
+					<td>
+						<%= f.text_field :body, placeholder: "Send a message..." %>
+					</td>
+					<td>
+						<%= f.submit "Send" %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
 </div>

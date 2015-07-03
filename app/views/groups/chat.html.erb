@@ -1,7 +1,7 @@
 <!-- groups -->
 
 <% for message in @messages %>
-  <%= render "messages/card" %>
+  <%= render "messages/card", message: message %>
 <% end %>
 
 <%= render "messages/new" %>

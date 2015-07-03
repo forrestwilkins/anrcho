@@ -1,5 +1,8 @@
+<!-- messages -->
 
 <div class="card">
+	<div id="card_corner_cut_out"></div>
+	<%= render "token/avatar", token: message.token, position: :token_card_link %>
 	<p align="center">
 		<%= message.body %>
 	</p>
