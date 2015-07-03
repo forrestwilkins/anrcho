@@ -31,7 +31,7 @@ class Vote < ActiveRecord::Base
       up_votes_weight += ((vote.created_at.to_date - obj.created_at.to_date).to_i / 2) + 1
     end # plus one for votes on recent proposals to still get valued
     points = (up_votes_weight + (obj.comments.size / 2)) -
-      ((obj.votes.down_votes.size.to_i * 2) + (Date.today - obj.created_at.to_date).to_i)
+      ((obj.votes.down_votes.size.to_i * 3) + (Date.today - obj.created_at.to_date).to_i)
     points += obj.votes.up_votes.hotness
     return points
   end
