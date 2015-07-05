@@ -1,4 +1,7 @@
 class SearchController < ApplicationController
+  def toggle_menu  
+  end
+  
   def new
   end
   

@@ -1,0 +1,15 @@
+<!-- app -->
+
+<div id="current_token_link_anchor"></div>
+
+<%= link_to '<i class="fa fa-terminal fa-lg"></i>'.html_safe,
+	toggle_menu_path, id: :toggle_menu_link, remote: true %>
+
+<%= render "token/avatar", token: security_token,
+	position: :current_token_link, id: :current_token_link %>
+	
+<%= link_to "+", update_token_path, id: :update_token_link, remote: true %>
+
+<div id="spacing_header"></div>
+
+<%= render "manifestos/card" %>

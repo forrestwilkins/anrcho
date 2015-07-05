@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   get 'proposals/:id/votes/down_vote', to: 'proposals#down_vote', as: 'down_vote'
   get 'proposals/add_image', as: 'add_proposal_image'
   
-  # searchs
+  # search
   get 'search', to: 'search#index', as: 'search'
   get 'search/new', to: 'search#new', as: 'new_search'
+  get 'search/toggle_menu', as: 'toggle_menu'
   
   # tokens
   get 'token/update', as: 'update_token'
