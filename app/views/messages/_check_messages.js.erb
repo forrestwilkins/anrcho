@@ -5,7 +5,7 @@ setInterval(function() {
 		$.ajax({
 			type: "GET",
 			url: "/messages/instant_messages",
-			data: $.param({token: "<%=j @group.token %>"});
+			data: $.param({token: "<%= @group.token %>"})
 		});
 	}
-}, 1000);
+}, 5000);

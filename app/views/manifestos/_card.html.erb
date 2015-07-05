@@ -1,4 +1,11 @@
+<!-- manifestos -->
 
 <div class="card" id="manifesto_card" hidden>
-	<p align="center"><%= current_manifesto.body %></p>
+	<p align="center">
+		<% if current_manifesto %>
+			<%= current_manifesto.body %>
+		<% else %>
+			There aren't any proposed manifestos yet.
+		<% end %>
+	</p>
 </div>

@@ -21,15 +21,13 @@ Rails.application.routes.draw do
   # pages
   get 'pages/more', as: 'more'
   
-  # groups
-  get 'groups/:token/chat', to: 'groups#chat', as: 'group_chat'
-  
   # manifestos
   get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'
   
   # messages
   post 'messages/create', as: 'messages'
-  get 'messages/instant_messages/:token', to: 'messages#instant_messages'
+  get 'messages/instant_messages', to: 'messages#instant_messages'
+  get 'groups/:token/chat', to: 'messages#index', as: 'group_chat'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

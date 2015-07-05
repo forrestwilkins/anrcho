@@ -12,7 +12,7 @@
 		<%= render "token/avatar", token: security_token,
 			position: :current_token_link, id: :current_token_link %>
 		<%= link_to "+", update_token_path, id: :update_token_link, remote: true %>
-		<%= link_to '<i class="fa fa-book fa-lg"></i>'.html_safe, toggle_manifesto_path, id: :manifesto_link, remote: true %>
+		<%= link_to '<i class="fa fa-terminal fa-lg"></i>'.html_safe, toggle_nav_path, id: :manifesto_link, remote: true %>
 		<div id="spacing_header"></div>
 		<%= render "manifestos/card" %>
 		<%= yield %>
