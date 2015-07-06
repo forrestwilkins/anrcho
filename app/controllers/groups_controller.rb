@@ -1,10 +1,4 @@
 class GroupsController < ApplicationController
-  def chat
-    @group = Group.find_by_token(params[:token])
-    @messages ||= @group.messages
-    @message = Message.new
-  end
-  
   def new
     @group = Group.new
   end

@@ -1,7 +1,11 @@
 class MessagesController < ApplicationController
   def instant_messages
     @group = Group.find_by_token(params[:token])
-    @instant_messages = @group.messages
+    @instant_messages = []
+    for message in @group.messages
+      @instant_messages << message
+    end
+    cookies[:last_message_id] = @instant_messages.last.id
   end
   
   def index

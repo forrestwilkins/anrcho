@@ -91,11 +91,6 @@ a {
 	bottom: 10px;
 }
 
-#nav_menu_link {
-	color: white;
-	font-size: 13px;
-}
-
 #spacing_header {
 	padding-bottom: 32px;
 }
@@ -107,4 +102,24 @@ a {
 	background: black;
 	height: 30px;
 	width: 32px;
+}
+
+#nav_menu_link {
+	color: white;
+	font-size: 13px;
+	float: left;
+}
+
+#link_menu {
+  position: absolute;
+  top: 11.5px;
+  left: 35px;
+}
+
+#toggle_menu_link {
+	position: absolute;
+	top: 12px;
+	left: 10px;
+	color: white;
+	font-size: 13px;
 }
