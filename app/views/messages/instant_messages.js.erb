@@ -3,5 +3,5 @@
 <% if @instant_messages.present? %>
 	var anchor = $("#instant_messages_anchor");
 	anchor.after("<%=j render 'messages/instant_messages' %>");
-	anchor.remove(); anchor.scrollView();
+	anchor.remove(); $("#instant_messages_anchor").scrollView();
 <% end %>
