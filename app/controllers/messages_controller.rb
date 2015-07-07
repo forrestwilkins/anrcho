@@ -25,8 +25,14 @@ class MessagesController < ApplicationController
   private
   
   def set_last_im group, instant_messages=nil
-    cookies[:last_im] = { message_id: (instant_messages.present? \
-      ? instant_messages.last.id : group.messages.last.id),
-      group_token: group.token }.to_s if group.messages.present?
+    message_id = if instant_messages.present?
+      instant_messages.last.id
+    elsif group.messages.present?
+      group.messages.last.id
+    else
+      nil
+    end
+    cookies[:last_im] = { message_id: message_id,
+      group_token: group.token }.to_s
   end
 end
