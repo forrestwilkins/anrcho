@@ -1,4 +1,13 @@
 class MessagesController < ApplicationController
+  def new_chat
+    @group = Group.new
+    if @group.save
+      redirect_to chat_path(@group.token)
+    else
+      redirect_to :back
+    end
+  end
+  
   def instant_messages
     @group = Group.find_by_token(params[:token])
     last_im = eval(cookies[:last_im].to_s)

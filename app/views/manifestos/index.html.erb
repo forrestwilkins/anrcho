@@ -1,0 +1,7 @@
+<!-- manifestos -->
+
+<%= render "manifestos/current", hidden: false %>
+
+<% for manifesto in @manifestos %>
+	<%= render "manifestos/card", manifesto: manifesto %>
+<% end %>

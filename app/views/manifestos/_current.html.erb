@@ -1,0 +1,13 @@
+<!-- manifestos -->
+
+<div class="card" id="current_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
+	<%= link_to manifestos_path do %>
+		<p align="center">
+			<% if current_manifesto %>
+				<%= current_manifesto.body %>
+			<% else %>
+				There aren't any ratified manifestos yet.
+			<% end %>
+		</p>
+	<% end %>
+</div>

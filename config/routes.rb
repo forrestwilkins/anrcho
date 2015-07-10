@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   # messages
   post 'messages/create', as: 'messages'
   get 'messages/instant_messages', to: 'messages#instant_messages'
-  get 'groups/:token/chat', to: 'messages#index', as: 'group_chat'
+  get 'groups/:token/chat', to: 'messages#index', as: 'chat'
+  post 'messages/new_chat', as: 'new_chat'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,5 +1,5 @@
 module ManifestosHelper
   def current_manifesto
-    @manifesto = Manifesto.last
+    @manifesto = Manifesto.where(ratified: true).last
   end
 end

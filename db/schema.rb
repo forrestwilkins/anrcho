@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703050731) do
+ActiveRecord::Schema.define(version: 20150710045258) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150703050731) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "ratified"
   end
 
   create_table "meetups", force: :cascade do |t|
