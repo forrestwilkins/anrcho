@@ -1,0 +1,12 @@
+<!-- manifestos -->
+
+<div class="card">
+	<%= form_for Manifesto.new, url: manifestos_path, method: :post do |f| %>
+		<div align="center">
+			<p>
+				<%= f.text_area :body, placeholder: "Write a new manifesto..." %>
+			</p>
+			<%= f.submit "Submit" %>
+		</div>
+	<% end %>
+</div>
