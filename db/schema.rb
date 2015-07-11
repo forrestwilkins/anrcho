@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710045258) do
+ActiveRecord::Schema.define(version: 20150711185424) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150710045258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "token"
+    t.string   "image"
   end
 
   create_table "notes", force: :cascade do |t|

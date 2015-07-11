@@ -4,6 +4,6 @@
 	<div id="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: message.token, position: :token_card_link %>
 	<p align="center">
-		<%= message.body %>
+		<%= decrypt_message(message) %>
 	</p>
 </div>
