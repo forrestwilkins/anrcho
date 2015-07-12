@@ -1,0 +1,18 @@
+<!-- app -->
+
+<% flash.each do |name, message| %>
+	<% case name %>
+		<% when "notice"%>
+			<% card_type = "notice_card" %>
+		<% when "error" %>
+			<% card_type = "error_card" %>
+		<% else %>
+			<% card_type = "card" %>
+	<% end %>
+	
+	<div class="<%= card_type %>">
+		<p align="center">
+			<%= message %>
+		</p>
+	</div>
+<% end %>

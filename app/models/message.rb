@@ -1,9 +1,7 @@
 class Message < ActiveRecord::Base
   belongs_to :group
-  
-  validates_presence_of :body
-  
   before_create :encrypt_message
+  validate :has_content
   
   mount_uploader :image, ImageUploader
   
@@ -14,5 +12,13 @@ class Message < ActiveRecord::Base
       encryptor = ActiveSupport::MessageEncryptor.new(key)
       self.body = encryptor.encrypt_and_sign(self.body)
     end
+  end
+  
+  private
+  
+  def has_content
+    if (self.body.nil? or self.body.empty?) and !self.image.url
+      errors.add(:no_content, "Your message was void of content.")
+    end 
   end
 end

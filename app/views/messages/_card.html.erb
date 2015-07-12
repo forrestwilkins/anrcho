@@ -7,10 +7,12 @@
 		<% if message.image.url %>
 			<%= image_tag message.image, class: :embedded_image %>
 		<% end %>
-		<p>
-			<% for word in decrypt_message(message).split(" ") %>
-				<%= render "app/embed", word: word %>
-			<% end %>
-		</p>
+		<% if message.body.present? %>
+			<p>
+				<% for word in decrypt_message(message).split(" ") %>
+					<%= render "app/embed", word: word %>
+				<% end %>
+			</p>
+		<% end %>
 	</div>
 </div>
