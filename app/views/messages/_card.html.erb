@@ -3,9 +3,14 @@
 <div class="card">
 	<div id="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: message.token, position: :token_card_link %>
-	<p align="center">
-		<% for word in decrypt_message(message).split(" ") %>
-			<%= render "app/embed", word: word %>
+	<div align="center">
+		<% if message.image.url %>
+			<%= image_tag message.image, class: :embedded_image %>
 		<% end %>
-	</p>
+		<p>
+			<% for word in decrypt_message(message).split(" ") %>
+				<%= render "app/embed", word: word %>
+			<% end %>
+		</p>
+	</div>
 </div>
