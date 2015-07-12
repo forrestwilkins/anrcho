@@ -7,13 +7,19 @@
 			<table>
 				<tr>
 					<td>
-						<%= f.text_field :body, placeholder: "Send a message..." %>
+						<%= link_to add_message_image_path, remote: true do %>
+							<i class="fa fa-picture-o"></i>
+						<% end %>
+					</td>
+					<td>
+						<%= f.text_area :body, placeholder: "Send a message..." %>
 					</td>
 					<td>
 						<%= f.submit "Send" %>
 					</td>
 				</tr>
 			</table>
+			<div id="hidden_file_field" hidden><%= f.file_field :image %></div>
 		<% end %>
 	</div>
 </div>

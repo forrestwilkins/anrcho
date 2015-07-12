@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+  def add_image
+  end
+  
   def new_chat
     @group = Group.new
     if @group.save

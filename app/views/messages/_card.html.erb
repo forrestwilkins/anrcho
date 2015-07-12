@@ -4,6 +4,8 @@
 	<div id="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: message.token, position: :token_card_link %>
 	<p align="center">
-		<%= decrypt_message(message) %>
+		<% for word in decrypt_message(message).split(" ") %>
+			<%= render "app/embed", word: word %>
+		<% end %>
 	</p>
 </div>
