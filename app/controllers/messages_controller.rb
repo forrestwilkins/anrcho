@@ -24,14 +24,15 @@ class MessagesController < ApplicationController
   
   def index
     @group = Group.find_by_token(params[:token])
-    set_last_im @group; @messages ||= @group.messages
-    @message = Message.new
+    set_last_im @group; @messages ||= @group.messages.last 5
+    @new_message = Message.new
   end
   
   def create
+    @new_message = Message.new
     @group = Group.find_by_id params[:group_id]
     @message = @group.messages.new(params[:message].permit(:body, :image)) if @group
-    @message.token = security_token; @message.save if @message; redirect_to :back
+    @message.token = security_token; @message.save if @message
   end
   
   private
