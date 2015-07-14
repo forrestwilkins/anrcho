@@ -16,3 +16,4 @@
 //= require_tree .
 //= require bindWithDelay
 //= require scrollView
+//= require jquery.remotipart

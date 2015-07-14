@@ -33,6 +33,7 @@ gem 'gpgme'
 # uploading images
 gem 'rmagick'
 gem 'carrierwave'
+gem 'remotipart'
 
 # for location data
 gem 'geocoder'
