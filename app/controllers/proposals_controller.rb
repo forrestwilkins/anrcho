@@ -4,7 +4,7 @@ class ProposalsController < ApplicationController
   
   def index
     reset_page
-    @all_items = Proposal.globals.sort_by { |proposal| proposal.rank }
+    @all_items = Proposal.globals.voting.sort_by { |proposal| proposal.rank }
     @char_codes = char_codes @all_items
     @items = paginate @all_items
   end
@@ -20,8 +20,8 @@ class ProposalsController < ApplicationController
     @proposal.token = security_token
     if @proposal.save
       if params[:local]
-        get_location @proposal  
-      end    	
+        get_location @proposal
+      end
       Hashtag.extract @proposal
       if @proposal.group
         redirect_to group_path(@proposal.group.token)

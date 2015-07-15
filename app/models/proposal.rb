@@ -7,6 +7,10 @@ class Proposal < ActiveRecord::Base
   validates_presence_of :body
   
   scope :globals, -> { where group_id: nil }
+  scope :ratified, -> { where ratified: true }
+  scope :revision, -> { where requires_revision: true }
+  scope :voting, -> { where(ratified: [nil, false]).
+    where requires_revision: [nil, false] }
   
   mount_uploader :image, ImageUploader
   
