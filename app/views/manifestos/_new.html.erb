@@ -4,7 +4,7 @@
 	<%= form_for Manifesto.new, url: manifestos_path, method: :post do |f| %>
 		<div align="center">
 			<p>
-				<%= f.text_area :body, placeholder: "Write a new manifesto..." %>
+				<%= f.text_area :body, placeholder: "Propose a new manifesto..." %>
 			</p>
 			<%= f.submit "Submit" %>
 		</div>
