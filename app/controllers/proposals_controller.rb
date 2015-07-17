@@ -52,6 +52,6 @@ class ProposalsController < ApplicationController
   private
   
   def proposal_params
-    params[:proposal].permit(:title, :body, :action, :image)
+    params[:proposal].permit(:title, :body, :action, :image, :misc_data)
   end
 end

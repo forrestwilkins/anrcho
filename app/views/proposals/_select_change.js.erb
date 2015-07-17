@@ -1,0 +1,12 @@
+// proposals
+
+$("#new_proposal_form").change(function(e) {
+	var option_selected = $(e.target).find("option:selected");
+	if (typeof option_selected.val() === 'string') {
+		switch (option_selected.val()) {
+			case 'add_hashtags':
+				$("#hidden_hashtag_field").toggle();
+				break;
+		}
+	}
+});

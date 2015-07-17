@@ -1,9 +1,10 @@
 class Proposal < ActiveRecord::Base
-  belongs_to :group
   belongs_to :manifesto
-  has_many :votes
+  belongs_to :group
   has_many :comments
   has_many :hashtags
+  has_many :votes
+  
   validates_presence_of :body
   
   scope :globals, -> { where group_id: nil }

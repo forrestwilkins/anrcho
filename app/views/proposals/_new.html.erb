@@ -1,6 +1,7 @@
 <!-- proposals -->
 
 <div align="center" id="new_proposal_form">
+	<script><%= render 'proposals/select_change.js' %></script>
 	<%= form_for @proposal do |f| %>
 		<%= hidden_field_tag :group_id, @group.id if @group %>
 		<p>
@@ -21,7 +22,12 @@
 		
 		<p id="hidden_file_field" hidden><%= f.file_field :image %></p>
 		
-		<p><%= f.select :action, options_for_select(action_types(@group)) %></p>
+		<p><%= f.select :action, options_for_select(action_types(@group)),
+			id: :proposal_action_select %></p>
+			
+		<p id="hidden_hashtag_field" hidden>
+			<%= f.text_field :misc_data, placeholder: "Add hashtags..." %>
+		</p>
 		
 		<p>
 			<%= f.label "Local proposal" %>
