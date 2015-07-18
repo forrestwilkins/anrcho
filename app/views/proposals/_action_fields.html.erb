@@ -1,0 +1,9 @@
+<!-- proposals -->
+			
+<p id="hidden_hashtag_field" hidden>
+	<%= f.text_field :misc_data, placeholder: "Add hashtags..." %>
+</p>
+
+<p id="hidden_postpone_expiration_field" hidden>
+	<%= select_tag :misc_data, options_for_select([["Number of weeks", nil], 2, 3, 4, 5]) %>
+</p>

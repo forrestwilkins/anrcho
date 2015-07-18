@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   before_save :generate_token
   
   def expires?
-    if self.created_at.to_date < 1.week.ago
+    if self.expires_at.nil? and self.created_at.to_date < 1.week.ago
       self.destroy!
       return true
     else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717053631) do
+ActiveRecord::Schema.define(version: 20150718214157) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150717053631) do
     t.text     "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "expires_at"
   end
 
   create_table "hashtags", force: :cascade do |t|
