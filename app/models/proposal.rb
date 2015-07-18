@@ -20,20 +20,15 @@ class Proposal < ActiveRecord::Base
       unless self.group
         case action.to_sym
         when :meetup
-          
         when :new_banner
-          
         end
       else
         case action.to_sym
         when :add_hashtags
-          
+          Hashtag.add_from self.misc_data, self.group
         when :add_locale
-          
         when :disband_early
-          
         when :postpone_expiration
-          
         end
       end
       self.update ratified: true
@@ -61,9 +56,10 @@ class Proposal < ActiveRecord::Base
   
   def self.group_action_types
     { add_hashtags: "Add hashtags",
-        add_locale: "Set your locale as the groups",
-        disband_early: "Disband earlier than specified",
-        postpone_expiration: "Postpone expiration of the group" }
+      add_locale: "Set your locale as the groups",
+      disband_early: "Disband earlier than specified",
+      postpone_expiration: "Postpone expiration of the group",
+      change_ratification_threshold: "Change ratification threshold" }
   end
   
   def ratified?
@@ -71,16 +67,16 @@ class Proposal < ActiveRecord::Base
   end
   
   def ratifiable?
-    !self.ratified and self.up_votes.size >= _ratification_point \
+    !self.ratified and self.up_votes.size >= ratification_threshold \
       and self.down_votes.size < self.up_votes.size / 5.0
   end
   
   def requires_revision?
-    self.up_votes.size >= _ratification_point \
+    self.up_votes.size >= ratification_threshold \
       and self.down_votes.size > self.up_votes.size / 5.0
   end
   
-  def _ratification_point
+  def ratification_threshold
   	if self.ratification_point.to_i.zero?
   		return 3
   	else
