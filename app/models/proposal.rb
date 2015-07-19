@@ -29,6 +29,7 @@ class Proposal < ActiveRecord::Base
         when :add_locale
           self.group.set_location self.misc_data
         when :disband_early
+          self.group.destroy!
         when :postpone_expiration
         end
       end

@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
       @items = paginate @all_items
       @group_shown = true
     else
-      @expired = true
+      redirect_to "/404"
     end
   end
 end

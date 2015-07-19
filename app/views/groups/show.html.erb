@@ -12,6 +12,6 @@
 	<%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>
 <% else %>
 	<div class="card">
-		<p align="center"><%= if @is_a_token then "This group has expired." else "Invalid token." end %></p>
+		<p align="center"><%= if @is_a_token then "This group no longer exists." else "Invalid token." end %></p>
 	</div>
 <% end %>
