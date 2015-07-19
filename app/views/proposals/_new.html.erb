@@ -1,9 +1,9 @@
 <!-- proposals -->
 
 <div align="center" id="new_proposal_form">
-	<script><%= render 'proposals/select_change.js' %></script>
 	<%= form_for @proposal do |f| %>
 		<%= hidden_field_tag :group_id, @group.id if @group %>
+		<script><%= render 'proposals/select_change.js', f_builder: f %></script>
 		<p>
 			<%= f.text_field :title, placeholder: "Title" %>
 		</p>
@@ -24,8 +24,9 @@
 		
 		<p><%= f.select :action, options_for_select(action_types(@group)),
 			id: :proposal_action_select %></p>
-			
-		<%= render "proposals/action_fields", f: f %>
+		
+		<div id="action_fields_anchor"></div>
+		<%= render "proposals/action_fields", f_builder: f %>
 		
 		<p>
 			<%= f.label "Local proposal" %>

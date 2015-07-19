@@ -3,9 +3,14 @@
 $("#new_proposal_form").change(function(e) {
 	var option_selected = $(e.target).find("option:selected");
 	if (typeof option_selected.val() === 'string') {
+		var anchor = $("#action_fields_anchor");
+		$("#action_fields").remove();
 		switch (option_selected.val()) {
 			case 'add_hashtags':
-				$("#hidden_hashtag_field").toggle();
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'add_hashtags' %>");
+				break;
+			case 'postpone_expiration':
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'postpone_expiration' %>");
 				break;
 		}
 	}
