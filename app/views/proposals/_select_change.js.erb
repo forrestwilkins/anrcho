@@ -9,9 +9,6 @@ $("#new_proposal_form").change(function(e) {
 			case 'add_hashtags':
 				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'add_hashtags' %>");
 				break;
-			case 'postpone_expiration':
-				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'postpone_expiration' %>");
-				break;
 		}
 	}
 });
