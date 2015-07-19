@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
         Hashtag.add_from params[:hashtags], @group
       end
       if params[:local]
-        get_location @group
+        set_location @group
       end
       redirect_to group_path(@group.token)
     else

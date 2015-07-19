@@ -13,6 +13,19 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def set_location ip
+    geoip = GeoIP.new('GeoLiteCity.dat').city(ip.to_s)
+    if defined? geoip and geoip
+      self.update latitude: geoip.latitude, longitude: geoip.longitude
+      if self.latitude and self.longitude
+        geocoder = Geocoder.search("#{self.latitude}, #{self.longitude}").first
+        if geocoder and geocoder.formatted_address
+          self.update location: geocoder.formatted_address
+        end
+      end
+    end
+  end
+  
   private
   
   def generate_token

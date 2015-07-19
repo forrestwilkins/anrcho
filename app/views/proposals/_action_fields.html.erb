@@ -6,9 +6,5 @@
 		<p>
 			<%= f_builder.text_field :misc_data, placeholder: "Add hashtags..." %>
 		</p>
-	<% when 'postpone_expiration' %>
-		<p>
-			<%= f_builder.select :misc_data, options_for_select([["Number of weeks", nil], 2, 3, 4, 5]) %>
-		</p>
 	<% end %>
 </div>

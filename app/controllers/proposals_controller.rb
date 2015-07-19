@@ -18,9 +18,10 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(proposal_params)
     @proposal.group_id = params[:group_id]
     @proposal.token = security_token
+    build_action
     if @proposal.save
       if params[:local]
-        get_location @proposal
+        set_location @proposal
       end
       Hashtag.extract @proposal
       if @proposal.group
@@ -50,6 +51,14 @@ class ProposalsController < ApplicationController
   end
   
   private
+  
+  def build_action
+    action = params[:proposal][:action]
+    case (action.present? ? action : "").to_sym
+    when :add_locale
+      @proposal.misc_data = request.remote_ip.to_s
+    end
+  end
   
   def proposal_params
     params[:proposal].permit(:title, :body, :action, :image, :misc_data)

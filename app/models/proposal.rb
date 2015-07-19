@@ -27,6 +27,7 @@ class Proposal < ActiveRecord::Base
         when :add_hashtags
           Hashtag.add_from self.misc_data, self.group
         when :add_locale
+          self.group.set_location self.misc_data
         when :disband_early
         when :postpone_expiration
         end
@@ -57,7 +58,7 @@ class Proposal < ActiveRecord::Base
   def self.group_action_types
     { add_hashtags: "Add hashtags",
       add_locale: "Set your locale as the groups",
-      disband_early: "Disband earlier than specified",
+      disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",
       change_ratification_threshold: "Change ratification threshold" }
   end
