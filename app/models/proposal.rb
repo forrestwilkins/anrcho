@@ -20,7 +20,6 @@ class Proposal < ActiveRecord::Base
       unless self.group
         case action.to_sym
         when :meetup
-        when :new_banner
         end
       else
         case action.to_sym
@@ -31,6 +30,7 @@ class Proposal < ActiveRecord::Base
         when :disband_early
           self.group.destroy!
         when :postpone_expiration
+        when :change_ratification_threshold
         end
       end
       self.update ratified: true
@@ -53,7 +53,7 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { meetup: "Meetup locally", new_banner: "Set a new site banner" }
+    { meetup: "Plan a meetup" }
   end
   
   def self.group_action_types

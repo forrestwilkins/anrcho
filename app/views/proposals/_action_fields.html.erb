@@ -6,5 +6,9 @@
 		<p>
 			<%= f_builder.text_field :misc_data, placeholder: "Add hashtags..." %>
 		</p>
+	<% when 'meetup' %>
+		<p>
+			<%= f_builder.text_area :misc_data, placeholder: "Date and location..." %>
+		</p>
 	<% end %>
 </div>

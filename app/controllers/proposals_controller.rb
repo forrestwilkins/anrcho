@@ -55,7 +55,7 @@ class ProposalsController < ApplicationController
   def build_action
     action = params[:proposal][:action]
     case (action.present? ? action : "").to_sym
-    when :add_locale
+    when :add_locale, :meetup
       @proposal.misc_data = request.remote_ip.to_s
     end
   end

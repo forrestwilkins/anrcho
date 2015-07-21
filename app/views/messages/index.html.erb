@@ -4,6 +4,8 @@
 	<%= render "messages/check_messages.js" %>
 </script>
 
+<%= render "groups/card", group: @group %>
+
 <% for message in @messages %>
 	<%= render "messages/card", message: message %>
 <% end %>
