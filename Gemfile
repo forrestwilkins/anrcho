@@ -58,6 +58,9 @@ gem 'easy_translate'
 # fonts and glyphs
 gem 'font-awesome-sass'
 
+# social media
+gem 'twitter'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
