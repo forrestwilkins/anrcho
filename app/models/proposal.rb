@@ -35,11 +35,19 @@ class Proposal < ActiveRecord::Base
       end
       self.update ratified: true
       puts "\nProposal #{self.id} has been ratified.\n"
+      self.broadcast
       return true
     elsif requires_revision?
       self.update requires_revision: true
       return nil
     end
+  end
+  
+  def broadcast
+    message = ""
+    message << self.body + " " if self.body.present?
+    self.hashtags.each { |tag| tag.tag.to_s + " " }
+    $twitter.update message
   end
   
   def rank
