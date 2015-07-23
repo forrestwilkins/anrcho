@@ -35,7 +35,7 @@ class Proposal < ActiveRecord::Base
       end
       self.update ratified: true
       puts "\nProposal #{self.id} has been ratified.\n"
-      self.broadcast
+      self.tweet
       return true
     elsif requires_revision?
       self.update requires_revision: true
@@ -43,10 +43,28 @@ class Proposal < ActiveRecord::Base
     end
   end
   
-  def broadcast
+  def tweet
     message = ""
-    message << self.body + " " if self.body.present?
-    self.hashtags.each { |tag| tag.tag.to_s + " " }
+    insert = lambda { |char| message << char if message.size < 140 }
+    # inserts title into message
+    self.title.split("").each do |char|
+      insert.call char
+    end
+    insert.call " "
+    # inserts body, breaks at hashtags
+    self.body.split("").each do |char|
+      break if char.eql? '#'
+      insert.call char
+    end
+    insert.call " "
+    # inserts tags if room
+    self.hashtags.each do |tag|
+      break unless tag.tag.size + message.size < 140
+      tag.tag.split("").each do |char|
+        insert.call char
+      end
+      insert.call " "
+    end
     $twitter.update message
   end
   
