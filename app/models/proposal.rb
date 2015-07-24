@@ -65,7 +65,12 @@ class Proposal < ActiveRecord::Base
       end
       insert.call " "
     end
-    $twitter.update message
+    # checks in case api keys aren't present
+    if ENV['TWITTER_CONSUMER_KEY'].present?
+      $twitter.update message
+    else
+      puts "Twitter API keys are not present."
+    end
   end
   
   def rank
