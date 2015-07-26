@@ -14,6 +14,24 @@
 	</div>
 </div>
 
+<div id="proposal_sections">
+	<%= link_to root_url, remote: true do %>
+		<div id="voting_section">
+			<div class="section_text">Voting</div>
+		</div>
+	<% end %>
+	<%= link_to root_url, remote: true do %>
+		<div id="revision_section">
+			<div class="section_text">Revision</div>
+		</div>
+	<% end %>
+	<%= link_to root_url, remote: true do %>
+		<div id="ratified_section">
+			<div class="section_text">Ratified</div>
+		</div>
+	<% end %>
+</div>
+
 <%= render "proposals/feed" %>
 
 <%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>

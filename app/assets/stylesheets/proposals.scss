@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin section {
+	text-align: center;
+	float: right;
+	height: 100%;
+	width: 33.33%;
+}
+
 .top_right_glimmer {
 	position: absolute;
 	top: 0px;
@@ -32,4 +39,32 @@
 
 #hidden_file_field {
 	width: 200px;
+}
+
+#proposal_sections {
+	position: relative;
+	max-width: 567.5px;
+	margin: 0 auto;
+	width: 98.5%;
+	height: 50px;
+	margin-bottom: 12.5px;
+}
+
+.section_text {
+	margin: 17.5px 0px;
+}
+
+#voting_section {
+	@include section;
+	background: red;
+}
+
+#revision_section {
+	@include section;
+	background: green;
+}
+
+#ratified_section {
+	@include section;
+	background: blue;
 }

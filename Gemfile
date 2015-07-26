@@ -60,6 +60,7 @@ gem 'font-awesome-sass'
 
 # social media
 gem 'twitter'
+gem 'koala' # for facebook
 
 # Use Unicorn as the app server
 # gem 'unicorn'
