@@ -1,0 +1,29 @@
+// proposals
+
+// simple glimmer at present, will fade through out the spectrum for each
+// color changes will reflect actual changes in their respective feeds
+
+setInterval(function() {
+	var id = Math.round(Math.random() * 4);
+	var r = Math.round(Math.random() * 255);
+	var g = Math.round(Math.random() * 255);
+	var b = Math.round(Math.random() * 255);
+	
+	switch (id) {
+		case 0:
+			id = "#voting_section";
+			break;
+		case 1:
+			id = "#revision_section";
+			break;
+		case 2:
+			id = "#ratified_section";
+			break;
+		case 3:
+			id = "#all_section";
+			break;
+	}
+	
+	var section_link = $(id);
+	section_link.css("background", "rgb(" + r + ", " + g + ", " + b + ")");
+}, 500);
