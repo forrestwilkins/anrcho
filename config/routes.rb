@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'proposals/:id/votes/up_vote', to: 'proposals#up_vote', as: 'up_vote'
   get 'proposals/:id/votes/down_vote', to: 'proposals#down_vote', as: 'down_vote'
   get 'proposals/add_image', as: 'add_proposal_image'
+  get 'proposals/switch_section/:section', to: 'proposals#switch_section', as: 'switch_section'
   
   # search
   get 'search', to: 'search#index', as: 'search'

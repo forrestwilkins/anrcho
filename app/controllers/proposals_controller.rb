@@ -3,10 +3,7 @@ class ProposalsController < ApplicationController
   end
   
   def index
-    reset_page
-    @all_items = Proposal.globals.voting.sort_by { |proposal| proposal.rank }
-    @char_codes = char_codes @all_items
-    @items = paginate @all_items
+    build_feed :all
   end
   
   def new
@@ -50,7 +47,19 @@ class ProposalsController < ApplicationController
     Vote.down_vote!(@proposal, security_token)
   end
   
+  # Proposal sections: :voting, :revision, :ratified
+  def switch_section
+    build_feed params[:section]
+  end
+  
   private
+  
+  def build_feed section
+    reset_page
+    @all_items = Proposal.globals.send(section.to_sym).sort_by { |proposal| proposal.rank }
+    @char_codes = char_codes @all_items
+    @items = paginate @all_items
+  end
   
   def build_action
     action = params[:proposal][:action]

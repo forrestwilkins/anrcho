@@ -15,23 +15,22 @@
 </div>
 
 <div id="proposal_sections">
-	<%= link_to root_url, remote: true do %>
+	<%= link_to switch_section_path(:voting), remote: true do %>
 		<div id="voting_section">
 			<div class="section_text">Voting</div>
 		</div>
 	<% end %>
-	<%= link_to root_url, remote: true do %>
+	<%= link_to switch_section_path(:revision), remote: true do %>
 		<div id="revision_section">
 			<div class="section_text">Revision</div>
 		</div>
 	<% end %>
-	<%= link_to root_url, remote: true do %>
+	<%= link_to switch_section_path(:ratified), remote: true do %>
 		<div id="ratified_section">
 			<div class="section_text">Ratified</div>
 		</div>
 	<% end %>
 </div>
 
-<%= render "proposals/feed" %>
-
-<%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>
+<div id="feed_container_anchor"></div>
+<%= render "proposals/feed_container" %>

@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   
   def build_feed_data
     if params[:proposals]
-      @all_items = Proposal.globals.voting.sort_by { |proposal| proposal.rank }
+      @all_items = Proposal.globals.sort_by { |proposal| proposal.rank }
       @items = paginate @all_items
       @char_codes = char_codes @items
       @home_shown = true
