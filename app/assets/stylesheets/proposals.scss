@@ -4,9 +4,9 @@
 
 @mixin section {
 	text-align: center;
-	float: right;
+	float: left;
 	height: 100%;
-	width: 33.33%;
+	width: 25%;
 }
 
 .top_right_glimmer {
@@ -67,4 +67,9 @@
 #ratified_section {
 	@include section;
 	background: blue;
+}
+
+#all_section {
+	@include section;
+	background: purple;
 }

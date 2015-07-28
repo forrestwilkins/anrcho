@@ -30,6 +30,11 @@
 			<div class="section_text">Ratified</div>
 		</div>
 	<% end %>
+	<%= link_to switch_section_path(:all), remote: true do %>
+		<div id="all_section">
+			<div class="section_text">All</div>
+		</div>
+	<% end %>
 </div>
 
 <div id="feed_container_anchor"></div>
