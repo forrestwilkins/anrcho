@@ -1,6 +1,7 @@
 class Proposal < ActiveRecord::Base
   belongs_to :manifesto
   belongs_to :group
+  has_many :proposals
   has_many :comments
   has_many :hashtags
   has_many :votes
@@ -15,32 +16,36 @@ class Proposal < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
-  def ratify!
+  def evaluate
     if ratifiable?
-      unless self.group
-        case action.to_sym
-        when :meetup
-        end
-      else
-        case action.to_sym
-        when :add_hashtags
-          Hashtag.add_from self.misc_data, self.group
-        when :add_locale
-          self.group.set_location self.misc_data
-        when :disband_early
-          self.group.destroy!
-        when :postpone_expiration
-        when :change_ratification_threshold
-        end
-      end
-      self.update ratified: true
-      puts "\nProposal #{self.id} has been ratified.\n"
-      self.tweet
+      self.ratify!
       return true
     elsif requires_revision?
       self.update requires_revision: true
       return nil
     end
+  end
+  
+  def ratify!
+    unless self.group
+      case action.to_sym
+      when :meetup
+      end
+    else
+      case action.to_sym
+      when :add_hashtags
+        Hashtag.add_from self.misc_data, self.group
+      when :add_locale
+        self.group.set_location self.misc_data
+      when :disband_early
+        self.group.destroy!
+      when :postpone_expiration
+      when :change_ratification_threshold
+      end
+    end
+    self.update ratified: true
+    puts "\nProposal #{self.id} has been ratified.\n"
+    self.tweet
   end
   
   def tweet
@@ -101,12 +106,11 @@ class Proposal < ActiveRecord::Base
   
   def ratifiable?
     !self.ratified and self.up_votes.size >= ratification_threshold \
-      and self.down_votes.size < self.up_votes.size / 5.0
+      and self.down_votes.size.zero?
   end
   
   def requires_revision?
-    self.up_votes.size >= ratification_threshold \
-      and self.down_votes.size > self.up_votes.size / 5.0
+    return self.down_votes.size > 0
   end
   
   def ratification_threshold

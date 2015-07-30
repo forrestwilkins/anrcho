@@ -59,8 +59,9 @@ gem 'easy_translate'
 gem 'font-awesome-sass'
 
 # social media
-gem 'twitter'
 gem 'koala' # for facebook
+gem 'tumblr_client'
+gem 'twitter'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

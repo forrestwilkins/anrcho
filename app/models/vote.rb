@@ -11,7 +11,7 @@ class Vote < ActiveRecord::Base
     elsif vote.up?
       vote.destroy
     end
-    if obj.respond_to? :ratify! then return obj.ratify! else return nil end
+    obj.evaluate
   end
   
   def self.down_vote! obj, token
@@ -23,6 +23,7 @@ class Vote < ActiveRecord::Base
     elsif vote.down?
       vote.destroy
     end
+    obj.evaluate
   end
   
   def self.score obj
