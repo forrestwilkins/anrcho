@@ -8,18 +8,26 @@
 
 <table id="link_table_<%= proposal.id %>">
 	<tr>
-		<td>
-			<% _class = up_voted?(proposal) ? :voted_on : nil %>
-			<%= link_to "For", up_vote_path(proposal),
-				remote: true, class: _class, id: "up_vote_proposal_#{proposal.id}" %>
-		</td>
-		<td>·</td>
-		<td>
-			<% _class = down_voted?(proposal) ? :voted_on : nil %>
-			<%= link_to "Against", down_vote_path(proposal),
-				remote: true, class: _class, id: "down_vote_proposal_#{proposal.id}" %>
-		</td>
-		<td>·</td>
+		<% unless proposal.ratified %>
+			<% unless proposal.requires_revision %>
+				<td>
+					<% _class = up_voted?(proposal) ? :voted_on : nil %>
+					<%= link_to "For", up_vote_path(proposal),
+						remote: true, class: _class, id: "up_vote_proposal_#{proposal.id}" %>
+				</td>
+				<td>·</td>
+				<td>
+					<% _class = down_voted?(proposal) ? :voted_on : nil %>
+					<%= link_to "Against", down_vote_path(proposal),
+						remote: true, class: _class, id: "down_vote_proposal_#{proposal.id}" %>
+				</td>
+			<% else %>
+				<td>
+					<%= link_to "Revise", proposal_path(proposal) %>
+				</td>
+			<% end %>
+			<td>·</td>
+		<% end %>
 		<td>
 			<%= link_to comment_link_text, comment_link_path,
 				remote: remote, id: "new_comment_link_#{proposal.id}" %>

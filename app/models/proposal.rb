@@ -100,10 +100,6 @@ class Proposal < ActiveRecord::Base
       change_ratification_threshold: "Change ratification threshold" }
   end
   
-  def ratified?
-    self.ratified
-  end
-  
   def ratifiable?
     !self.ratified and self.up_votes.size >= ratification_threshold \
       and self.down_votes.size.zero?

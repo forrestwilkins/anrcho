@@ -1,29 +1,58 @@
 // proposals
 
-// simple glimmer at present, will fade through out the spectrum for each
 // color changes will reflect actual changes in their respective feeds
+// speed of change and emphasis of certain colors depicting certain site conditions
+
+var rgb = [[0,0,0], [0,0,0], [0,0,0], [0,0,0]]; // 4 colors
+var fat_rgb = [false, false, false]; // ensures pos/neg
+var section_total = 4; // num of links to be fading
+var color_max = 250; // when color should go back down
+var color_min = 5; // when it should go back up
+var change_rate = 1; // added/subbed each round
+var change_speed = 1; // interval speed
+
+// pushes 4 rands for each primary
+for (var x=0; x < section_total; x++) {
+	// goes through each primary color
+	for (var y=0; y < rgb.length; y++) {
+		rgb[x][y] = Math.round(Math.random() * 255);
+	}
+}
 
 setInterval(function() {
-	var id = Math.round(Math.random() * 4);
-	var r = Math.round(Math.random() * 255);
-	var g = Math.round(Math.random() * 255);
-	var b = Math.round(Math.random() * 255);
-	
+	// chooses section by random to be later targeted
+	var id = Math.round(Math.random() * section_total);
+	// morphs all of rgb back and forth
+	for (var i=0; i < 3; i++) {
+		// flips colors direction of change
+		if (rgb[id][i] < color_min) {
+			fat_rgb[i] = false;
+		} else if (rgb[id][i] > color_max) {
+			fat_rgb[i] = true;
+		}
+		// fattens or shrinks primaries
+		if (fat_rgb[i]) {
+			rgb[id][i] -= change_rate;
+		} else {
+			rgb[id][i] += change_rate;
+		}
+	}
+	// chooses section to change color
 	switch (id) {
 		case 0:
-			id = "#voting_section";
+			id_str = "#voting_section";
 			break;
 		case 1:
-			id = "#revision_section";
+			id_str = "#revision_section";
 			break;
 		case 2:
-			id = "#ratified_section";
+			id_str = "#ratified_section";
 			break;
 		case 3:
-			id = "#all_section";
+			id_str = "#all_section";
 			break;
 	}
-	
-	var section_link = $(id);
-	section_link.css("background", "rgb(" + r + ", " + g + ", " + b + ")");
-}, 500);
+	// actually applies applies change
+	var section_link = $(id_str);
+	section_link.css("background", "rgb(" + rgb[id][0] + ", " + rgb[id][1] + ", " + rgb[id][2] + ")");
+}, change_speed);

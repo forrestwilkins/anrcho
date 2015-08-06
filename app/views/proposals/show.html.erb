@@ -6,14 +6,16 @@
 	<%= render "comments/card", comment: comment %>
 <% end %>
 
-<div class="card">
-	<div align="center">
-		<%= form_for @comment, url: proposal_comments_path(@proposal), method: :post do |f| %>
-			<%= hidden_field_tag :proposal_shown, true %>
-			<p>
-				<%= f.text_area :body, placeholder: "Leave a comment..." %>
-			</p>
-			<%= f.submit "Submit" %>
-		<% end %>
+<% if @comments.present? %>
+	<div class="card">
+		<div align="center">
+			<%= form_for @comment, url: proposal_comments_path(@proposal), method: :post do |f| %>
+				<%= hidden_field_tag :proposal_shown, true %>
+				<p>
+					<%= f.text_area :body, placeholder: "Leave a comment..." %>
+				</p>
+				<%= f.submit "Submit" %>
+			<% end %>
+		</div>
 	</div>
-</div>
+<% end %>

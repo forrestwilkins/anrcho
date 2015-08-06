@@ -4,9 +4,4 @@ var anchor = $("#more_content_anchor");
 var buffer_wheel = $("#buffer_wheel");
 
 anchor.after("<%=j render 'pages/more_content' %>");
-anchor.remove(); // removes the first anchor so the latest will be targeted
-
-// remove load wheel if no more loading is required
-<% if @items.present? and @items.size < page_size %>
-	// buffer_wheel.remove();
-<% end %>
+anchor.remove();

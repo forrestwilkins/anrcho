@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @mixin section {
+	background: black;
 	text-align: center;
 	float: left;
 	height: 100%;
@@ -61,20 +62,16 @@
 
 #voting_section {
 	@include section;
-	background: red;
 }
 
 #revision_section {
 	@include section;
-	background: green;
 }
 
 #ratified_section {
 	@include section;
-	background: blue;
 }
 
 #all_section {
 	@include section;
-	background: purple;
 }
