@@ -6,9 +6,9 @@
 var rgb = [[0,0,0], [0,0,0], [0,0,0], [0,0,0]]; // 4 colors
 var fat_rgb = [false, false, false]; // ensures pos/neg
 var section_total = 4; // num of links to be fading
-var color_max = 250; // when color should go back down
-var color_min = 5; // when it should go back up
-var change_rate = 1; // added/subbed each round
+var color_min = 1; // when it should go back up
+var color_max = 255; // when color should go back down
+var change_rate = 1.5; // added/subbed each round
 var change_speed = 1; // interval speed
 
 // pushes 4 rands for each primary
@@ -25,9 +25,9 @@ setInterval(function() {
 	// morphs all of rgb back and forth
 	for (var i=0; i < 3; i++) {
 		// flips colors direction of change
-		if (rgb[id][i] < color_min) {
+		if (rgb[id][i] <= color_min) {
 			fat_rgb[i] = false;
-		} else if (rgb[id][i] > color_max) {
+		} else if (rgb[id][i] >= color_max) {
 			fat_rgb[i] = true;
 		}
 		// fattens or shrinks primaries
