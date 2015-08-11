@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   
   def build_feed_data
     if params[:proposals]
-      @all_items = Proposal.globals.sort_by { |proposal| proposal.rank }
+      @all_items = current_proposals.sort_by { |proposal| proposal.rank }
       @items = paginate @all_items
       @char_codes = char_codes @items
       @home_shown = true
@@ -29,5 +29,16 @@ class PagesController < ApplicationController
       @items = paginate @all_items
       @group_shown = true
     end
+  end
+  
+  def current_proposals
+    # only loads proposals from current section if a sections been chosen
+    if session[:current_proposal_section].present?
+      proposals = Proposal.globals.send(session[:current_proposal_section].to_sym)
+    else
+      # returns all if no currently chosen section
+      proposals = Proposal.globals
+    end
+    return proposals
   end
 end

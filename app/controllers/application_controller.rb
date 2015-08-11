@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
     # resets back to top
     unless session[:more]
       session[:page] = nil
+      session[:current_proposal_section] = nil
     end
   end
   

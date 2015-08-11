@@ -1,0 +1,5 @@
+<!-- proposals -->
+
+<% link_text = proposal.proposals.present? ? "Revisions #{proposal.proposals.size}" : "Revise" %>
+
+<%= link_to link_text, proposal_path(proposal) %>

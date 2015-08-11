@@ -11,8 +11,10 @@ class Proposal < ActiveRecord::Base
   scope :globals, -> { where group_id: nil }
   scope :ratified, -> { where ratified: true }
   scope :revision, -> { where requires_revision: true }
-  scope :voting, -> { where(ratified: [nil, false]).
-    where requires_revision: [nil, false] }
+  scope :voting, -> do
+    where(ratified: [nil, false]).
+      where requires_revision: [nil, false]
+  end
   
   mount_uploader :image, ImageUploader
   

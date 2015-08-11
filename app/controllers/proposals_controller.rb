@@ -8,6 +8,7 @@ class ProposalsController < ApplicationController
   
   def new
     @proposal = Proposal.new
+    @parent_proposal = Proposal.find_by_id(params[:proposal_id])
     @group = Group.find_by_id(params[:group_id])
   end
   
@@ -33,6 +34,7 @@ class ProposalsController < ApplicationController
   
   def show
     @proposal = Proposal.find_by_id(params[:id])
+    @proposal_shown = true if @proposal.present?
     @comments = @proposal.comments
     @comment = Comment.new
   end
@@ -55,7 +57,7 @@ class ProposalsController < ApplicationController
   private
   
   def build_feed section
-    reset_page
+    reset_page; session[:current_proposal_section] = section.to_s
     @all_items = Proposal.globals.send(section.to_sym).sort_by { |proposal| proposal.rank }
     @char_codes = char_codes @all_items
     @items = paginate @all_items

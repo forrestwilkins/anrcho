@@ -1,0 +1,10 @@
+<!-- comments -->
+
+<% comments_present = proposal.comments.present? and ((proposal.comments.size.eql? 1 and not \
+	proposal.comments.last.created_at.nil?) or proposal.comments.size > 1) %>
+<% comment_link_text = comments_present ? "Comments #{proposal.comments.size}" : "Comment" %>
+<% comment_link_path = (defined?(commenting) or @proposal_shown) ? proposal_path(proposal) \
+	: new_proposal_comment_path(proposal) %>
+<% remote = comment_link_path.eql?(proposal_path(proposal)) ? false : true %>
+
+<%= link_to comment_link_text, comment_link_path, remote: remote, id: "new_comment_link_#{proposal.id}" %>
