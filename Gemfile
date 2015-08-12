@@ -45,9 +45,11 @@ gem 'area'
 # erorr handling and debugging
 gem 'gaffe'
 
-# mobile browser detection
+# user agent detection
 gem 'useragent'
 gem 'browser'
+gem 'bot-away'
+gem 'voight_kampff'
 
 # languages
 gem 'whatlanguage'

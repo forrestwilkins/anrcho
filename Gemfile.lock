@@ -50,6 +50,8 @@ GEM
       json (~> 1.8.0)
       nokogiri (~> 1.6.0)
       savon (~> 2.0)
+    bot-away (2.0.1)
+      actionpack (>= 2.3.5)
     browser (0.8.0)
     buftok (0.2.0)
     builder (3.2.2)
@@ -108,6 +110,7 @@ GEM
     http (0.6.4)
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
+    httpclient (2.6.0.1)
     httpi (2.4.1)
       rack
     i18n (0.7.0)
@@ -234,6 +237,9 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     useragent (0.14.0)
+    voight_kampff (0.2.2)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.6)
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
@@ -251,6 +257,7 @@ DEPENDENCIES
   area
   bcrypt
   bing_translator
+  bot-away
   browser
   byebug
   carrierwave
@@ -280,5 +287,6 @@ DEPENDENCIES
   twitter
   uglifier
   useragent
+  voight_kampff
   web-console (~> 2.0)
   whatlanguage

@@ -40,13 +40,17 @@ class ProposalsController < ApplicationController
   end
   
   def up_vote
-    @proposal = Proposal.find(params[:id])
-    @ratified = Vote.up_vote!(@proposal, security_token)
+    unless request.bot?
+      @proposal = Proposal.find(params[:id])
+      @ratified = Vote.up_vote!(@proposal, security_token)
+    end
   end
   
   def down_vote
-    @proposal = Proposal.find(params[:id])
-    Vote.down_vote!(@proposal, security_token)
+    unless request.bot?
+      @proposal = Proposal.find(params[:id])
+      Vote.down_vote!(@proposal, security_token)
+    end
   end
   
   # Proposal sections: :voting, :revision, :ratified
