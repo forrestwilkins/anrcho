@@ -3,6 +3,7 @@ class ProposalsController < ApplicationController
   end
   
   def index
+    redirect_to '/404' if request.bot?
     build_feed :all
   end
   
