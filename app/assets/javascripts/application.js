@@ -17,3 +17,4 @@
 //= require bindWithDelay
 //= require scrollView
 //= require jquery.remotipart
+//= require bonsai
