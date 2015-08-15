@@ -1,10 +1,15 @@
 <!-- token -->
 
+<script>
+  <%= render "token/pattern.js" %>
+</script>
+
 <% chars = token.slice(0..15).split("") %>
 <%= link_to search_path(query: token), class: "#{position}", id: "#{defined?(id) ? id : nil}" do %>
 	<div id="avatar_container">
-		<% for char in chars %>
-			<div class="avatar_pixel" style="background:rgb(<%= awesome_colors char, chars %>);"></div>
-		<% end %>
+		<% num = 0; for char in chars %>
+			<div class="avatar_pixel" id="avatar_pixel_<%= num %>"
+			  style="background:rgb(<%= awesome_colors char, chars %>);"></div>
+		<% num += 1; end %>
 	</div>
 <% end %>
