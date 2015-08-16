@@ -1,4 +1,21 @@
 module TokenHelper
+  def avatar_pattern chars
+    # pattern based on chars, in following order:
+    # pixels chosen, colors chosen, blink or fade chosen
+    c_low = 45; c_avg = 86; c_high = 122
+    char_codes = chars.map { |c| c.codepoints.last }
+    pattern = {}; num = 0; for code in char_codes
+      case code.to_i
+        when 0..45
+          
+        when 46..86
+          
+        when 87..122
+          
+      end
+    num += 1; end
+  end
+  
   def awesome_colors char, chars
     multiplier = 2
     # gets the two characters after the current one
