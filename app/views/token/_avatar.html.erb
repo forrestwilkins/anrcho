@@ -2,9 +2,10 @@
 
 <% chars = token.slice(0..15).split("") %>
 <% pattern = avatar_pattern chars %>
+<% clean_token = token.gsub(/[^0-9a-z]/i, '') %>
 
 <script>
-  <%= render "token/pattern.js", pattern: pattern %>
+	// render pattern.js here
 </script>
 
 <%= link_to search_path(query: token), class: "#{position}", id: "#{defined?(id) ? id : nil}" do %>

@@ -6,15 +6,14 @@
 var rgb = [[0,0,0], [0,0,0], [0,0,0], [0,0,0]]; // 4 colors
 var fat_rgb = [[false,false,false], [false,false,false],
 	[false,false,false], [false,false,false]]; // ensures pos/neg
-var section_total = 4; // num of links to be fading
 var color_min = 25; // when it should go back up
 var color_max = 255; // when color should go back down
 var change_rate = 1; // added/subbed each round
 var change_speed = 1; // interval speed
 
-// pushes 4 rands for each primary
-for (var x=0; x < section_total; x++) {
-	// goes through each primary color
+// goes through each section
+for (var x=0; x < 4; x++) {
+  // goes through each color
 	for (var y=0; y < rgb.length; y++) {
 		rgb[x][y] = Math.round(Math.random() * 255);
 	}
@@ -22,7 +21,7 @@ for (var x=0; x < section_total; x++) {
 
 setInterval(function() {
 	// chooses section by random to be later targeted
-	var id = Math.round(Math.random() * section_total);
+	var id = Math.round(Math.random() * 3);
 	// morphs all of rgb back and forth
 	for (var i=0; i < 3; i++) {
 		// flips colors direction of change
