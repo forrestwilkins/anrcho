@@ -35,9 +35,18 @@ class ProposalsController < ApplicationController
   
   def show
     @proposal = Proposal.find_by_id(params[:id])
-    @proposal_shown = true if @proposal.present?
-    @comments = @proposal.comments
-    @comment = Comment.new
+    if @proposal.present?
+      @proposal_shown = true
+      if params[:revisions]
+        @revisions = @proposal.proposals
+        @revision = Proposal.new
+      else
+        @comments = @proposal.comments
+        @comment = Comment.new
+      end
+    else
+      redirect_to '/404'
+    end
   end
   
   def up_vote

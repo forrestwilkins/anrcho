@@ -2,11 +2,19 @@
 
 <%= render "proposals/card", proposal: @proposal %>
 
-<% for comment in @comments %>
-	<%= render "comments/card", comment: comment %>
-<% end %>
-
-<% if @comments.present? %>
+<% if params[:revisions] %>
+	<% for revision in @revisions %>
+		<%= render "proposals/card", proposal: proposal %>
+	<% end %>
+	
+	<div class="card">
+		<%= render "proposals/new_revision" %>
+	</div>
+	
+<% else %>
+	<% for comment in @comments %>
+		<%= render "comments/card", comment: comment %>
+	<% end %>
 	<div class="card">
 		<div align="center">
 			<%= form_for @comment, url: proposal_comments_path(@proposal), method: :post do |f| %>

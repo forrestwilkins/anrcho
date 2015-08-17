@@ -1,0 +1,15 @@
+<!-- proposals -->
+
+<div align="center"
+  <%= form_for @revision do |f| %>
+    <%= hidden_field_tag :proposal_id, @proposal.id %>
+    <%= hidden_field_tag :action, :revision %>
+    <p>
+	    <%= f.text_field :title, value: @proposal.title, placeholder: "Title" %>
+    </p>
+    <p>
+	    <%= f.text_area :body, value: @proposal.body, placeholder: "Body" %>
+    </p>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
