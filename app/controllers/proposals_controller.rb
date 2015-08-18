@@ -23,7 +23,9 @@ class ProposalsController < ApplicationController
         set_location @proposal
       end
       Hashtag.extract @proposal
-      if @proposal.group
+      if @proposal.proposal
+        redirect_to proposal_path(id: @proposal.proposal_id, revisions: true)
+      elsif @proposal.group
         redirect_to group_path(@proposal.group.token)
       else
         redirect_to root_url
@@ -79,9 +81,13 @@ class ProposalsController < ApplicationController
   
   def build_action
     action = params[:proposal][:action]
+    action = params[:proposal_action] unless action.present?
     case (action.present? ? action : "").to_sym
     when :add_locale, :meetup
       @proposal.misc_data = request.remote_ip.to_s
+    when :revision
+      @proposal.action = "revision"
+      @proposal.proposal_id = params[:proposal_id]
     end
   end
   

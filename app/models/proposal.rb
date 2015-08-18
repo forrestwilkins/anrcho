@@ -1,6 +1,7 @@
 class Proposal < ActiveRecord::Base
   belongs_to :manifesto
   belongs_to :group
+  belongs_to :proposal
   has_many :proposals
   has_many :comments
   has_many :hashtags
@@ -8,7 +9,7 @@ class Proposal < ActiveRecord::Base
   
   validates_presence_of :body
   
-  scope :globals, -> { where group_id: nil }
+  scope :globals, -> { where(group_id: nil).where.not action: :revision  }
   scope :ratified, -> { where ratified: true }
   scope :revision, -> { where requires_revision: true }
   scope :voting, -> do
@@ -29,11 +30,18 @@ class Proposal < ActiveRecord::Base
   end
   
   def ratify!
-    unless self.group
+    # for revision proposals
+    if self.proposal
       case action.to_sym
-      when :meetup
+      when :revision
+        self.proposal.update(
+          requires_revision: false,
+          title: self.title,
+          body: self.body
+        )
       end
-    else
+    # proposals to groups
+    elsif self.group
       case action.to_sym
       when :add_hashtags
         Hashtag.add_from self.misc_data, self.group
@@ -44,10 +52,15 @@ class Proposal < ActiveRecord::Base
       when :postpone_expiration
       when :change_ratification_threshold
       end
+    # global proposals
+    else
+      case action.to_sym
+      when :meetup
+      end
     end
     self.update ratified: true
     puts "\nProposal #{self.id} has been ratified.\n"
-    self.tweet
+    self.tweet unless ENV['RAILS_ENV'].eql? 'development'
   end
   
   def tweet
@@ -83,7 +96,7 @@ class Proposal < ActiveRecord::Base
   def rank
     proposals = self.group.present? ? self.group.proposals : Proposal.globals
     ranked = proposals.sort_by { |proposal| proposal.score }
-    return ranked.reverse.index(self) + 1
+    return ranked.reverse.index(self) + 1 if ranked.include? self
   end
   
   def score

@@ -1,9 +1,9 @@
 <!-- proposals -->
 
-<div align="center"
-  <%= form_for @revision do |f| %>
+<div align="center">
+  <%= form_for @revision, url: create_proposal_path, method: :post do |f| %>
     <%= hidden_field_tag :proposal_id, @proposal.id %>
-    <%= hidden_field_tag :action, :revision %>
+    <%= hidden_field_tag :proposal_action, "revision" %>
     <p>
 	    <%= f.text_field :title, value: @proposal.title, placeholder: "Title" %>
     </p>

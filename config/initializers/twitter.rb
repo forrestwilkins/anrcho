@@ -1,8 +1,11 @@
+# twitter api
 
-if ENV['TWITTER_CONSUMER_KEY'].present?
-  puts "Twitter API keys found."
-else
-  puts "Could not find Twitter API keys."
+unless ENV['RAILS_ENV'].eql? 'development'
+  if ENV['TWITTER_CONSUMER_KEY'].present?
+    puts "Twitter API keys found."
+  else
+    puts "Could not find Twitter API keys."
+  end
 end
 
 $twitter = Twitter::REST::Client.new do |config|
