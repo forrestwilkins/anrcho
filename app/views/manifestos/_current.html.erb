@@ -1,13 +1,22 @@
 <!-- manifestos -->
 
+<script>
+	<%= render "manifestos/fader.js" %>
+</script>
+
 <div class="card" id="current_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
 	<%= link_to manifestos_path do %>
-		<div align="center">
+	<div align="center">
+		<p id="manifesto_welcome_text">
+			Welcome to Anrcho
+		</p>
+		<p id="current_manifesto_text">
 			<% if current_manifesto %>
 				<%= current_manifesto.body.html_safe %>
 			<% else %>
 				There aren't any ratified manifestos yet.
 			<% end %>
-		</div>
+		</p>
+	</div>
 	<% end %>
 </div>
