@@ -5,10 +5,10 @@
 </script>
 
 <div class="card" id="current_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
-	<%= link_to manifestos_path do %>
+	<%= link_to toggle_manifesto_path, remote: true do %>
 	<div align="center">
 		<p id="manifesto_welcome_text">
-			Welcome to Anrcho
+			Welcome to Anrcho.
 		</p>
 		<p id="current_manifesto_text">
 			<% if current_manifesto %>

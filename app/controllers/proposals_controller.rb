@@ -39,6 +39,8 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find_by_id(params[:id])
     if @proposal.present?
       @proposal_shown = true
+      @up_votes = @proposal.up_votes
+      @down_votes = @proposal.down_votes
       if params[:revisions]
         @revisions = @proposal.proposals
         @revision = Proposal.new

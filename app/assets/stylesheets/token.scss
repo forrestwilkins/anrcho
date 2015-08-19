@@ -16,6 +16,26 @@
 	top: 10px;
 }
 
+.voter_token_container {
+  float: left;
+  align: center;
+  padding: 5px 5px;
+  background: black;
+  margin: 5px 5px;
+}
+
+.voter_tokens_container {
+  float: left;
+}
+
+.voter_tokens_label {
+  float: left;
+}
+
+#voter_links_card {
+  height: 50px;
+}
+
 #update_token_link {
 	position: absolute;
 	top: 12px;

@@ -1,12 +1,21 @@
 // token
 
-var pattern = <%=j pattern.to_json %>
+function <%=j unique_name %>() {
+  var pattern = <%=j pattern.to_json %>
+  var blink_state = true;
+  setInterval(function() {
+    var pattern_size = pattern.length - 1;
+	  var id = Math.round(Math.random() * pattern_size);
+	  var pattern_id = pattern[id][0];
+	  var pattern_rgb = pattern[id][1];
+	  var pixel = $("#avatar_pixel_" + pattern_id + "_" + "<%=j token + '_' + unique_name %>");
+	  if (blink_state) {
+	    pixel.css("background", "rgb(" + pattern_rgb[0] + ", " + pattern_rgb[1] + ", " + pattern_rgb[2] + ")");
+	  } else {
+	    pixel.css("background", "rgb(" + pattern_rgb[2] + ", " + pattern_rgb[0] + ", " + pattern_rgb[1] + ")");
+	  }
+	  blink_state = !blink_state;
+  }, 100);
+}
 
-var <%=j token %> = setInterval(function() {
-	var id = Math.round(Math.random() * pattern.length);
-	var r = Math.round(Math.random() * 255);
-	var g = Math.round(Math.random() * 255);
-	var b = Math.round(Math.random() * 255);
-	var pixel = $("#avatar_pixel_" + pattern[id-1]);
-	pixel.css("background", "rgb(" + r + ", " + g + ", " + b + ")");
-}, 100);
+<%=j unique_name %>();

@@ -3,56 +3,60 @@
 // color changes will reflect actual changes in their respective feeds
 // speed of change and emphasis of certain colors depicting certain site conditions
 
-var rgb = [[0,0,0], [0,0,0], [0,0,0], [0,0,0]]; // 4 colors
-var fat_rgb = [[false,false,false], [false,false,false],
-	[false,false,false], [false,false,false]]; // ensures pos/neg
-var color_min = 25; // when it should go back up
-var color_max = 255; // when color should go back down
-var change_rate = 1; // added/subbed each round
-var change_speed = 1; // interval speed
+function proposal_sections_fader() {  
+  var rgb = [[0,0,0], [0,0,0], [0,0,0], [0,0,0]]; // 4 colors
+  var fat_rgb = [[false,false,false], [false,false,false],
+	  [false,false,false], [false,false,false]]; // ensures pos/neg
+  var color_min = 25; // when it should go back up
+  var color_max = 255; // when color should go back down
+  var change_rate = 1; // added/subbed each round
+  var change_speed = 1; // interval speed
 
-// goes through each section
-for (var x=0; x < 4; x++) {
-  // goes through each color
-	for (var y=0; y < rgb.length; y++) {
-		rgb[x][y] = Math.round(Math.random() * 255);
-	}
+  // goes through each section
+  for (var x=0; x < 4; x++) {
+    // goes through each color
+	  for (var y=0; y < rgb.length; y++) {
+		  rgb[x][y] = Math.round(Math.random() * 255);
+	  }
+  }
+
+  setInterval(function() {
+	  // chooses section by random to be later targeted
+	  var id = Math.round(Math.random() * 3); // 1 less
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[id][i] <= color_min) {
+			  fat_rgb[id][i] = false;
+		  } else if (rgb[id][i] >= color_max) {
+			  fat_rgb[id][i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[id][i]) {
+			  rgb[id][i] -= change_rate;
+		  } else {
+			  rgb[id][i] += change_rate;
+		  }
+	  }
+	  // chooses section to change color
+	  switch (id) {
+		  case 0:
+			  id_str = "#voting_section";
+			  break;
+		  case 1:
+			  id_str = "#revision_section";
+			  break;
+		  case 2:
+			  id_str = "#ratified_section";
+			  break;
+		  case 3:
+			  id_str = "#all_section";
+			  break;
+	  }
+	  // actually applies change
+	  var section_link = $(id_str);
+	  section_link.css("background", "rgb(" + rgb[id][0] + ", " + rgb[id][1] + ", " + rgb[id][2] + ")");
+  }, change_speed);
 }
 
-setInterval(function() {
-	// chooses section by random to be later targeted
-	var id = Math.round(Math.random() * 3);
-	// morphs all of rgb back and forth
-	for (var i=0; i < 3; i++) {
-		// flips colors direction of change
-		if (rgb[id][i] <= color_min) {
-			fat_rgb[id][i] = false;
-		} else if (rgb[id][i] >= color_max) {
-			fat_rgb[id][i] = true;
-		}
-		// fattens or shrinks primaries
-		if (fat_rgb[id][i]) {
-			rgb[id][i] -= change_rate;
-		} else {
-			rgb[id][i] += change_rate;
-		}
-	}
-	// chooses section to change color
-	switch (id) {
-		case 0:
-			id_str = "#voting_section";
-			break;
-		case 1:
-			id_str = "#revision_section";
-			break;
-		case 2:
-			id_str = "#ratified_section";
-			break;
-		case 3:
-			id_str = "#all_section";
-			break;
-	}
-	// actually applies change
-	var section_link = $(id_str);
-	section_link.css("background", "rgb(" + rgb[id][0] + ", " + rgb[id][1] + ", " + rgb[id][2] + ")");
-}, change_speed);
+proposal_sections_fader();

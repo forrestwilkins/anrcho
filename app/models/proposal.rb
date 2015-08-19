@@ -9,7 +9,7 @@ class Proposal < ActiveRecord::Base
   
   validates_presence_of :body
   
-  scope :globals, -> { where(group_id: nil).where.not action: :revision  }
+  scope :globals, -> { where(group_id: nil).where.not action: :revision }
   scope :ratified, -> { where ratified: true }
   scope :revision, -> { where requires_revision: true }
   scope :voting, -> do

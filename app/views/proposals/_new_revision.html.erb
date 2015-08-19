@@ -5,6 +5,8 @@
     <%= hidden_field_tag :proposal_id, @proposal.id %>
     <%= hidden_field_tag :proposal_action, "revision" %>
     <p>
+      <%= f.label "Submit a different version for ratification" %>
+    <p>
 	    <%= f.text_field :title, value: @proposal.title, placeholder: "Title" %>
     </p>
     <p>

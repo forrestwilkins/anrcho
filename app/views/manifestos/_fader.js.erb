@@ -1,6 +1,6 @@
 // manifestos
 
-function fader() {
+function manifesto_fader() {
   var rgb = [[0,0,0], [0,0,0], [0,0,0]]; // 4 colors
   var fat_rgb = [[false,false,false], [false,false,false],
 	  [false,false,false]]; // ensures pos/neg
@@ -19,7 +19,7 @@ function fader() {
 
   setInterval(function() {
 	  // chooses section by random to be later targeted
-	  var id = Math.round(Math.random() * 3);
+	  var id = Math.round(Math.random() * 1);
 	  // morphs all of rgb back and forth
 	  for (var i=0; i < 3; i++) {
 		  // flips colors direction of change
@@ -42,13 +42,12 @@ function fader() {
 			  break;
 		  case 1:
 			  id_str = "#manifesto_welcome_text";
-			  break;
-		  case 2:
-			  id_str = "#current_manifesto_text";
+			  id_str1 = "#current_manifesto_text";
 			  break;
 	  }
 	  // actually applies change
 	  var section_link = $(id_str);
+	  var section_link1 = $(id_str1);
 	  var attribute;
 	  if (id_str == "#current_manifesto_card") {
 	    attribute = "background";
@@ -56,7 +55,10 @@ function fader() {
 	    attribute = "color";
 	  }
 	  section_link.css(attribute, "rgb(" + rgb[id][0] + ", " + rgb[id][1] + ", " + rgb[id][2] + ")");
+	  if (section_link1.length != -1) {
+	    section_link1.css(attribute, "rgb(" + rgb[id][0] + ", " + rgb[id][1] + ", " + rgb[id][2] + ")");
+	  }
   }, change_speed);
 }
 
-fader();
+manifesto_fader();

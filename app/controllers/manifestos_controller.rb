@@ -1,6 +1,7 @@
 class ManifestosController < ApplicationController
   def toggle_manifesto
     @manifesto = Manifesto.last
+    cookies.permanent[:manifesto_tip] = true
   end
   
   def index
