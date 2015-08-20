@@ -6,7 +6,7 @@
       <strong><%= "#{label} #{votes.size}" %></strong>
     </div>
     <div class="voter_tokens_container">
-      <% for vote in votes %>
+      <% for vote in votes.last 6 %>
         <div class="voter_token_container">
           <%= render "token/avatar", token: vote.token %>
         </div>
