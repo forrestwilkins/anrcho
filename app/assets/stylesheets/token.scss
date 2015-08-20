@@ -26,14 +26,19 @@
 
 .voter_tokens_container {
   float: left;
+  padding-top: 5px;
+  padding-left: 10px;
 }
 
 .voter_tokens_label {
-  float: left;
+  position: absolute;
+  top: 2.5px;
+  left: 5px;
+  font-size: 11px;
 }
 
 #voter_links_card {
-  height: 50px;
+  min-height: 60px;
 }
 
 #update_token_link {

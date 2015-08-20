@@ -1,14 +1,16 @@
 <!-- token -->
 
-<div class="card" id="voter_links_card">
-  <div class="voter_tokens_label"><%= "#{label}" %></div>
-  <div class="voter_tokens_container">
-    <% for vote in @up_votes %>
-      <div class="voter_token_container">
-        <%= render "token/avatar", token: vote.token %>
-      </div>
-    <% end %>
+<% unless votes.size.zero? %>
+  <div class="card" id="voter_links_card">
+    <div class="voter_tokens_label">
+      <strong><%= "#{label} #{votes.size}" %></strong>
+    </div>
+    <div class="voter_tokens_container">
+      <% for vote in votes %>
+        <div class="voter_token_container">
+          <%= render "token/avatar", token: vote.token %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-
-
+<% end %>
