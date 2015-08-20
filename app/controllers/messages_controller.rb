@@ -3,8 +3,12 @@ class MessagesController < ApplicationController
   end
   
   def new_chat
-    @group = Group.new
-    if @group.save
+    @group = Group.find_by_token(cookies[:last_chat_token]) if cookies[:last_chat_token]
+    @group = Group.new if @group.nil? or @group.expires?
+    if @group and @group.token
+      redirect_to chat_path(@group.token)
+    elsif @group.save
+      cookies.permanent[:last_chat_token] = @group.token
       redirect_to chat_path(@group.token)
     else
       redirect_to :back
