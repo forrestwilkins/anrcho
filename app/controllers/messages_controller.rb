@@ -28,6 +28,7 @@ class MessagesController < ApplicationController
   
   def index
     @group = Group.find_by_token(params[:token])
+    cookies.permanent[:last_chat_token] = @group.token
     set_last_im @group; @messages ||= @group.messages.last 5
     @new_message = Message.new
   end
