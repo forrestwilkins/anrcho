@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   
   # pages
   get 'pages/more', as: 'more'
+  get 'fib', to: 'pages#fib', as: 'fib'
   
   # manifestos
   get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'

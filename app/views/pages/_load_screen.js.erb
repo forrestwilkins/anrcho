@@ -1,0 +1,20 @@
+// pages
+
+function load_screen_fader() {
+  var seq_place = 0;
+  setInterval(function() {
+	  var id = seq_place;
+	  var r = Math.round(Math.random() * 255);
+	  var g = Math.round(Math.random() * 255);
+	  var b = Math.round(Math.random() * 255);
+	  var rect = $("#load_fib_bar_" + id);
+	  rect.css("background", "rgb(" + r + ", " + g + ", " + b + ")");
+	  if (seq_place < <%=j seq_size %>) {
+	    seq_place += 1;
+	  } else {
+	    seq_place = 0;
+	  }
+  }, 100);
+}
+
+load_screen_fader();

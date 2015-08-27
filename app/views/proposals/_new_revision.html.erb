@@ -12,6 +12,13 @@
     <p>
 	    <%= f.text_area :body, value: @proposal.body, placeholder: "Body" %>
     </p>
+    
+    
+    <p>
+      <%= f.select :action, options_for_select(action_types(@group)), id: :proposal_action_select %>
+    </p>
+    
+    
     <%= f.submit "Submit" %>
   <% end %>
 </div>

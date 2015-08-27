@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  def fib
+  end
+  
   def more
     relevant_items = if params[:proposals]
       Proposal.globals

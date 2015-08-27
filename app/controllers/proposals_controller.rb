@@ -37,6 +37,7 @@ class ProposalsController < ApplicationController
   
   def show
     @proposal = Proposal.find_by_id(params[:id])
+    @group = @proposal.group
     if @proposal.present?
       @proposal_shown = true
       @up_votes = @proposal.up_votes
