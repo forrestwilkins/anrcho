@@ -1,0 +1,6 @@
+<!-- proposals -->
+
+<% _time_ago = time_ago(time_ago_in_words(proposal.created_at)) %>
+<%= link_to proposal_path(proposal), class: :top_right_link do %>
+  <strong><%= _time_ago %></strong>
+<% end %>

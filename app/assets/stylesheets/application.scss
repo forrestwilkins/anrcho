@@ -31,7 +31,7 @@ $x_left_gap: 5px;
 }
 
 @mixin corner_link {
-	font-size: 10px;
+	font-size: 11px;
 	position: absolute;
 }
 
@@ -70,7 +70,7 @@ a {
 .top_right_link {
 	@include corner_link;
 	right: $x_right_gap;
-	top: 10px;
+	top: 2.5px;
 }
 
 .top_left_link {
