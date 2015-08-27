@@ -37,7 +37,7 @@ gem 'remotipart'
 
 # for location data
 gem 'geocoder'
-gem 'geo_units', '~> 0.3.1.1'
+gem 'geo_units'
 gem 'geo-distance'
 gem 'geoip'
 gem 'area'
