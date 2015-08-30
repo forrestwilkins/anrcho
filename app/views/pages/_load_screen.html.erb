@@ -6,16 +6,24 @@
   <%= render "pages/load_screen.js", seq_size: seq_size.to_s %>
 </script>
 
-<% for i in fib_seq(seq_size) %>
-  <% rgb = lambda { Random.rand(255).to_s } %>
-  <div class="load_fib_bar" id="load_fib_bar_<%= fib_seq(seq_size).index(i) %>"
-    style="height:<%= i %>px;background:rgb(<%= rgb.call + ', ' + rgb.call + ', ' + rgb.call %>);">
-    
-    <% if i.eql? 89 %>
-      <div id="loading_label">
-        <strong>loading...</strong>
-      </div>
-    <% end %>
-    
+<div id="vertical_load_screen">
+  <% for i in fib_seq(seq_size) %>
+    <% rgb = lambda { Random.rand(255).to_s } %>
+    <div class="load_fib_bar" id="load_fib_bar_<%= fib_seq(seq_size).index(i) %>"
+      style="height:<%= i %>px;background:rgb(<%= rgb.call + ', ' + rgb.call + ', ' + rgb.call %>);">
+      
+      <% if i.eql? 89 %>
+        <div id="loading_label">
+          <strong>loading...</strong>
+        </div>
+      <% end %>
+      
+    </div>
+  <% end %>
+  
+  <div id="still_loading_label">
+    <strong>...still loading</strong>
   </div>
-<% end %>
+</div>
+
+
