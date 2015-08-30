@@ -18,28 +18,8 @@ ex: switch to :voting, still loads from all other sections -->
 	</div>
 </div>
 
-<div id="proposal_sections">
-	<%= link_to switch_section_path(:voting), remote: true do %>
-		<div id="voting_section">
-			<div class="section_text">Voting</div>
-		</div>
-	<% end %>
-	<%= link_to switch_section_path(:revision), remote: true do %>
-		<div id="revision_section">
-			<div class="section_text">Revision</div>
-		</div>
-	<% end %>
-	<%= link_to switch_section_path(:ratified), remote: true do %>
-		<div id="ratified_section">
-			<div class="section_text">Ratified</div>
-		</div>
-	<% end %>
-	<%= link_to switch_section_path(:all), remote: true do %>
-		<div id="all_section">
-			<div class="section_text">All</div>
-		</div>
-	<% end %>
-</div>
+<!-- allows user to switch between differen proposal categories -->
+<%= render "proposals/section_links" %>
 
 <div id="feed_container_anchor"></div>
 <%= render "proposals/feed_container" %>
