@@ -10,9 +10,12 @@
   <% rgb = lambda { Random.rand(255).to_s } %>
   <div class="load_fib_bar" id="load_fib_bar_<%= fib_seq(seq_size).index(i) %>"
     style="height:<%= i %>px;background:rgb(<%= rgb.call + ', ' + rgb.call + ', ' + rgb.call %>);">
+    
+    <% if i.eql? 89 %>
+      <div id="loading_label">
+        <strong>loading...</strong>
+      </div>
+    <% end %>
+    
   </div>
 <% end %>
-
-<div id="loading_label">
-  <strong>loading...</strong>
-</div>
