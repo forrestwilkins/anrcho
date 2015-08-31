@@ -8,6 +8,7 @@ class ProposalsController < ApplicationController
       build_feed :all
     else
       @loading = true
+      cookies.permanent[:already_saw_load_screen] = true
     end
   end
   

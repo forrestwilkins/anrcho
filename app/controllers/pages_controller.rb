@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def fib
+    cookies.permanent[:already_saw_load_screen] = nil
   end
   
   def more

@@ -3,10 +3,11 @@
 <!-- categoried proposals are not loading correctly
 ex: switch to :voting, still loads from all other sections -->
 
-<% unless @loading %>
-  <%= render "proposal/index_container" %>
-<% else %>
+<% if @loading %>
   <%= render "pages/load_screen" %>
+  <div id="index_container_anchor"></div>
+<% else %>
+  <%= render "proposals/index_container" %>
 <% end %>
 
 

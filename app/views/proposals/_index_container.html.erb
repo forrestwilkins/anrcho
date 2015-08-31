@@ -1,13 +1,17 @@
 <!-- proposals -->
 
-<div id="proposals_index_container">
+<div id="index_container">
   <%= render "manifestos/current", hidden: learned?(:manifesto) %>
 
   <script>
     <%= render "proposals/infinite_scroll.js" %>
     <%= render "proposals/fader.js" %>
   </script>
-
+  
+  <div color="white">
+    <%= cookies[:already_saw_load_screen].to_s %>
+  </div>
+  
   <div class="card">
     <div align="center">
 	    <%= render "app/nav_table" %>
