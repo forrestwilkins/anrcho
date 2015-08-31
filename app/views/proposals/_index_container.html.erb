@@ -1,0 +1,26 @@
+<!-- proposals -->
+
+<div id="proposals_index_container">
+  <%= render "manifestos/current", hidden: learned?(:manifesto) %>
+
+  <script>
+    <%= render "proposals/infinite_scroll.js" %>
+    <%= render "proposals/fader.js" %>
+  </script>
+
+  <div class="card">
+    <div align="center">
+	    <%= render "app/nav_table" %>
+	    <% if @all_items.empty? %>
+		    <p>There aren't any proposals yet.</p>
+	    <% end %>
+	    <div id="insert_form_anchor"></div>
+    </div>
+  </div>
+
+  <!-- allows user to switch between differen proposal categories -->
+  <%= render "proposals/section_links" %>
+
+  <div id="feed_container_anchor"></div>
+  <%= render "proposals/feed_container" %>
+</div>
