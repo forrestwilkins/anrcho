@@ -4,12 +4,7 @@ class ProposalsController < ApplicationController
   
   def index
     redirect_to '/404' if request.bot?
-    if cookies[:already_saw_load_screen]    
-      build_feed :all
-    else
-      @loading = true
-      cookies.permanent[:already_saw_load_screen] = true
-    end
+    build_feed :all
   end
   
   def new
