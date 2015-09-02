@@ -3,7 +3,8 @@
 <script>
   <% seq_size = 15 %>
   <%= render "pages/load_screen.js", seq_size: seq_size.to_s %>
-  <%= render("pages/loading.js") if @loading %>
+  <%= render "pages/still_loading_fader.js" %>
+  <%= render "pages/loading.js" %>
 </script>
 
 <div id="vertical_load_screen">
@@ -21,9 +22,9 @@
     </div>
   <% end %>
   
-  <div id="still_loading_label">
-    <strong>...still loading</strong>
-  </div>
+  <strong id="still_loading_label">
+    ...still loading
+  </strong>
 </div>
 
 

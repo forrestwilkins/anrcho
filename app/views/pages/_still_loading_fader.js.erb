@@ -1,0 +1,43 @@
+// pages
+
+function still_loading_fader() {
+  var fat_rgb = [false,false,false]; // ensures pos/neg
+  var color_min = 25; // when it should go back up
+  var color_max = 255; // when color should go back down
+  var change_rate = 0.5; // added/subbed each round
+  var change_speed = 1; // interval speed
+  var rgb = [0,0,0];
+
+
+  // goes through each color
+  for (var x=0; x < rgb.length; x++) {
+	  rgb[x] = Math.round(Math.random() * 255);
+  }
+
+  setInterval(function() {
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < rgb.length; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+	  // actually applies change
+	  var still_loading = $("#still_loading_label");
+	  still_loading.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+  }, change_speed);
+}
+
+still_loading_fader();
+
+
+
+
