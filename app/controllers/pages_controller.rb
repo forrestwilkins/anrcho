@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   
   def fib
     @loading = true
+    cookies.permanent[:loads] = "0"
   end
   
   def more
