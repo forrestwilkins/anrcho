@@ -1,0 +1,9 @@
+// pages
+
+var index_anchor = $("#index_container_anchor");
+var load_screen = $("#vertical_load_screen");
+
+if (load_screen.length != -1 && index_anchor.length != -1) {
+  load_screen.remove();
+  index_anchor.after("<%=j render('proposals/index_container') %>");
+}

@@ -3,7 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :security_token, :paginate, :page_size, :reset_page, :char_codes, :set_location
+  helper_method :security_token, :paginate, :page_size, :reset_page,
+    :char_codes, :set_location, :build_proposal_feed
+  
+  def build_proposal_feed section
+    reset_page; session[:current_proposal_section] = section.to_s
+    @all_items = Proposal.globals.send(section.to_sym).sort_by { |proposal| proposal.rank }
+    @char_codes = char_codes @all_items
+    @items = paginate @all_items
+  end
   
   def set_location item, ip=nil
     ip = !ip.present? ? request.remote_ip.to_s : ip.to_s

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   # pages
   get 'pages/more', as: 'more'
   get 'fib', to: 'pages#fib', as: 'fib'
+  get 'pages/finish_loading'
   
   # manifestos
   get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'

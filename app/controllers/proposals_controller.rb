@@ -76,10 +76,7 @@ class ProposalsController < ApplicationController
   private
   
   def build_feed section
-    reset_page; session[:current_proposal_section] = section.to_s
-    @all_items = Proposal.globals.send(section.to_sym).sort_by { |proposal| proposal.rank }
-    @char_codes = char_codes @all_items
-    @items = paginate @all_items
+    build_proposal_feed section
   end
   
   def build_action

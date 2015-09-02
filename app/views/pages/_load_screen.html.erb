@@ -3,7 +3,7 @@
 <script>
   <% seq_size = 15 %>
   <%= render "pages/load_screen.js", seq_size: seq_size.to_s %>
-  <%= render "pages/loading.js" %>
+  <%= render("pages/loading.js") if @loading %>
 </script>
 
 <div id="vertical_load_screen">

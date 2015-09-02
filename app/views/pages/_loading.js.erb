@@ -1,12 +1,12 @@
 // pages
 
 function load_screen_timeout() {
-  var load_screen = $("#vertical_load_screen");
-  var index_anchor = $("#index_container_anchor");
   setTimeout(function() {
-    load_screen.remove();
-    index_anchor.after("<%=j render 'proposals/index_container'");
-  }, 1);
+    $.ajax({
+      type: "GET",
+      url: "/pages/finish_loading"
+    });
+  }, 5000);
 }
 
 load_screen_timeout();
