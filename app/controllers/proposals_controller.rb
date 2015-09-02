@@ -4,6 +4,9 @@ class ProposalsController < ApplicationController
   
   def index
     redirect_to '/404' if request.bot?
+    if cookies[:loads].to_i <= 5
+      @loading = true
+    end
     build_feed :all
   end
   

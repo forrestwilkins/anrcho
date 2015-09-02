@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
   def finish_loading
     build_proposal_feed :all
+    cookies.permanent[:loads] = (cookies[:loads].to_i + 1).to_s
   end
   
   def fib
-    cookies.permanent[:already_saw_load_screen] = nil
     @loading = true
   end
   
