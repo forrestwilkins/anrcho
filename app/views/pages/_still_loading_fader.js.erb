@@ -31,8 +31,10 @@ function still_loading_fader() {
 		  }
 	  }
 	  // actually applies change
-	  var still_loading = $("#still_loading_label");
-	  still_loading.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+	  var loading_label = $("#loading_label");
+	  var still_loading_label = $("#still_loading_label");
+	  loading_label.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+	  still_loading_label.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
   }, change_speed);
 }
 
