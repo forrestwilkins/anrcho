@@ -6,19 +6,16 @@
     <%= hidden_field_tag :proposal_action, "revision" %>
     <p>
       <%= f.label "Submit a different version for ratification" %>
+    </p>
     <p>
 	    <%= f.text_field :title, value: @proposal.title, placeholder: "Title" %>
     </p>
     <p>
 	    <%= f.text_area :body, value: @proposal.body, placeholder: "Body" %>
     </p>
-    
-    
     <p>
-      <%= f.select :action, options_for_select(action_types(@group)), id: :proposal_action_select %>
+      <%= select_tag :revised_action, options_for_select(action_types(@group)), id: :proposal_action_select %>
     </p>
-    
-    
     <%= f.submit "Submit" %>
   <% end %>
 </div>

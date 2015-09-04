@@ -12,7 +12,7 @@
 	<div class="card">
 		<%= render "proposals/new_revision" %>
 	</div>
-<% else %>
+<% elsif params[:revisions].nil? %>
 	<% for comment in @comments %>
 		<%= render "comments/card", comment: comment %>
 	<% end %>

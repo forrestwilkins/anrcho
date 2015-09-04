@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810220838) do
+ActiveRecord::Schema.define(version: 20150903200056) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150810220838) do
     t.integer  "manifesto_id"
     t.string   "misc_data"
     t.integer  "proposal_id"
+    t.string   "revised_action"
   end
 
   create_table "votes", force: :cascade do |t|

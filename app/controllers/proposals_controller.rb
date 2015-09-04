@@ -4,7 +4,7 @@ class ProposalsController < ApplicationController
   
   def index
     redirect_to '/404' if request.bot?
-    if cookies[:loads].to_i < 3
+    if cookies[:loads].to_i.zero?
       @loading = true
     end
     build_feed :all
@@ -91,6 +91,7 @@ class ProposalsController < ApplicationController
     when :revision
       @proposal.action = "revision"
       @proposal.proposal_id = params[:proposal_id]
+      @proposal.revised_action = params[:revised_action]
     end
   end
   

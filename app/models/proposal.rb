@@ -34,8 +34,10 @@ class Proposal < ActiveRecord::Base
     if self.proposal
       case action.to_sym
       when :revision
+        self.proposal.votes.destroy_all
         self.proposal.update(
           requires_revision: false,
+          action: self.revised_action,
           title: self.title,
           body: self.body
         )
@@ -104,7 +106,8 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { meetup: "Plan a meetup" }
+    { request_feature: "Request a feature",
+      meetup: "Plan a meetup" }
   end
   
   def self.group_action_types
