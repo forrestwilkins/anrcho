@@ -6,10 +6,12 @@
 	</script>
 
 	<%= render "groups/card", group: @group %>
+	
+  <!-- allows user to switch between differen proposal categories -->
+  <%= render "proposals/section_links" %>
 
-	<%= render "groups/feed" %>
-
-	<%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>
+  <div id="feed_container_anchor"></div>
+  <%= render "proposals/feed_container", parents: "groups" %>
 <% else %>
 	<div class="card">
 		<p align="center"><%= if @is_a_token then "This group no longer exists." else "Invalid token." end %></p>

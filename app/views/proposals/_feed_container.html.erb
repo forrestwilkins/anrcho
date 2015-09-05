@@ -1,6 +1,8 @@
 <!-- proposals -->
 
+<% parents = (defined?(parents) and parents.present?) ? "groups" : "proposals" %>
+
 <div id="feed_container">
-	<%= render "proposals/feed" %>
+	<%= render "#{parents}/feed" %>
 	<%= render "pages/buffer_wheel", items: @items, all_items: @all_items %>
 </div>

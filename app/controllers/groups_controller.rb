@@ -23,8 +23,7 @@ class GroupsController < ApplicationController
     @is_a_token = (params[:id].size > 5) ? true : false
     @group = Group.find_by_token(params[:id])
     unless @group.nil? or @group.expires?
-      @all_items = @group.proposals.sort_by { |proposal| proposal.rank }
-      @items = paginate @all_items
+      build_proposal_feed :all, @group
       @group_shown = true
     else
       redirect_to "/404"

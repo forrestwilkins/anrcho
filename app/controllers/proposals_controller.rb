@@ -73,13 +73,14 @@ class ProposalsController < ApplicationController
   
   # Proposal sections: :voting, :revision, :ratified
   def switch_section
-    build_feed params[:section]
+    @group = Group.find_by_token params[:group_token]
+    build_feed params[:section], @group
   end
   
   private
   
-  def build_feed section
-    build_proposal_feed section
+  def build_feed section, group=nil
+    build_proposal_feed section, group
   end
   
   def build_action

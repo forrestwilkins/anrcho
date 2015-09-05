@@ -1,4 +1,5 @@
 // proposals
 
 $("#feed_container").remove();
-$("#feed_container_anchor").after("<%=j render 'proposals/feed_container' %>");
+$("#feed_container_anchor").after("<%=j render 'proposals/feed_container', \
+  parents: (@group.present? ? 'groups' : nil) %>");

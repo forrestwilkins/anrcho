@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
   helper_method :security_token, :paginate, :page_size, :reset_page,
     :char_codes, :set_location, :build_proposal_feed
   
-  def build_proposal_feed section
+  def build_proposal_feed section, group=nil
     reset_page; session[:current_proposal_section] = section.to_s
-    @all_items = Proposal.globals.send(section.to_sym).sort_by { |proposal| proposal.rank }
+    proposals = if group then group.proposals else Proposal.globals end
+    @all_items = proposals.send(section.to_sym).sort_by { |proposal| proposal.rank }
     @char_codes = char_codes @all_items
     @items = paginate @all_items
   end

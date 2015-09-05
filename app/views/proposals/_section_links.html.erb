@@ -1,22 +1,28 @@
 <!-- proposals -->
 
+<script>
+  <%= render "proposals/fader.js" %>
+</script>
+
+<% group_token = @group ? @group.token : nil %>
+
 <div id="proposal_sections">
-	<%= link_to switch_section_path(:voting), remote: true do %>
+	<%= link_to switch_section_path(section: :voting, group_token: group_token), remote: true do %>
 		<div id="voting_section">
 			<div class="section_text">Voting</div>
 		</div>
 	<% end %>
-	<%= link_to switch_section_path(:revision), remote: true do %>
+	<%= link_to switch_section_path(section: :revision, group_token: group_token), remote: true do %>
 		<div id="revision_section">
 			<div class="section_text">Revision</div>
 		</div>
 	<% end %>
-	<%= link_to switch_section_path(:ratified), remote: true do %>
+	<%= link_to switch_section_path(section: :ratified, group_token: group_token), remote: true do %>
 		<div id="ratified_section">
 			<div class="section_text">Ratified</div>
 		</div>
 	<% end %>
-	<%= link_to switch_section_path(:all), remote: true do %>
+	<%= link_to switch_section_path(section: :all, group_token: group_token), remote: true do %>
 		<div id="all_section">
 			<div class="section_text">All</div>
 		</div>
