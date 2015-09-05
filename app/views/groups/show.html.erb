@@ -8,7 +8,7 @@
 	<%= render "groups/card", group: @group %>
 	
   <!-- allows user to switch between differen proposal categories -->
-  <%= render "proposals/section_links" %>
+  <%= render "proposals/section_links" if @all_items.present? %>
 
   <div id="feed_container_anchor"></div>
   <%= render "proposals/feed_container", parents: "groups" %>
