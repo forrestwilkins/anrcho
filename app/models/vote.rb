@@ -55,7 +55,8 @@ class Vote < ActiveRecord::Base
     total = 0
     for vote in self.all
       next_vote = self.all.find_by_id(vote.id + 1); if next_vote.nil? then break end
-      total += 1 if (vote.created_at.to_date - next_vote.created_at.to_date).to_i.zero?
+      total += 1 if vote.created_at.to_date > 1.days.ago \
+        and (vote.created_at.to_date - next_vote.created_at.to_date).to_i.zero?
     end
     avg = total.nonzero? ? self.all.size / total : nil
     return avg ? avg : 0
