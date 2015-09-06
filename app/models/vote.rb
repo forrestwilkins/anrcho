@@ -36,7 +36,6 @@ class Vote < ActiveRecord::Base
     points = (up_votes_weight + (obj.comments.size / 2)) -
       ((obj.votes.down_votes.size.to_i * 3) + (Date.today - obj.created_at.to_date).to_i / 2)
     points += obj.votes.up_votes.hotness # adds weight for clusters of votes close together in time
-    points *= 3 if obj.created_at.to_datetime > 1.day.ago # adds more weight if just posted
     points /= 3 if obj.requires_revision? # filters revised to bottom
     return points
   end
