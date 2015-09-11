@@ -1,0 +1,24 @@
+<!-- notes -->
+
+<% for note in @notes %>
+  <div class="card">
+    <div class="note_message">
+      <% case note.action.to_sym %>
+      <% when :ratified, :commented %>
+        <%= link_to note.message, proposal_path(note.item_id) %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @notes.empty? %>
+  <div class="card">
+    <div class="note_message">
+      You have zero notifications.
+    </div>
+  </div>
+<% end %>
+
+<% @notes.update_all seen: true %>
+
+

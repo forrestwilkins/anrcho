@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     @comment = @proposal.comments.new params[:comment].permit(:body)
     @comment.token = security_token
     if @comment.save
+      Note.notify :commented, @proposal
       Hashtag.extract @comment
       if params[:proposal_shown]
         redirect_to :back

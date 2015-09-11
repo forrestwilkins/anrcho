@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903200056) do
+ActiveRecord::Schema.define(version: 20150910212926) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150903200056) do
     t.string   "receiver_token"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "seen"
   end
 
   create_table "proposals", force: :cascade do |t|

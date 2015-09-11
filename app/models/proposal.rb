@@ -61,6 +61,7 @@ class Proposal < ActiveRecord::Base
       end
     end
     self.update ratified: true
+    Note.notify :ratified, self
     puts "\nProposal #{self.id} has been ratified.\n"
     self.tweet unless ENV['RAILS_ENV'].eql? 'development'
   end
