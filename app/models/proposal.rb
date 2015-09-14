@@ -1,7 +1,7 @@
 class Proposal < ActiveRecord::Base
   belongs_to :manifesto
-  belongs_to :group
   belongs_to :proposal
+  belongs_to :group
   has_many :proposals
   has_many :comments
   has_many :hashtags
@@ -13,8 +13,7 @@ class Proposal < ActiveRecord::Base
   scope :ratified, -> { where ratified: true }
   scope :revision, -> { where requires_revision: true }
   scope :voting, -> do
-    where(ratified: [nil, false]).
-      where requires_revision: [nil, false]
+    where(ratified: [nil, false]).where requires_revision: [nil, false]
   end
   
   mount_uploader :image, ImageUploader
