@@ -4,8 +4,10 @@
   <div class="card">
     <div class="note_message">
       <% case note.action.to_sym %>
-      <% when :ratified, :commented %>
+      <% when :ratified, :commented, :proposal_revised %>
         <%= link_to note.message, proposal_path(note.item_id) %>
+      <% when :proposal_blocked, :revision_submitted %>
+        <%= link_to note.message, proposal_path(id: note.item_id, revisions: true) %>
       <% end %>
     </div>
   </div>

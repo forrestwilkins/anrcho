@@ -27,6 +27,7 @@ class ProposalsController < ApplicationController
       end
       Hashtag.extract @proposal
       if @proposal.proposal
+        Note.notify :revision_submitted, @proposal.proposal
         redirect_to proposal_path(id: @proposal.proposal_id, revisions: true)
       elsif @proposal.group
         redirect_to group_path(@proposal.group.token)

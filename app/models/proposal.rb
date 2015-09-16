@@ -24,6 +24,7 @@ class Proposal < ActiveRecord::Base
       return true
     elsif requires_revision?
       self.update requires_revision: true
+      Note.notify :proposal_blocked, self
       return nil
     end
   end
@@ -33,6 +34,7 @@ class Proposal < ActiveRecord::Base
     if self.proposal
       case action.to_sym
       when :revision
+        Note.notify :proposal_revised, self
         self.proposal.votes.destroy_all
         self.proposal.update(
           requires_revision: false,

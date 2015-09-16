@@ -13,6 +13,9 @@ class Note < ActiveRecord::Base
   
   def action_text action
     _actions = { ratified: "Your proposal has been ratified.",
+      proposal_blocked: "Someone blocked your proposal.",
+      revision_submitted: "Someone proposed a revision to your proposal.",
+      proposal_revised: "Your proposal has been revised.",
       commented: "Someone commented on your proposal." }
     return _actions[action.to_sym]
   end
