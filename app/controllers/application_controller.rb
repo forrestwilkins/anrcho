@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   # still needs to account for ip in case of bots
   def security_token
     if cookies[:token_timestamp].nil? or \
-      cookies[:token_timestamp].to_date != Date.today
+      cookies[:token_timestamp].to_date != DateTime.current.to_date
       cookies.permanent[:token] = SecureRandom.urlsafe_base64
       cookies.permanent[:token_timestamp] = DateTime.current
     end
