@@ -1,0 +1,37 @@
+// notes
+
+function notes_link_fader() {
+  var rgb = [0, 0, 0];
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = 25; // when it should go back up
+  var color_max = 255; // when color should go back down
+  var change_rate = 1; // added/subbed each round
+  var change_speed = 10; // interval speed, higher == slower
+
+  // goes through each section
+  for (var x=0; x < rgb.length; x++) {
+		rgb[x] = Math.round(Math.random() * 255);
+  }
+
+  setInterval(function() {
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+	  var link = $("#notes_nav_link");
+	  link.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+  }, change_speed);
+}
+
+notes_link_fader();

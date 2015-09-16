@@ -1,0 +1,10 @@
+<!-- notes -->
+
+<!-- white if zero, glimmer otherwise -->
+
+
+<script>
+  <%= render "notes/fader.js" unless unseen_notes.size.zero? %>
+</script>
+
+<%= link_to "+ " + unseen_notes.size.to_s, notes_path, id: :notes_nav_link %>
