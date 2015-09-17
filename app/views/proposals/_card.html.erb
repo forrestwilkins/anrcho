@@ -4,13 +4,7 @@
 	<div id="card_corner_cut_out"></div>
 	<%= render "proposals/time_ago", proposal: proposal %>
 	<!-- shows type of proposal to be motioned -->
-	<% if proposal.action.present? and not (proposal.action.eql? 'revision' and proposal.revised_action.nil?) %>
-		<div class="action_type_label">
-			<strong>
-			  <%= "Motion: #{proposal.action.eql?('revision') ? proposal.revised_action : proposal.action }" %>
-			</strong>
-		</div>
-	<% end %>
+	<%= render "proposals/action_type", proposal: proposal %>
 	<!-- to be triggered when user casts the ending vote -->
 	<div id="ratification_glimmer_anchor_<%= proposal.id %>"></div>
 	<%= render "proposals/ratification_glimmer", proposal: proposal %>
