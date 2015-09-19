@@ -6,7 +6,7 @@ class ManifestosController < ApplicationController
   
   def index
     @manifestos_index = true
-    @manifestos = Manifesto.proposed
+    @proposed_manifestos = Proposal.where(action: :update_manifesto)
   end
   
   def create

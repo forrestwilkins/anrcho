@@ -2,8 +2,6 @@
 
 <%= render "manifestos/current", hidden: false %>
 
-<% for manifesto in @manifestos %>
-	<%= render "manifestos/card", manifesto: manifesto %>
+<% for manifesto in @proposed_manifestos %>
+	<%= render "proposals/card", proposal: manifesto %>
 <% end %>
-
-<%= render "manifestos/new" %>

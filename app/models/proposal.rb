@@ -58,6 +58,8 @@ class Proposal < ActiveRecord::Base
     # global proposals
     else
       case action.to_sym
+      when :update_manifesto
+        Manifesto.create body: self.body
       when :meetup
       end
     end
@@ -108,7 +110,8 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { request_feature: "Request a feature",
+    { update_manifesto: "Propose a new manifesto",
+      request_feature: "Request a feature",
       meetup: "Plan a meetup" }
   end
   
