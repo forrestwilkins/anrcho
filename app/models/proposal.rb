@@ -52,6 +52,11 @@ class Proposal < ActiveRecord::Base
         self.group.set_location self.misc_data
       when :disband_early
         self.group.destroy!
+      when :update_manifesto
+        Manifesto.create(
+          group_token: self.group.token,
+          body: self.body
+        )
       when :postpone_expiration
       when :change_ratification_threshold
       end
@@ -110,9 +115,10 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { update_manifesto: "Propose a new manifesto",
-      request_feature: "Request a feature",
-      meetup: "Plan a meetup" }
+    { request_feature: "Request a feature",
+      meetup: "Plan a local meetup",
+      update_manifesto: "Propose a new manifesto",
+      bug_fix: "Propose a fix to a bug on the site" }
   end
   
   def self.group_action_types
@@ -120,7 +126,8 @@ class Proposal < ActiveRecord::Base
       add_locale: "Set your locale as the groups",
       disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",
-      change_ratification_threshold: "Change ratification threshold" }
+      change_ratification_threshold: "Change ratification threshold",
+      update_manifesto: "Propose a new manifesto" }
   end
   
   def ratifiable?

@@ -4,6 +4,10 @@ class Group < ActiveRecord::Base
   has_many :messages
   before_save :generate_token
   
+  def manifestos
+    Manifesto.where group_token: self.token
+  end
+  
   def expires?
     if self.expires_at.nil? and self.created_at.to_date < 1.week.ago
       self.destroy!
