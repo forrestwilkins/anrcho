@@ -119,7 +119,8 @@ class Proposal < ActiveRecord::Base
     { request_feature: "Request a feature",
       meetup: "Plan a local meetup",
       bug_fix: "Propose a fix to a bug",
-      update_manifesto: "Propose a new manifesto" }
+      update_manifesto: "Propose a new manifesto",
+      general: "Propose a general statement or idea" }
   end
   
   def self.group_action_types

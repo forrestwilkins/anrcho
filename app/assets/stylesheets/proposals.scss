@@ -34,9 +34,13 @@
 	height: 5.5px;
 }
 
-#proposal_body_text {
+.proposal_body_text {
 	margin: 20px 0px;
 	width: 85%;
+}
+
+#justified_body_text {
+  text-align: justify;
 }
 
 #proposal_image {
