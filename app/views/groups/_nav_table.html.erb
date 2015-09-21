@@ -6,11 +6,17 @@
 <table id="group_nav_table">
 	<tr>
 		<td>
-			<%= link_to "Make a proposal", proposal_link_path, remote: true, id: :new_group_proposal_link %>
+			<%= link_to "Make a proposal", proposal_link_path,
+			  remote: true, id: :new_group_proposal_link %>
 		</td>
 		<td>·</td>
 		<td>
 			<%= link_to "Chat", chat_path(group.token), id: :group_chat_link %>
+		</td>
+		<td>·</td>
+		<td>
+			<%= link_to "About", toggle_group_manifesto_path(group.token),
+			  remote: true, id: :group_manifesto_link %>
 		</td>
 	</tr>
 </table>

@@ -40,9 +40,9 @@ class ProposalsController < ApplicationController
   end
   
   def show
-    @proposal = Proposal.find_by_id(params[:id])
-    @group = @proposal.group
-    if @proposal.present?
+    @proposal = Proposal.find_by_token(params[:token])
+    @group = @proposal.group if @proposal
+    if @proposal
       @proposal_shown = true
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes

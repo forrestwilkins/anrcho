@@ -6,11 +6,18 @@ Rails.application.routes.draw do
   root 'proposals#index'
   
   # proposals
+  get 'proposal/:token', to: 'proposals#show', as: 'show_proposal'
   get 'proposals/:id/votes/up_vote', to: 'proposals#up_vote', as: 'up_vote'
   get 'proposals/:id/votes/down_vote', to: 'proposals#down_vote', as: 'down_vote'
-  get 'proposals/add_image', as: 'add_proposal_image'
   get 'proposals/switch_section/:section', to: 'proposals#switch_section', as: 'switch_section'
+  get 'proposals/add_image', as: 'add_proposal_image'
   post 'proposals/create', as: 'create_proposal'
+  
+  # groups
+  get 'groups/toggle_manifesto/:group_token', to: 'groups#toggle_manifesto', as: 'toggle_group_manifesto'
+  
+  # manifestos
+  get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'
   
   # search
   get 'search', to: 'search#index', as: 'search'
@@ -25,9 +32,6 @@ Rails.application.routes.draw do
   get 'pages/more', as: 'more'
   get 'fib', to: 'pages#fib', as: 'fib'
   get 'pages/finish_loading'
-  
-  # manifestos
-  get 'manifestos/toggle_manifesto', as: 'toggle_manifesto'
   
   # messages
   post 'messages/create', as: 'messages'

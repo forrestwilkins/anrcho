@@ -1,6 +1,6 @@
 module ManifestosHelper
   def current_manifesto
-    @manifesto = Manifesto.last
+    @manifesto = Manifesto.where(group_token: [nil, ""]).last
   end
   
   def learned? tip

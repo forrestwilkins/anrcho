@@ -1,6 +1,10 @@
 <!-- manifestos -->
 
-<%= render "manifestos/current", hidden: false %>
+<% if @group %>
+  <%= render "groups/manifesto_card", group: @group, hidden: false %>
+<% else %>
+  <%= render "manifestos/current", hidden: false %>
+<% end %>
 
 <% for manifesto in @proposed_manifestos %>
 	<%= render "proposals/card", proposal: manifesto %>

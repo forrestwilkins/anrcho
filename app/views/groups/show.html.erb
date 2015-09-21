@@ -7,6 +7,8 @@
 
 	<%= render "groups/card", group: @group %>
 	
+	<%= render "groups/manifesto_card", group: @group %>
+	
   <!-- allows user to switch between differen proposal categories -->
   <%= render "proposals/section_links" if @all_items.present? %>
 

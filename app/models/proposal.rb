@@ -117,8 +117,8 @@ class Proposal < ActiveRecord::Base
   def self.action_types
     { request_feature: "Request a feature",
       meetup: "Plan a local meetup",
-      update_manifesto: "Propose a new manifesto",
-      bug_fix: "Propose a fix to a bug on the site" }
+      bug_fix: "Propose a fix to a bug",
+      update_manifesto: "Propose a new manifesto" }
   end
   
   def self.group_action_types
@@ -127,7 +127,7 @@ class Proposal < ActiveRecord::Base
       disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",
       change_ratification_threshold: "Change ratification threshold",
-      update_manifesto: "Propose a new manifesto" }
+      update_manifesto: "Propose a group manifesto" }
   end
   
   def ratifiable?

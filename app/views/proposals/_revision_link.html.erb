@@ -2,4 +2,4 @@
 
 <% link_text = proposal.proposals.present? ? "Revisions #{proposal.proposals.size}" : "Revise" %>
 
-<%= link_to link_text, proposal_path(id: proposal.id, revisions: true) %>
+<%= link_to link_text, show_proposal_path(token: proposal.token, revisions: true) %>

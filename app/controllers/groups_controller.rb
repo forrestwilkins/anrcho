@@ -1,4 +1,15 @@
 class GroupsController < ApplicationController
+  def toggle_manifesto
+    @group = Group.find_by_token params[:group_token]
+    cookies.permanent["group_#{@group.token}_manifesto_tip"] = true
+    @manifesto = @group.manifestos.last
+  end
+  
+  def manifestos
+    @group = Group.find_by_token params[:group_token]
+    @proposed_manifestos = @group.proposed_manifestos
+  end
+  
   def new
     @group = Group.new
   end

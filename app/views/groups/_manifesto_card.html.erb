@@ -1,0 +1,18 @@
+<!-- groups -->
+
+<div class="card" id="group_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
+	<%= link_to toggle_group_manifesto_path(group.token), remote: true do %>
+	  <div id="group_manifesto_exit">x</div>
+	<% end %>
+	<%= link_to manifestos_path(group_token: group.token) do %>
+	  <div align="center">
+		  <p id="group_manifesto_text">
+			  <% if group.manifestos.present? %>
+				  <%= group.manifestos.last.body.html_safe %>
+			  <% else %>
+				  There aren't any ratified manifestos yet.
+			  <% end %>
+		  </p>
+	  </div>
+	<% end %>
+</div>
