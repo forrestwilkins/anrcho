@@ -7,6 +7,7 @@ class Proposal < ActiveRecord::Base
   has_many :hashtags
   has_many :votes
   
+  before_create :gen_unique_token
   validates_presence_of :body
   
   scope :globals, -> { where(group_id: nil).where.not action: :revision }
@@ -153,5 +154,11 @@ class Proposal < ActiveRecord::Base
   
   def down_votes
     self.votes.down_votes
+  end
+  
+  private
+  
+  def gen_unique_token
+    self.unique_token = SecureRandom.urlsafe_base64
   end
 end

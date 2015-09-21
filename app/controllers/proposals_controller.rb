@@ -40,7 +40,7 @@ class ProposalsController < ApplicationController
   end
   
   def show
-    @proposal = Proposal.find_by_token(params[:token])
+    @proposal = Proposal.find_by_unique_token(params[:token])
     @group = @proposal.group if @proposal
     if @proposal
       @proposal_shown = true

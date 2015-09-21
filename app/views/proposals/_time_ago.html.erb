@@ -3,6 +3,6 @@
 <!-- A long time ago in a galaxy far, far away... -->
 
 <% _time_ago = time_ago(time_ago_in_words(proposal.created_at)) %>
-<%= link_to show_proposal_path(proposal.token), class: :top_right_link do %>
+<%= link_to show_proposal_path(proposal.unique_token), class: :top_right_link do %>
   <strong><%= _time_ago %></strong>
 <% end %>

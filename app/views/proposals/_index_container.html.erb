@@ -16,7 +16,7 @@
   </div>
 
   <!-- allows user to switch between differen proposal categories -->
-  <%= render "proposals/section_links" %>
+  <%= render "proposals/section_links" unless @all_items.empty? %>
 
   <div id="feed_container_anchor"></div>
   <%= render "proposals/feed_container" %>
