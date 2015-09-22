@@ -6,7 +6,7 @@ class Note < ActiveRecord::Base
   def self.notify action, item, receiver=nil
     self.create(
       receiver_token: (receiver.nil? ? item.token : receiver),
-      item_id: item.id,
+      item_token: item.unique_token,
       action: action
     )
   end

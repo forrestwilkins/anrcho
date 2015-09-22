@@ -16,7 +16,7 @@
 		<% if proposal.image.url %>
 			<p><%= image_tag proposal.image, id: :proposal_image %></p>
 		<% end %>
-		<p class="proposal_body_text" id="<%= 'justified_body_text' if proposal.body.size > 200 %>">
+		<p class="proposal_body_text" id="<%= 'justified_body_text' if proposal.body.size > 100 %>">
 		  <%= render "app/body", item: proposal %>
 		</p>
 		<!-- anchor for reinserting the link table -->
