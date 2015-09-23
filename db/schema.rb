@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921030115) do
+ActiveRecord::Schema.define(version: 20150923025710) do
 
   create_table "comments", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "proposal_id"
     t.text     "body"
     t.string   "token"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150921030115) do
     t.text     "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "unique_token"
   end
 
   create_table "groups", force: :cascade do |t|
