@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   
   # proposals
   get 'proposal/:token', to: 'proposals#show', as: 'show_proposal'
-  get 'proposals/:id/votes/up_vote', to: 'proposals#up_vote', as: 'up_vote'
-  get 'proposals/:id/votes/down_vote', to: 'proposals#down_vote', as: 'down_vote'
+  get 'for/:token', to: 'proposals#up_vote', as: 'up_vote'
+  get 'against/:token', to: 'proposals#down_vote', as: 'down_vote'
   get 'proposals/switch_section/:section', to: 'proposals#switch_section', as: 'switch_section'
   get 'proposals/add_image', as: 'add_proposal_image'
   post 'proposals/create', as: 'create_proposal'
