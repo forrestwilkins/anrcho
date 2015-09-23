@@ -35,8 +35,12 @@
 }
 
 .proposal_body_text {
-	margin: 20px 0px;
+	margin-bottom: 15px;
 	width: 85%;
+}
+
+.proposal_title_text {
+  font-size: 16.5px;
 }
 
 #justified_body_text {
@@ -48,8 +52,16 @@
 	padding-top: 10px;
 }
 
+#proposal_card_spacer {
+  height: 7.5px;
+}
+
 #hidden_file_field {
 	width: 200px;
+}
+
+.proposal_link_table {
+  padding-bottom: 5px;
 }
 
 #proposal_sections {

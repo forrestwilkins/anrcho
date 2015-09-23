@@ -9,9 +9,12 @@
 	<div id="ratification_glimmer_anchor_<%= proposal.id %>"></div>
 	<%= render "proposals/ratification_glimmer", proposal: proposal %>
 	<%= render "token/avatar", token: proposal.token, position: :token_card_link %>
+	<div id="proposal_card_spacer"></div>
 	<div align="center">
 		<% if proposal.title.present? %>
-			<p><%= proposal.title %></p>
+		  <%= link_to show_proposal_path(proposal.unique_token) do %>
+  			<p class="proposal_title_text"><%= proposal.title %></p>
+			<% end %>
 		<% end %>
 		<% if proposal.image.url %>
 			<p><%= image_tag proposal.image, id: :proposal_image %></p>

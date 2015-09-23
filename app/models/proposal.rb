@@ -116,7 +116,7 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { request_feature: "Request a feature",
+    { request_feature: "Propose a feature",
       meetup: "Plan a local meetup",
       bug_fix: "Propose a fix to a bug",
       update_manifesto: "Propose a new manifesto",
