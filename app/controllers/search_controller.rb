@@ -12,8 +12,13 @@ class SearchController < ApplicationController
       [Proposal, Comment, Group].each do |_class|
         _class.all.each do |item|
           match = false
+          # searches by proposal type
+          if item.is_a? Proposal and item.action \
+            and scan item.action, @query
+            match = true
+          end
           # scans all text for query
-          match = scan_text item, @query
+          match = true if scan_text item, @query
           # scans all items for matching tags
           item.hashtags.each do |tag|
             if @query.eql? tag.tag or "##{@query}".eql? tag.tag
@@ -38,14 +43,18 @@ class SearchController < ApplicationController
   
   def scan_text item, query, match=false
     if item.respond_to? :body
-      for word in item.body.split(" ")
-        for key_word in query.split(" ")
-          if key_word.size > 2
-            if word == key_word.downcase or word == key_word.capitalize
-              match = true
-            elsif word.include? key_word.downcase or word.include? key_word.capitalize
-              match = true
-            end
+      match = true if scan item.body, query
+    end
+    return match
+  end
+  
+  def scan text, query, match=false
+    for word in text.split(" ")
+      for key_word in query.split(" ")
+        if key_word.size > 2
+          if word == key_word.downcase or word == key_word.capitalize \
+            or word.include? key_word.downcase or word.include? key_word.capitalize
+            match = true
           end
         end
       end
