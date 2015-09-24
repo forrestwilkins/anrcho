@@ -18,7 +18,7 @@
 	<% end %>
 <% else %>
 	<% if word.size < 30 %>
-		<%= word + " " %>
+		<%= (word + " ").html_safe %>
 	<% else %>
 		<%= word[0..25] + "... " %>
 	<% end %>

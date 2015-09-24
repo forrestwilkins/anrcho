@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def embed
+  
+  end
+  
   def time_ago(_time_ago)
     _time_ago = _time_ago + " ago"
     if _time_ago.include? "about"
