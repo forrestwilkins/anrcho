@@ -9,7 +9,7 @@ class SearchController < ApplicationController
     @query = params[:query].present? ? params[:query] : session[:query]
     session[:query] = @query; @results = []
     if @query.present?
-      [Proposal, Comment, Group].each do |_class|
+      [Proposal, Comment, Group, Manifesto].each do |_class|
         _class.all.each do |item|
           match = false
           # searches by proposal type
@@ -20,17 +20,19 @@ class SearchController < ApplicationController
           # scans all text for query
           match = true if scan_text item, @query
           # scans all items for matching tags
-          item.hashtags.each do |tag|
-            if @query.eql? tag.tag or "##{@query}".eql? tag.tag
-              match = true
+          if item.respond_to? :hashtags
+            item.hashtags.each do |tag|
+              if @query.eql? tag.tag or "##{@query}".eql? tag.tag
+                match = true
+              end
             end
           end
           # searches by token
-          if @query.eql? item.token
+          if item.respond_to? :token and @query.eql? item.token
             match = true
           end
           # searches by location
-          if item.location.to_s.include? @query.to_s
+          if item.respond_to? :location and item.location.to_s.include? @query.to_s
             match = true
           end
           @results << item if match
