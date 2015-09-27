@@ -119,6 +119,7 @@ class Proposal < ActiveRecord::Base
     { request_feature: "Propose a feature",
       meetup: "Plan a local meetup",
       bug_fix: "Propose a fix to a bug",
+      update_banner: "Propose a new a banner",
       update_manifesto: "Propose a new manifesto",
       general: "Propose a general statement or idea" }
   end
