@@ -3,27 +3,31 @@ class Vote < ActiveRecord::Base
   belongs_to :comment
   
   def self.up_vote! obj, token
-    vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
-    if not vote
-      obj.votes.create flip_state: 'up', token: token
-    elsif vote.down?
-      vote.update(flip_state: 'up')
-    elsif vote.up?
-      vote.destroy
+    unless token.eql? obj.token
+      vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
+      if not vote
+        obj.votes.create flip_state: 'up', token: token
+      elsif vote.down?
+        vote.update(flip_state: 'up')
+      elsif vote.up?
+        vote.destroy
+      end
+      obj.evaluate
     end
-    obj.evaluate
   end
   
   def self.down_vote! obj, token
-    vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
-    if not vote
-      obj.votes.create flip_state: 'down', token: token
-    elsif vote.up?
-      vote.update(flip_state: 'down')
-    elsif vote.down?
-      vote.destroy
+    unless token.eql? obj.token
+      vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
+      if not vote
+        obj.votes.create flip_state: 'down', token: token
+      elsif vote.up?
+        vote.update(flip_state: 'down')
+      elsif vote.down?
+        vote.destroy
+      end
+      obj.evaluate
     end
-    obj.evaluate
   end
   
   def self.score obj

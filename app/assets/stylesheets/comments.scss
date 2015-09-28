@@ -1,3 +1,15 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment_body_text {
+  padding-top: 7.5px;
+  padding-bottom: 5px;
+  width: 85%;
+}
+
+.reply_link {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

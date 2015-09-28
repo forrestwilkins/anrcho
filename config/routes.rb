@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'proposals/add_image', as: 'add_proposal_image'
   post 'proposals/create', as: 'create_proposal'
   
+  # comments
+  get 'comments/:id', to: 'comments#show', as: 'show_comment'
+  post 'comments', to: 'comments#create', as: 'comments'
+  
   # groups
   get 'groups/toggle_manifesto/:group_token', to: 'groups#toggle_manifesto', as: 'toggle_group_manifesto'
   

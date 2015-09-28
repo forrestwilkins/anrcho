@@ -1,0 +1,11 @@
+<!-- comments -->
+
+<div align="center" id="new_reply_form">
+	<%= form_for @reply, url: comments_path, method: :post do |f| %>
+	  <%= hidden_field_tag :comment_id, @comment.id %>
+		<p>
+			<%= f.text_area :body, placeholder: "Leave a reply..." %>
+		</p>
+		<%= f.submit "Reply" %>
+	<% end %>
+</div>

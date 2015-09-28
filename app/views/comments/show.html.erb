@@ -1,0 +1,11 @@
+<!-- comments -->
+
+<%= render "comments/card", comment: @comment %>
+
+<% for reply in @replies %>
+  <%= render "comments/card", comment: reply %>
+<% end %>
+
+<div class="card">
+  <%= render "comments/reply" %>
+</div>

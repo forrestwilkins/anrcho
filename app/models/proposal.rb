@@ -53,6 +53,8 @@ class Proposal < ActiveRecord::Base
         self.group.set_location self.misc_data
       when :disband_early
         self.group.destroy!
+      when :update_banner
+        Banner.create image: self.image
       when :update_manifesto
         Manifesto.create(
           group_token: self.group.token,

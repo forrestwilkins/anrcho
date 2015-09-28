@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927012805) do
+ActiveRecord::Schema.define(version: 20150927135711) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "group_token"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -76,10 +77,11 @@ ActiveRecord::Schema.define(version: 20150927012805) do
     t.integer  "group_id"
     t.text     "body"
     t.binary   "salt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "token"
     t.string   "image"
+    t.string   "group_token"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150927012805) do
     t.integer  "proposal_id"
     t.string   "revised_action"
     t.string   "unique_token"
+    t.string   "group_token"
   end
 
   create_table "votes", force: :cascade do |t|

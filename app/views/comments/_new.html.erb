@@ -1,10 +1,10 @@
 <!-- comments -->
 
-<div id="new_comment_form_<%= @comment.proposal.id %>">
-	<%= form_for @comment, url: proposal_comments_path, method: :post, remote: true do |f| %>
+<div id="new_comment_form_<%= @new_comment.proposal.id %>">
+	<%= form_for @new_comment, url: proposal_comments_path, method: :post, remote: true do |f| %>
 		<p>
 			<%= f.text_area :body, placeholder: "Leave a comment..." %>
 		</p>
-		<%= f.submit "Submit" %>
+		<%= f.submit "Comment" %>
 	<% end %>
 </div>

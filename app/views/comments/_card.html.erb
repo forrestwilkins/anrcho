@@ -4,6 +4,10 @@
 	<div id="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: comment.token, position: :token_card_link %>
 	<div align="center">
-		<p><%= render "app/body", item: comment %></p>
+		<p class="comment_body_text" id="<%= 'justified_body_text' if comment.body.size > 150 %>">
+		  <%= render "app/body", item: comment %>
+		</p>
 	</div>
+	<%= link_to("Reply", show_comment_path(comment), class: :reply_link) \
+	  unless security_token.eql? comment.token %>
 </div>
