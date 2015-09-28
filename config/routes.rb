@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'proposals/create', as: 'create_proposal'
   
   # comments
-  get 'comments/:id', to: 'comments#show', as: 'show_comment'
+  get 'comments/:token', to: 'comments#show', as: 'show_comment'
   post 'comments', to: 'comments#create', as: 'comments'
   
   # groups

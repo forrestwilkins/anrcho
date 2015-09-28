@@ -16,7 +16,8 @@ class Note < ActiveRecord::Base
       proposal_blocked: "Someone blocked your proposal.",
       revision_submitted: "Someone proposed a revision to your proposal.",
       proposal_revised: "Your proposal has been revised.",
-      commented: "Someone commented on your proposal." }
+      commented: "Someone commented on your proposal.",
+      replied: "Someone replied to your comment." }
     return _actions[action.to_sym]
   end
   

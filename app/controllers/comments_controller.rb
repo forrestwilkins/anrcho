@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def show
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by_unique_token(params[:token])
     @replies = @comment.replies
     @reply = Comment.new
   end
@@ -25,11 +25,17 @@ class CommentsController < ApplicationController
     end
     @comment.token = security_token
     if @comment.save
-      Note.notify :commented, @proposal if @proposal
+      if @proposal
+        Note.notify :commented, @proposal
+      elsif @parent_comment
+        Note.notify :replied, @parent_comment
+      end
       Hashtag.extract @comment
       if params[:proposal_shown] or params[:comment_id]
         redirect_to :back
       end
+    elsif params[:comment_id]
+      redirect_to :back
     end
   end
 end
