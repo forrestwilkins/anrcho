@@ -12,6 +12,15 @@ class Group < ActiveRecord::Base
     Manifesto.where group_token: self.token
   end
   
+  def current_banner
+    banner = self.banners.last
+    return banner.image if banner
+  end
+  
+  def banners
+    Banner.where group_token: self.token
+  end
+  
   def expires?
     if self.expires_at.nil? and self.created_at.to_date < 1.week.ago
       self.destroy!

@@ -1,3 +1,7 @@
 <!-- banners -->
 
-<%= image_tag current_banner, id: :current_banner_image %>
+<% if current_banner group %>
+  <div align="center">
+    <%= image_tag(current_banner(group), id: :current_banner) %>
+  </div>
+<% end %>

@@ -54,7 +54,10 @@ class Proposal < ActiveRecord::Base
       when :disband_early
         self.group.destroy!
       when :update_banner
-        Banner.create image: self.image
+        Banner.create(
+          group_token: self.group.token,
+          image: self.image
+        )
       when :update_manifesto
         Manifesto.create(
           group_token: self.group.token,
@@ -121,13 +124,13 @@ class Proposal < ActiveRecord::Base
     { request_feature: "Propose a feature",
       meetup: "Plan a local meetup",
       bug_fix: "Propose a fix to a bug",
-      update_banner: "Propose a new a banner",
       update_manifesto: "Propose a new manifesto",
       general: "Propose a general statement or idea" }
   end
   
   def self.group_action_types
     { add_hashtags: "Add hashtags",
+      update_banner: "Propose a group banner",
       add_locale: "Set your locale as the groups",
       disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",

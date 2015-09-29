@@ -1,3 +1,8 @@
 // Place all the styles related to the banners controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#current_banner {
+  max-width: 575px;
+	width: 99.5%;
+}
