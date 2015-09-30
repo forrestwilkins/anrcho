@@ -6,14 +6,15 @@
 			<% unless proposal.requires_revision %>
 				<td>
 					<% _class = up_voted?(proposal) ? :voted_on : nil %>
-					<%= link_to "Support", up_vote_path(proposal.unique_token),
-						remote: true, class: _class, id: "up_vote_proposal_#{proposal.id}" %>
+					<%= link_to "For#{(' ' + proposal.up_votes.size.to_s) unless proposal.up_votes.size.zero?}",
+					  up_vote_path(proposal.unique_token), remote: true, class: _class,
+					  id: "up_vote_proposal_#{proposal.id}" %>
 				</td>
 				<td>·</td>
 				<td>
 					<% _class = down_voted?(proposal) ? :voted_on : nil %>
-					<%= link_to "Block", down_vote_path(proposal.unique_token),
-						remote: true, class: _class, id: "down_vote_proposal_#{proposal.id}" %>
+					<%= link_to "Against", down_vote_path(proposal.unique_token),
+					  remote: true, class: _class, id: "down_vote_proposal_#{proposal.id}" %>
 				</td>
 			<% else %>
 				<td>
