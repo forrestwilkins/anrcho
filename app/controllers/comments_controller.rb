@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   end
   
   def new
+    @commenting = true
     @proposal = Proposal.find_by_id(params[:proposal_id])
     @parent_comment = Comment.find_by_id(params[:comment_id])
     @new_comment = if @proposal

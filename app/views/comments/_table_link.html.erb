@@ -1,6 +1,6 @@
 <!-- comments -->
 
-<% comment_link_path = (defined?(commenting) or @proposal_shown) ? show_proposal_path(proposal.unique_token) \
+<% comment_link_path = (@commenting or @proposal_shown) ? show_proposal_path(proposal.unique_token) \
 	: new_proposal_comment_path(proposal) %>
 <% remote = comment_link_path.eql?(show_proposal_path(proposal.unique_token)) ? false : true %>
 
