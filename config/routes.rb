@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   get 'search/toggle_menu', as: 'toggle_menu'
   
   # tokens
-  get 'token/update', as: 'update_token'
   get 'token', to: 'token#index', as: 'token'
   
   # pages
