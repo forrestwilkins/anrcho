@@ -9,13 +9,14 @@ class Proposal < ActiveRecord::Base
   
   before_create :gen_unique_token
   validates_presence_of :body
-  
+
   scope :globals, -> { where(group_id: nil).where.not action: :revision }
   scope :ratified, -> { where ratified: true }
   scope :revision, -> { where requires_revision: true }
   scope :voting, -> do
     where(ratified: [nil, false]).where requires_revision: [nil, false]
   end
+  scope :main, -> { where requires_revision: [nil, false] }
   
   mount_uploader :image, ImageUploader
   

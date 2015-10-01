@@ -7,7 +7,7 @@ class ProposalsController < ApplicationController
     if cookies[:loads].to_i.zero?
       @loading = true
     end
-    build_feed :all
+    build_feed :main
   end
   
   def new
