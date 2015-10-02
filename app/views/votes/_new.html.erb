@@ -1,0 +1,11 @@
+<!-- votes -->
+
+<div id="new_up_vote_form_<%= @proposal.id %>">
+	<%= form_tag cast_up_vote_path, method: :post, remote: true do |f| %>
+	  <%= hidden_field_tag :proposal_id, @proposal.id %>
+		<p>
+			<%= text_area_tag :body, nil, placeholder: "Why do you support this proposal?" %>
+		</p>
+		<%= submit_tag "Support" %>
+	<% end %>
+</div>

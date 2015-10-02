@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   post 'proposals/create', as: 'create_proposal'
   
   # votes
-  get 'for/:token', to: 'votes#up_vote', as: 'up_vote'
+  get 'for/:token', to: 'votes#new_up_vote', as: 'new_up_vote'
+  post 'votes/cast_up_vote', to: 'votes#cast_up_vote', as: 'cast_up_vote'
   get 'against/:token', to: 'votes#down_vote', as: 'down_vote'
   
   # comments
@@ -57,10 +58,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :manifestos
   resources :proposals do
-    resources :comments do
-      resources :votes
-    end
-    resources :votes
+    resources :comments
   end
 
   # Example resource route with options:

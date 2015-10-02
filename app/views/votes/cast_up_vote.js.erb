@@ -1,11 +1,4 @@
-// proposals
-
-var proposal_id = <%= @proposal.id %>;
-var up_vote_link = $("#up_vote_proposal_" + proposal_id);
-var down_vote_link = $("#down_vote_proposal_" + proposal_id);
-
-up_vote_link.css("font-size", "17.5px");
-down_vote_link.css("font-size", "15px");
+// votes
 
 <% if @ratified %>
 	var ids = ["top_right_glimmer_", "bottom_right_glimmer_", "bottom_left_glimmer_"];

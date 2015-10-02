@@ -2,17 +2,17 @@ class Vote < ActiveRecord::Base
   belongs_to :proposal
   belongs_to :comment
   
-  def self.up_vote! obj, token
+  def self.up_vote! obj, token, body=""
     unless token.eql? obj.token
       vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
       if not vote
-        obj.votes.create flip_state: 'up', token: token
+        obj.votes.create flip_state: 'up', token: token, body: body
       elsif vote.down?
-        vote.update(flip_state: 'up')
+        vote.body = body if body.present?
+        vote.flip_state = 'up'; vote.save
       elsif vote.up?
         vote.destroy
       end
-      obj.evaluate
     end
   end
   
