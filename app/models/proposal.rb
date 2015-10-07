@@ -149,8 +149,8 @@ class Proposal < ActiveRecord::Base
   end
   
   def ratification_threshold
-  	if self.ratification_point.to_i.zero?
-  		return 3
+  	if self.ratification_point.to_i.zero? and self.views.to_i > 10
+  		return self.views
   	else
   		return self.ratification_point
   	end
