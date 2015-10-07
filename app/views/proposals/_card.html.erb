@@ -9,6 +9,7 @@
 	<div id="ratification_glimmer_anchor_<%= proposal.id %>"></div>
 	<%= render "proposals/ratification_glimmer", proposal: proposal %>
 	<%= render "token/avatar", token: proposal.token, position: :token_card_link %>
+	<%= render "proposals/seent" %>
 	<div id="proposal_card_spacer"></div>
 	<div align="center">
 		<% if proposal.title.present? %>

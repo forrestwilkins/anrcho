@@ -164,6 +164,18 @@ class Proposal < ActiveRecord::Base
     self.votes.down_votes
   end
   
+  def seen? current_token
+    if self.views.find_by_token current_token
+      return true
+    else
+      return false
+    end
+  end
+  
+  def views
+    View.where proposal_token: self.unique_token
+  end
+  
   private
   
   def gen_unique_token
