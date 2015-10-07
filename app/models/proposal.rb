@@ -2,6 +2,7 @@ class Proposal < ActiveRecord::Base
   belongs_to :manifesto
   belongs_to :proposal
   belongs_to :group
+  
   has_many :proposals
   has_many :comments
   has_many :hashtags
@@ -9,14 +10,12 @@ class Proposal < ActiveRecord::Base
   
   before_create :gen_unique_token
   validates_presence_of :body
-
-  scope :globals, -> { where(group_id: nil).where.not action: :revision }
-  scope :ratified, -> { where ratified: true }
-  scope :revision, -> { where requires_revision: true }
-  scope :voting, -> do
-    where(ratified: [nil, false]).where requires_revision: [nil, false]
-  end
+  
   scope :main, -> { where requires_revision: [nil, false] }
+  scope :globals, -> { where(group_id: nil).where.not action: :revision }
+  scope :voting, -> { where(ratified: [nil, false]).where requires_revision: [nil, false] }
+  scope :revision, -> { where requires_revision: true }
+  scope :ratified, -> { where ratified: true }
   
   mount_uploader :image, ImageUploader
   
@@ -122,11 +121,12 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { request_feature: "Propose a feature",
+    { request_feature: "A new feature",
       meetup: "Plan a local meetup",
-      bug_fix: "Propose a fix to a bug",
-      update_manifesto: "Propose a new manifesto",
-      general: "Propose a general statement or idea" }
+      bug_fix: "A fix to a bug",
+      update_manifesto: "A new manifesto",
+      general: "A general statement or idea",
+      just_a_test: "A test proposal" }
   end
   
   def self.group_action_types
@@ -149,10 +149,10 @@ class Proposal < ActiveRecord::Base
   end
   
   def ratification_threshold
-  	if self.ratification_point.to_i.zero? and self.views.to_i > 10
-  		return self.views
+  	if self.views.size > 10
+  		return self.views.size
   	else
-  		return self.ratification_point
+  		return 10
   	end
   end
   

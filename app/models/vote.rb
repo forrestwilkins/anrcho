@@ -13,6 +13,7 @@ class Vote < ActiveRecord::Base
       elsif vote.up?
         vote.destroy
       end
+      obj.evaluate
     end
   end
   

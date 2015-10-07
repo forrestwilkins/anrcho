@@ -8,6 +8,8 @@
 		  <%= render "app/body", item: comment %>
 		</p>
 	</div>
-	<%= link_to("Reply#{(' ' + comment.replies.size.to_s) unless comment.replies.size.zero?}",
-	  show_comment_path(comment.unique_token), class: :reply_link) unless security_token.eql? comment.token %>
+	<% unless security_token.eql? comment.token or comment.unique_token.nil? %>
+	  <%= link_to("Reply#{(' ' + comment.replies.size.to_s) unless comment.replies.size.zero?}",
+	    show_comment_path(comment.unique_token), class: :reply_link) %>
+	<% end %>
 </div>

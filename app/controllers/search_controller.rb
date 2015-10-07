@@ -10,7 +10,7 @@ class SearchController < ApplicationController
     session[:query] = @query; @results = []
     if @query.present?
       [Proposal, Comment, Group, Manifesto].each do |_class|
-        _class.all.each do |item|
+        _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
           # searches by proposal type
           if item.is_a? Proposal and item.action \

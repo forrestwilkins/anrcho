@@ -1,7 +1,9 @@
 class VotesController < ApplicationController
   def new_up_vote
     @proposal = Proposal.find_by_unique_token(params[:token])
-    @up_vote = @proposal.votes.new
+    if @proposal and not @proposal.token.eql? security_token
+      @up_vote = @proposal.votes.new
+    end
   end
     
   def cast_up_vote
