@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   
   # tokens
   get 'token', to: 'token#index', as: 'token'
+  get 'renew', to: 'token#update'
   
   # pages
   get 'pages/more', as: 'more'
