@@ -2,9 +2,10 @@
 
 <% if (proposal.action.present? or proposal.revised_action.present?) and \
   not (proposal.action.eql?("revision") and proposal.revised_action.to_s.empty?) %>
-	<div class="action_type_label">
-		<strong>
-		  <%= "Motion: #{proposal.action.eql?("revision") ? proposal.revised_action : proposal.action}" %>
-		</strong>
-	</div>
+	<strong>
+	  <% motion = proposal.action.eql?("revision") ? proposal.revised_action : proposal.action %>
+	  <%= link_to "Motion: #{motion}", search_path(query: motion), class: :action_type_label %>
+	</strong>
 <% end %>
+
+
