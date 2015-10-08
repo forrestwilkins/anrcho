@@ -27,9 +27,11 @@ class CommentsController < ApplicationController
     @comment.token = security_token
     if @comment.save
       if @proposal
-        Note.notify :commented, @proposal
+        Note.notify(:commented, @proposal) \
+          unless @proposal.token.eql? security_token
       elsif @parent_comment
-        Note.notify :replied, @parent_comment
+        Note.notify :replied, @parent_comment \
+          unless @parent_comment.token.eql? security_token
       end
       Hashtag.extract @comment
       if params[:proposal_shown] or params[:comment_id]
