@@ -43,11 +43,8 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find_by_unique_token(params[:token])
     @group = @proposal.group if @proposal
     if @proposal
-      @views = @proposal.views
-      unless @proposal.seen? security_token
-        @views.create token: security_token
-      end
       @proposal_shown = true
+      @proposal.seent security_token
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes
       if params[:revisions]

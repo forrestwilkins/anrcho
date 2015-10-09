@@ -164,6 +164,12 @@ class Proposal < ActiveRecord::Base
     self.votes.down_votes
   end
   
+  def seent token
+    unless self.seen? token
+      self.views.create token: token
+    end
+  end
+  
   def seen? current_token
     if self.views.find_by_token current_token
       return true

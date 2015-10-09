@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
     @all_items = proposals.send(section.to_sym).sort_by { |proposal| proposal.rank }
     @char_codes = char_codes @all_items
     @items = paginate @all_items
+    for item in @items
+      item.seent security_token
+    end
   end
   
   def set_location item, ip=nil
