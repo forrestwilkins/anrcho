@@ -40,6 +40,11 @@ class PagesController < ApplicationController
       @items = paginate @all_items
       @group_shown = true
     end
+    if @items.present? and not @items.empty?
+      for item in @items
+        item.seent security_token
+      end
+    end
   end
   
   def current_proposals
