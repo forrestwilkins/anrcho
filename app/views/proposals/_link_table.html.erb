@@ -6,9 +6,9 @@
 			<% unless proposal.requires_revision %>
 				<td>
 					<% _class = up_voted?(proposal) ? :voted_on : nil %>
+					<% for_path = _class.nil? ? new_up_vote_path(proposal.unique_token) : "/#" %>
 					<%= link_to "For#{(' ' + proposal.up_votes.size.to_s) unless proposal.up_votes.size.zero?}",
-					  new_up_vote_path(proposal.unique_token), remote: true, class: _class,
-					  id: "up_vote_proposal_#{proposal.id}" %>
+					  for_path, remote: true, class: _class, id: "up_vote_proposal_#{proposal.id}" %>
 				</td>
 				<td>·</td>
 				<td>
