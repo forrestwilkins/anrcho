@@ -1,4 +1,8 @@
 class VotesController < ApplicationController
+  def verify
+    redirect_to :back
+  end
+  
   def new_up_vote
     @proposal = Proposal.find_by_unique_token(params[:token])
     if @proposal and not @proposal.token.eql? security_token

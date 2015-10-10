@@ -1,7 +1,7 @@
 <!-- groups -->
 
 <div class="card">
-	<div id="card_corner_cut_out"></div>
+	<div class="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: group.token, position: :token_card_link %>
 	<div align="center">
 		<% group_link_path = @group_shown ? search_path(group.token) : group_path(group.token) %>

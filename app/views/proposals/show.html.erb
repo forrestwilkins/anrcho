@@ -5,7 +5,11 @@
 <%= render "token/voter_links", label: "For", votes: @up_votes %>
 <%= render "token/voter_links", label: "Against", votes: @down_votes %>
 
-<% if params[:revisions] and @proposal.requires_revision %>
+<% if @show_votes %>
+  <% for vote in @up_votes %>
+    <%= render "votes/card", vote: vote %>
+  <% end %>
+<% elsif params[:revisions] and @proposal.requires_revision %>
 	<% for revision in @revisions %>
 		<%= render "proposals/card", proposal: revision %>
 	<% end %>

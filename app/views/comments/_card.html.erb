@@ -1,7 +1,7 @@
 <!-- comments -->
 
 <div class="card">
-	<div id="card_corner_cut_out"></div>
+	<div class="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: comment.token, position: :token_card_link %>
 	<div align="center">
 		<p class="comment_body_text" id="<%= 'justified_body_text' if comment.body.size > 150 %>">

@@ -1,0 +1,16 @@
+<!-- votes -->
+
+<div class="card">
+	<div class="card_corner_cut_out"></div>
+	<%= render "token/avatar", token: vote.token, position: :token_card_link %>
+	
+	<div align="center">
+		<p class="comment_body_text" id="<%= 'justified_body_text' if vote.body.size > 150 %>">
+		  <%= render "app/body", item: vote %>
+		</p>
+	</div>
+  
+  <%= link_to "Verify", verify_vote_path(vote.token),
+    data: { confirm: "Are you sure you want to verify this vote?" },
+    class: :verify_vote_link %>
+</div>
