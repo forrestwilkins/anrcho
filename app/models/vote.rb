@@ -2,6 +2,8 @@ class Vote < ActiveRecord::Base
   belongs_to :proposal
   belongs_to :comment
   
+  validate :up_vote_body
+  
   def self.up_vote! obj, token, body=""
     unless token.eql? obj.token
       vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
@@ -54,6 +56,15 @@ class Vote < ActiveRecord::Base
   end
   
   private
+  
+  def up_vote_body
+    if (self.flip_state.eql? 'up' and self.body.present?) \
+      or self.flip_state.eql? 'down'
+      return true
+    else
+      return false
+    end
+  end
   
   def self.hotness
     total = 0
