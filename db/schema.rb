@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007003934) do
+ActiveRecord::Schema.define(version: 20151010234542) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -124,17 +124,19 @@ ActiveRecord::Schema.define(version: 20151007003934) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "proposal_token"
+    t.string   "group_token"
   end
 
   create_table "votes", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "proposal_id"
     t.string   "flip_state"
     t.integer  "comment_id"
     t.string   "token"
     t.string   "body"
     t.boolean  "verified"
+    t.string   "unique_token"
   end
 
 end

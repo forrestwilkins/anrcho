@@ -35,6 +35,7 @@ class GroupsController < ApplicationController
     @group = Group.find_by_token(params[:id])
     unless @group.nil? or @group.expires?
       build_proposal_feed :all, @group
+      @group.seent security_token
       @group_shown = true
     else
       redirect_to "/404"

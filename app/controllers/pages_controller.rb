@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def fib
     @loading = false
     cookies.permanent[:loads] = "0"
+    cookies.permanent[:manifesto_tip] = false
     redirect_to root_url
   end
   

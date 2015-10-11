@@ -2,6 +2,7 @@ class Vote < ActiveRecord::Base
   belongs_to :proposal
   belongs_to :comment
   
+  before_create :gen_unique_token
   validate :up_vote_body
   
   def self.up_vote! obj, token, body=""
@@ -56,6 +57,10 @@ class Vote < ActiveRecord::Base
   end
   
   private
+  
+  def gen_unique_token
+    self.unique_token = SecureRandom.urlsafe_base64
+  end
   
   def up_vote_body
     if (self.flip_state.eql? 'up' and self.body.present?) \

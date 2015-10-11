@@ -1,3 +1,7 @@
+# Group has the only table that doesn't use a 'unique_token'
+# but it's own unique 'token' as it represents a distinct yet
+# temporary identity just as any user does
+
 class Group < ActiveRecord::Base
   has_many :hashtags
   has_many :proposals
@@ -41,6 +45,24 @@ class Group < ActiveRecord::Base
         end
       end
     end
+  end
+  
+  def seent current_token
+    unless self.seen? current_token
+      self.views.create token: current_token
+    end
+  end
+  
+  def seen? current_token
+    if self.views.find_by_token current_token
+      return true
+    else
+      return false
+    end
+  end
+  
+  def views
+    View.where group_token: self.token
   end
   
   private

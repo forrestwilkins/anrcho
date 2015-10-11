@@ -164,9 +164,9 @@ class Proposal < ActiveRecord::Base
     self.votes.down_votes
   end
   
-  def seent token
-    unless self.seen? token
-      self.views.create token: token
+  def seent current_token
+    unless self.seen? current_token
+      self.views.create token: current_token
     end
   end
   
