@@ -1,15 +1,19 @@
 // comments
 
-var proposal_id = <%= @proposal.id %>;
-var table = $("#link_table_" + proposal_id);
-var form_anchor = $("#new_form_anchor_" + proposal_id);
-var table_anchor = $("#link_table_anchor_" + proposal_id);
-var form = $("#new_comment_form_" + proposal_id);
-var link = $("#new_comment_link_" + proposal_id);
-var link_anchor = $("#proposal_comments_link_anchor_" + proposal_id);
+function new_comment_form() {
+  var proposal_id = <%= @proposal.id %>;
+  var table = $("#link_table_" + proposal_id);
+  var form_anchor = $("#new_form_anchor_" + proposal_id);
+  var table_anchor = $("#link_table_anchor_" + proposal_id);
+  var form = $("#new_comment_form_" + proposal_id);
+  var link = $("#new_comment_link_" + proposal_id);
+  var link_anchor = $("#proposal_comments_link_anchor_" + proposal_id);
 
-if (!form.length) {
-	table.remove();
-	table_anchor.after("<%=j render 'proposals/link_table', proposal: @proposal %>");
-	form_anchor.after("<%=j render 'comments/new' %>");
+  if (!form.length) {
+	  table.remove();
+	  table_anchor.after("<%=j render 'proposals/link_table', proposal: @proposal %>");
+	  form_anchor.after("<%=j render 'comments/new' %>");
+  }
 }
+
+new_comment_form();
