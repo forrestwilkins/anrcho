@@ -6,7 +6,9 @@
 
 <div class="card" id="current_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
 	<%= link_to toggle_manifesto_path, remote: true do %>
-	  <div id="current_manifesto_exit">x</div>
+	  <div id="current_manifesto_exit">
+	    <i class="fa fa-times"></i>
+	  </div>
 	<% end %>
 	<%= link_to manifestos_path do %>
 	<div align="center">
