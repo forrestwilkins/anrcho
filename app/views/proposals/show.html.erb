@@ -9,6 +9,11 @@
   <% for vote in @up_votes %>
     <%= render "votes/card", vote: vote if vote.body.present? %>
   <% end %>
+  <% unless @up_votes.present? %>
+    <div class="card">
+      <p align="center">There aren't any votes to verify.</p>
+    </div>
+  <% end %>
 <% elsif params[:revisions] and @proposal.requires_revision %>
 	<% for revision in @revisions %>
 		<%= render "proposals/card", proposal: revision %>
