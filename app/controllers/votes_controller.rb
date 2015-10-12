@@ -1,5 +1,13 @@
 class VotesController < ApplicationController
+  def show
+    @vote = Vote.find_by_unique_token params[:token]
+  end
+  
   def verify
+    @vote = Vote.find_by_unique_token params[:token]
+    if @vote.verifiable? security_token
+      @vote.update verified: true
+    end
     redirect_to :back
   end
   

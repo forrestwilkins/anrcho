@@ -7,7 +7,7 @@
 
 <% if @show_votes %>
   <% for vote in @up_votes %>
-    <%= render "votes/card", vote: vote %>
+    <%= render "votes/card", vote: vote if vote.body.present? %>
   <% end %>
 <% elsif params[:revisions] and @proposal.requires_revision %>
 	<% for revision in @revisions %>

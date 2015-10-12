@@ -5,6 +5,18 @@ class Vote < ActiveRecord::Base
   before_create :gen_unique_token
   validate :up_vote_body
   
+  def verifiable? current_token
+    _verifiable = false
+    unless self.verified
+      if unique_token.present?
+        unless current_token.eql? self.token
+          _verifiable = true
+        end
+      end
+    end
+    return _verifiable
+  end
+  
   def self.up_vote! obj, token, body=""
     unless token.eql? obj.token
       vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
