@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   end
   
   def more
+    redirect_to '/404' if request.bot?
+    cookies.permanent[:human] = true # humans wants more
     relevant_items = if params[:proposals]
       Proposal.globals
     elsif params[:group_token]
@@ -44,7 +46,7 @@ class PagesController < ApplicationController
     # 'sees' any unseen proposals being loaded
     if @items.present? and not @items.empty?
       for item in @items
-        item.seent security_token
+        item.seent security_token if probably_human
       end
     end
   end

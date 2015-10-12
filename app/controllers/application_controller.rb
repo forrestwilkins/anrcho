@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   helper_method :security_token, :paginate, :page_size, :reset_page,
-    :char_codes, :set_location, :build_proposal_feed
+    :char_codes, :set_location, :build_proposal_feed, :probably_human
   
   def build_proposal_feed section, group=nil
     reset_page; session[:current_proposal_section] = section.to_s
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     @char_codes = char_codes @all_items
     @items = paginate @all_items
     for item in @items
-      item.seent security_token
+      item.seent security_token if probably_human
     end
   end
   
@@ -68,5 +68,13 @@ class ApplicationController < ActionController::Base
       end
     end
     return codes
+  end
+  
+  # ensures only humans are counted for views
+  # mainly used for the first proposals in main feed
+  def probably_human
+    # set by 'pages/more' since only humans 'want more'
+    # a way to see if the user is probably a human
+    cookies[:human]
   end
 end
