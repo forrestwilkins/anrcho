@@ -1,8 +1,9 @@
 // proposals
 
-<% if @up_vote %>
-  function new_up_vote_form() {  
-    var proposal_id = <%= @proposal.id %>;
+<% if @up_vote %>  
+  var proposal_id = <%= @proposal.id %>;
+  
+  function new_up_vote_form() {
     var up_vote_link = $("#up_vote_proposal_" + proposal_id);
     var down_vote_link = $("#down_vote_proposal_" + proposal_id);
     var table_anchor = $("#link_table_anchor_" + proposal_id);
@@ -16,5 +17,6 @@
       form_anchor.after("<%=j render 'votes/new' %>");
     }
   }
+  
   new_up_vote_form();
 <% end %>
