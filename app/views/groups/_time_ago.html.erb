@@ -1,0 +1,6 @@
+<!-- groups -->
+
+<% _time_ago = time_ago(time_ago_in_words(group.created_at)) %>
+<%= link_to group_path(group.token), class: :top_right_link do %>
+  <strong><%= _time_ago %></strong>
+<% end %>

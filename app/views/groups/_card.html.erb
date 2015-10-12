@@ -3,6 +3,8 @@
 <div class="card">
 	<div class="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: group.token, position: :token_card_link %>
+	<%= render "groups/time_ago", group: group %>
+	<%= render "groups/seent", group: group %>
 	<div align="center">
 		<% group_link_path = @group_shown ? search_path(group.token) : group_path(group.token) %>
 		<p><%= link_to "Group #{group.token}", group_link_path %></p>
