@@ -4,6 +4,7 @@ class ManifestosController < ApplicationController
   end
   
   def index
+    @about_page = true
     @group = Group.find_by_token params[:group_token]
     @proposed_manifestos = Proposal.
       where(action: :update_manifesto).
