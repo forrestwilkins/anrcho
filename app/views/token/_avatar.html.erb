@@ -3,7 +3,7 @@
 <% chars = token.slice(0..15).split("") %>
 <% pattern = avatar_pattern chars %>
 <% clean_token = token.gsub(/[^0-9a-z]/i, '') %>
-<% unique_name = SecureRandom.urlsafe_base64.gsub(/[^0-9a-z]/i, '') %>
+<% unique_name = rand_string %>
 
 <script>
 	<%= render "token/pattern.js", pattern: pattern, token: clean_token, unique_name: unique_name %>

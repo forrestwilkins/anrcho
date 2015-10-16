@@ -6,7 +6,14 @@
 	<% else %>
 		<% tag = item.hashtags.find_by_tag word %>
 		<% if tag and tag.index == item.body.index(word) %>
-			<%= link_to tag.tag, search_path(query: tag.tag) %>
+		  <!-- The following will apply faders to trending hashtags -->
+		  <% if tag.trending? %>
+		    <% unique_id = rand_string %>
+		    <script>
+		      <%= render "app/fader.js", target: "trending_tag_", target_id: unique_id %>
+		    </script>
+		  <% end %>
+			<%= link_to tag.tag, search_path(query: tag.tag), id: "trending_tag_#{unique_id}" %>
 			<%= " " %>
 		<% end %>
 	<% end %>

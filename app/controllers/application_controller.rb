@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   helper_method :security_token, :paginate, :page_size, :reset_page,
-    :char_codes, :set_location, :build_proposal_feed, :probably_human
+    :char_codes, :set_location, :build_proposal_feed, :probably_human, :rand_string
   
   def build_proposal_feed section, group=nil
     reset_page; session[:current_proposal_section] = section.to_s
@@ -68,6 +68,10 @@ class ApplicationController < ActionController::Base
       end
     end
     return codes
+  end
+  
+  def rand_string
+    SecureRandom.urlsafe_base64.gsub(/[^0-9a-z]/i, '')
   end
   
   # ensures only humans are counted for views
