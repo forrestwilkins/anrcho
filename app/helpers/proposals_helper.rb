@@ -9,7 +9,8 @@ module ProposalsHelper
   end
   
   def up_voted? proposal
-    proposal.up_votes.where(token: security_token).present?
+    vote = proposal.up_votes.find_by_token(security_token)
+    return (vote and vote.body.present?)
   end
   
   def down_voted? proposal

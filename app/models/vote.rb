@@ -17,26 +17,26 @@ class Vote < ActiveRecord::Base
     return _verifiable
   end
   
-  def self.up_vote! obj, token, body=""
+  def self.up_vote obj, token, body=""
     unless token.eql? obj.token
       vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
       if not vote
-        obj.votes.create flip_state: 'up', token: token, body: body
-      elsif vote.down?
+        vote = obj.votes.create flip_state: 'up', token: token, body: body
+      else
         vote.body = body if body.present?
-        vote.flip_state = 'up'; vote.save
-      elsif vote.up?
-        vote.destroy
+        vote.flip_state = 'up'
+        vote.save
       end
       obj.evaluate
     end
+    return vote
   end
   
-  def self.down_vote! obj, token
+  def self.down_vote obj, token
     unless token.eql? obj.token
       vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
       if not vote
-        obj.votes.create flip_state: 'down', token: token
+        vote = obj.votes.create flip_state: 'down', token: token
       elsif vote.up?
         vote.update(flip_state: 'down')
       elsif vote.down?
@@ -44,6 +44,7 @@ class Vote < ActiveRecord::Base
       end
       obj.evaluate
     end
+    return vote
   end
   
   def self.score obj

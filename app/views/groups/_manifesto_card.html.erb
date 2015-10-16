@@ -2,7 +2,9 @@
 
 <div class="card" id="group_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
 	<%= link_to toggle_group_manifesto_path(group.token), remote: true do %>
-	  <div id="group_manifesto_exit">x</div>
+	  <div id="group_manifesto_exit">
+	    <i class="fa fa-times"></i>
+	  </div>
 	<% end %>
 	<%= link_to manifestos_path(group_token: group.token) do %>
 	  <div align="center">

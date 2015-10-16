@@ -44,7 +44,7 @@ class ProposalsController < ApplicationController
     @group = @proposal.group if @proposal
     if @proposal
       @proposal_shown = true
-      @proposal.seent security_token
+      @proposal.seent security_token if probably_human
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes
       if params[:votes]

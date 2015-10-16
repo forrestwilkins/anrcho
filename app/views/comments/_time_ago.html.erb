@@ -1,0 +1,9 @@
+<!-- comments -->
+
+<% unless comment.unique_token.nil? %>
+  <% _time_ago = time_ago(time_ago_in_words(comment.created_at)) %>
+  <%= link_to show_comment_path(comment.unique_token), class: :top_right_link do %>
+    <strong><%= _time_ago %></strong>
+  <% end %>
+<% end %>
+

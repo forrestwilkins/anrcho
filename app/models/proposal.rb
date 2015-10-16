@@ -139,20 +139,26 @@ class Proposal < ActiveRecord::Base
       update_manifesto: "Propose a group manifesto" }
   end
   
-  def ratifiable?
-    !self.ratified and self.verified_votes.size >= ratification_threshold \
-      and self.down_votes.size.zero?
-  end
-  
   def requires_revision?
     return self.down_votes.size > 0
   end
   
+  def ratifiable?
+    !self.ratified and self.down_votes.size.zero? \
+      and self.verified_votes.size > ratification_threshold
+  end
+  
   def ratification_threshold
-  	if self.views.size > 10
-  		return self.views.size
+    _threshold = 10
+    _views = if self.group
+      self.group.views
+    else
+      self.views
+    end
+  	if _views.size > _threshold
+  		return _views.size / 2
   	else
-  		return 10
+  		return _threshold / 2
   	end
   end
   

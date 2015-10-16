@@ -3,6 +3,10 @@ class Hashtag < ActiveRecord::Base
   belongs_to :comment
   belongs_to :group
   
+  def trending?
+  
+  end
+  
   def self.add_from text, item
     text.split(" ").each do |tag|
       next unless tag.size > 1
