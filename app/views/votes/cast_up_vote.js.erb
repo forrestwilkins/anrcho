@@ -14,8 +14,3 @@ function remove_new_vote_form() {
 }
 
 remove_new_vote_form();
-
-<% if @vote_cast %>
-  alert("should be working...");
-  <%=j render "app/fader.js", target: "up_vote_proposal_", target_id: @proposal.id.to_s %>
-<% end %>

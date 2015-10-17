@@ -7,6 +7,11 @@
 				<td>
 					<% _class = up_voted?(proposal) ? :voted_on : nil %>
 					<% for_path = _class.nil? ? new_up_vote_path(proposal.unique_token) : "/#" %>
+					<% if _class %>
+					  <script>
+              <%= render "app/fader.js", target: "up_vote_proposal_", target_id: proposal.id.to_s %>
+					  </script>
+					<% end %>
 					<%= link_to "For#{(' ' + proposal.up_votes.size.to_s) unless proposal.up_votes.size.zero?}",
 					  for_path, remote: true, class: _class, id: "up_vote_proposal_#{proposal.id}" %>
 				</td>
