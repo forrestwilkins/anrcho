@@ -11,7 +11,8 @@ class VotesController < ApplicationController
   def cast_up_vote
     unless request.bot?
       @proposal = Proposal.find(params[:proposal_id])
-      Vote.up_vote(@proposal, security_token, params[:body])
+      @up_vote = Vote.up_vote(@proposal, security_token, params[:body])
+      @vote_cast = @up_vote.body.present?
     else
       redirect_to '/404'
     end

@@ -1,0 +1,21 @@
+// votes
+
+<% if @ratified %>
+  function ratification_glimmer() {
+	  var ids = ["top_right_glimmer_", "bottom_right_glimmer_", "bottom_left_glimmer_"];
+	  var rgb = [[], [], []];
+	  setInterval(function() {
+		  var id = Math.round(Math.random() * 2);
+		  for (var x=0; x < 3; x++) {
+			  for (var y=0; y < 3; y++) {
+				  rgb[x][y] = Math.round(Math.random() * 255);
+			  }
+		  }
+		  var card = $("#proposal_card_" + proposal_id);
+		  var pixel = $("#" + ids[id] + proposal_id);
+		  pixel.css("background", "rgb(" + rgb[0][0] + ", " + rgb[0][1] + ", " + rgb[0][2] + ")");
+	  }, 1);
+  }
+  
+  ratification_glimmer();
+<% end %>

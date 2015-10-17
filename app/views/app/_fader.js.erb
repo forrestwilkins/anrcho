@@ -1,6 +1,6 @@
 // app
 
-function fader_<%=j target_id %>() {  
+function fader_<%= target_id %>() {
   var rgb = [0, 0, 0]; // the targets color values
   var fat_rgb = [false, false, false]; // ensures pos/neg
   var color_min = 25; // when it should go back up
@@ -30,9 +30,9 @@ function fader_<%=j target_id %>() {
 		  }
 	  }
 	  // actually applies change
-	  var target = $("#<%=j target + target_id %>");
+	  var target = $("#<%= target + target_id %>");
 	  target.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
   }, change_speed);
 }
 
-fader_<%=j target_id %>();
+fader_<%= target_id %>();
