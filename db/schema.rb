@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010234542) do
+ActiveRecord::Schema.define(version: 20151018223956) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20151010234542) do
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "expires_at"
+    t.string   "passphrase"
   end
 
   create_table "hashtags", force: :cascade do |t|

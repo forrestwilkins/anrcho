@@ -6,7 +6,8 @@ class Group < ActiveRecord::Base
   has_many :hashtags
   has_many :proposals
   has_many :messages
-  before_save :generate_token
+  before_save :generate_token,
+    :generate_passphrase
   
   def proposed_manifestos
     self.proposals.where(action: :update_manifesto)
@@ -66,6 +67,13 @@ class Group < ActiveRecord::Base
   end
   
   private
+  
+  def generate_passphrase
+    pass = Passphrase::Passphrase.new(  
+      number_of_words: 4, languages: ["english"]
+    )
+    self.passphrase = pass.passphrase
+  end
   
   def generate_token
     self.token = SecureRandom.urlsafe_base64

@@ -10,7 +10,11 @@ module ProposalsHelper
   
   def up_voted? proposal
     vote = proposal.up_votes.find_by_token(security_token)
-    return (vote and vote.body.present?)
+    if vote and vote.body.present?
+      return vote
+    else
+      return nil
+    end
   end
   
   def down_voted? proposal

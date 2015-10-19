@@ -65,6 +65,9 @@ gem 'koala' # for facebook
 gem 'tumblr_client'
 gem 'twitter'
 
+# passphrase generation
+gem 'passphrase'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
