@@ -4,11 +4,11 @@ class Hashtag < ActiveRecord::Base
   belongs_to :group
   
   def trending?
-    matching = Hashtag.where tag: self.tag
-    trending = matching.select do |tag|
+    matches = Hashtag.where tag: self.tag
+    recent_matches = matches.select do |tag|
       tag.created_at < 1.week.ago
     end
-    return (trending.size > Hashtag.all.size / 4)
+    return (recent_matches.size > Hashtag.all.size / 4)
   end
   
   def self.add_from text, item

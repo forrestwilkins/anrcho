@@ -2,8 +2,8 @@
 
 <%= render "proposals/card", proposal: @proposal %>
 
-<%= render "token/voter_links", label: "For", votes: @up_votes %>
-<%= render "token/voter_links", label: "Against", votes: @down_votes %>
+<%= render "votes/voter_links", label: "For", votes: @up_votes %>
+<%= render "votes/voter_links", label: "Against", votes: @down_votes %>
 
 <% if @show_votes %>
   <% for vote in @up_votes %>

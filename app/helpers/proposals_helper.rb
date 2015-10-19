@@ -7,17 +7,4 @@ module ProposalsHelper
     end
     return actions
   end
-  
-  def up_voted? proposal
-    vote = proposal.up_votes.find_by_token(security_token)
-    if vote and vote.body.present?
-      return vote
-    else
-      return nil
-    end
-  end
-  
-  def down_voted? proposal
-    proposal.down_votes.where(token: security_token).present?
-  end
 end

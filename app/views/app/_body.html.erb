@@ -2,9 +2,12 @@
 
 <% for word in item.body.split(" ") %>
 	<% unless word.include? "#" and word.size > 1 %>
+	  <!-- word is rendered as plain text -->
 		<%= render "app/embed", word: word %>
 	<% else %>
+	  <!-- word is rendered as hashtag link -->
 		<% tag = item.hashtags.find_by_tag word %>
+		<!-- ensures correct positioning by index -->
 		<% if tag and tag.index == item.body.index(word) %>
 		  <!-- The following will apply faders to trending hashtags -->
 		  <% if tag.trending? %>
