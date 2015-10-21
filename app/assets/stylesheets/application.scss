@@ -55,6 +55,10 @@ a {
 	font-size: 12.5px;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .card {
 	@include card(white);
 }
@@ -96,7 +100,7 @@ a {
 }
 
 #spacing_header {
-	padding-bottom: 32px;
+	padding-bottom: 32.5px;
 }
 
 .card_corner_cut_out {
@@ -106,29 +110,6 @@ a {
 	background: black;
 	height: 30px;
 	width: 32px;
-}
-
-#nav_menu_link {
-	color: white;
-	font-size: 13px;
-	float: left;
-	padding-right: 5px;
-}
-
-#link_menu {
-  position: absolute;
-	overflow: auto;
-	white-space: nowrap;
-  top: 15px;
-  left: 47.5px;
-}
-
-#toggle_menu_link {
-	position: absolute;
-	top: 6.5px;
-	left: 14px;
-	color: white;
-	font-size: 13px;
 }
 
 .embedded_image {

@@ -6,3 +6,26 @@
 	padding-top: 11.5px;
 	padding-bottom: 5px;
 }
+
+#dmenu {
+  position: absolute;
+  width: 60%;
+	overflow-x: auto;
+	white-space: nowrap;
+  top: 15px;
+  left: 47.5px;
+}
+
+#nav_menu_link {
+	color: white;
+	font-size: 13px;
+	padding-right: 5px;
+}
+
+#toggle_menu_link {
+	position: absolute;
+	top: 6.5px;
+	left: 14px;
+	color: white;
+	font-size: 13px;
+}

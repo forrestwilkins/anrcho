@@ -9,7 +9,7 @@
 	<%= render "token/pattern.js", pattern: pattern, token: clean_token, unique_name: unique_name %>
 </script>
 
-<%= link_to search_path(query: token), class: "#{defined?(position) ? position : nil}",
+<%= link_to search_path(query: token, avatar_token: true), class: "#{defined?(position) ? position : nil}",
   id: "#{defined?(id) ? id : nil}" do %>
 	<div id="avatar_container">
 		<% num = 0; for char in chars %>

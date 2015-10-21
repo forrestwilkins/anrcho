@@ -8,6 +8,7 @@ class SearchController < ApplicationController
   def index
     @query = params[:query].present? ? params[:query] : session[:query]
     session[:query] = @query; @results = []
+    @user_search = params[:avatar_token]
     if @query.present?
       [Proposal, Comment, Group, Manifesto].each do |_class|
         _class.all.reverse.each do |item|

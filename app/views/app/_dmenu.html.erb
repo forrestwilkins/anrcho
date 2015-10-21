@@ -1,6 +1,8 @@
 <!-- app -->
 
-<div id="link_menu" hidden>
+<!-- named after dmenu from linux -->
+
+<div id="dmenu" hidden>
 	<%= link_to "Home", root_url, id: :nav_menu_link %>
 	<span id="nav_menu_link">·</span>
 	<%= link_to "Chat", new_chat_path, method: :post, id: :nav_menu_link %>
@@ -9,4 +11,6 @@
 	<span id="nav_menu_link">·</span>
 	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path),
 		remote: true, id: :nav_menu_link %>
+	<span id="nav_menu_link">·</span>
+	<%= link_to "Inbox", fib_path, id: :nav_menu_link %>
 </div>
