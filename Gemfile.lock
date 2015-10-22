@@ -151,6 +151,7 @@ GEM
     oauth (0.4.7)
     passphrase (1.2.1)
       sqlite3 (~> 1.0)
+    phonetic_alphabet (0.1.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -282,6 +283,7 @@ DEPENDENCIES
   jquery-rails
   koala
   passphrase
+  phonetic_alphabet
   rails
   remotipart
   rmagick

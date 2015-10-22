@@ -66,6 +66,7 @@ gem 'tumblr_client'
 gem 'twitter'
 
 # passphrase generation
+gem 'phonetic_alphabet'
 gem 'passphrase'
 
 # Use Unicorn as the app server

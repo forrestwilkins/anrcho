@@ -66,14 +66,14 @@ class Group < ActiveRecord::Base
     View.where group_token: self.token
   end
   
-  private
-  
   def generate_passphrase
     pass = Passphrase::Passphrase.new(  
-      number_of_words: 4, languages: ["english"]
-    )
-    self.passphrase = pass.passphrase
+      number_of_words: 1, languages: ["english"]
+    ); pass = pass.passphrase.to_p
+    self.passphrase = pass
   end
+  
+  private
   
   def generate_token
     self.token = SecureRandom.urlsafe_base64
