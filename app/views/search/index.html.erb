@@ -4,6 +4,10 @@
 	<%= render "search/new" %>
 </div>
 
+<% if @user_search %>
+  
+<% end %>
+
 <% for item in @results %>
 	<% if item.present? and item.class.present? %>
 		<% _class = item.class.to_s.downcase %>

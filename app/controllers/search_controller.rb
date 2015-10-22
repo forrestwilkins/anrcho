@@ -8,11 +8,12 @@ class SearchController < ApplicationController
   def index
     @query = params[:query].present? ? params[:query] : session[:query]
     session[:query] = @query; @results = []
-    # to render direct message form in search
-    # should probably use better test than param
-    @user_search = params[:avatar_token]
     if @query.present?
       [Proposal, Comment, Group, Manifesto].each do |_class|
+        # to render direct message form in search
+        # should probably use better test than param
+        @user_search = if params[:user_search] or (_class != Group \
+          and _class != Manifesto and _class.find_by_token(security_token))
         _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
           # searches by proposal type

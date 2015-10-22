@@ -3,7 +3,7 @@
 <div class="card" id="new_message_form">
 	<div align="center">
 		<%= form_for @new_message, url: messages_path, method: :post, remote: true do |f| %>
-			<%= hidden_field_tag :group_id, @group.id %>
+			<%= hidden_field_tag :group_id, @group.id if @group %>
 			<table>
 				<tr>
 					<td>

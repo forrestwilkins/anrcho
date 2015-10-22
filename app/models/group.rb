@@ -67,7 +67,7 @@ class Group < ActiveRecord::Base
   end
   
   def generate_passphrase
-    pass = Passphrase::Passphrase.new(  
+    pass = Passphrase::Passphrase.new(
       number_of_words: 1, languages: ["english"]
     ); pass = pass.passphrase.to_s.to_p
     self.passphrase = pass
