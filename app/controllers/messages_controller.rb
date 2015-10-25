@@ -36,8 +36,14 @@ class MessagesController < ApplicationController
   def create
     @new_message = Message.new
     @group = Group.find_by_id params[:group_id]
-    @message = @group.messages.new(params[:message].permit(:body, :image)) if @group
-    @message.token = security_token; @message.save if @message
+    @messages = if @group
+      @group.messages
+    else
+      @dialogue.messages
+    end
+    @message = @messages.new
+    (@message.token = security_token; @message.save) if @message
+    redirect_to dialogue_path(@dialogue) if @dialogue
   end
   
   private

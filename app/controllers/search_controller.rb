@@ -9,11 +9,12 @@ class SearchController < ApplicationController
     @query = params[:query].present? ? params[:query] : session[:query]
     session[:query] = @query; @results = []
     if @query.present?
+      @user_search = false
       [Proposal, Comment, Group, Manifesto].each do |_class|
         # to render direct message form in search
-        # should probably use better test than param
-        @user_search = if params[:user_search] or (_class != Group \
-          and _class != Manifesto and _class.find_by_token(security_token))
+        @user_search = params[:avatar_token] or (_class != Group and _class != Manifesto \
+          and _class.find_by_token(security_token)) if !@user_search
+        @new_message = Message.new if @user_search
         _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
           # searches by proposal type

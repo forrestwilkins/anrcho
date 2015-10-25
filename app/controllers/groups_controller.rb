@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
     if @group.save
       if params[:hashtags]
         Hashtag.add_from params[:hashtags], @group
@@ -23,7 +23,11 @@ class GroupsController < ApplicationController
       if params[:local]
         set_location @group
       end
-      redirect_to group_path(@group.token)
+      unless @group.pass_protected
+        # redirect to pass phrase
+      else
+        redirect_to group_path(@group.token)
+      end
     else
       redirect_to :back
     end
@@ -40,5 +44,9 @@ class GroupsController < ApplicationController
     else
       redirect_to "/404"
     end
+  end
+  
+  def group_params
+    params[:group].permit(:private)
   end
 end

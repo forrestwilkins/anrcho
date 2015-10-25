@@ -1,7 +1,9 @@
 // messages
 
-var form = $("#new_message_form");
-var anchor = $("#message_form_anchor");
+<% if @group %>
+  var form = $("#new_message_form");
+  var anchor = $("#message_form_anchor");
 
-form.remove();
-anchor.after("<%=j render 'messages/new' %>");
+  form.remove();
+  anchor.after("<%=j render 'messages/new' %>");
+<% end %>
