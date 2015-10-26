@@ -26,28 +26,38 @@ class MessagesController < ApplicationController
     set_last_im @group, @instant_messages
   end
   
-  def index
-    @group = Group.find_by_token(params[:group_token])
-    cookies.permanent[:last_chat_token] = @group.token
-    set_last_im @group; @messages ||= @group.messages.last 5
-    @new_message = Message.new
+  def create
+    @new_message = Message.new # for ajax, new form
+    @group = Group.find_by_id params[:group_id]
+    @message = Message.new(params[:message].permit(:body))
+    @message.token = security_token
+    if params[:group_id] and @group
+      @message.group_token = @group.token
+    else
+      @message.receiver_token = params[:receiver_token]
+    end
+    if @message.save
+      unless @group
+        redirect_to secret_chat_path(params[:receiver_token])
+      end
+    end
   end
   
-  def create
+  def index
     @new_message = Message.new
-    @group = Group.find_by_id params[:group_id]
-    @messages = if @group
-      @group.messages
+    @receiver = params[:receiver_token]
+    @group = Group.find_by_token(params[:group_token])
+    if params[:group_token] and @group
+      cookies.permanent[:last_chat_token] = @group.token
+      set_last_im @group; @messages ||= @group.messages.last 5
     else
-      @dialogue.messages
+      @messages = Message.between security_token, @receiver
     end
-    @message = @messages.new
-    (@message.token = security_token; @message.save) if @message
-    redirect_to dialogue_path(@dialogue) if @dialogue
   end
   
   private
   
+  # keeps track of last message loaded
   def set_last_im group, instant_messages=nil
     message_id = if instant_messages.present?
       instant_messages.last.id

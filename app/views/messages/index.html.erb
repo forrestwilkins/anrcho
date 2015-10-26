@@ -1,10 +1,12 @@
 <!-- messages -->
 
-<script>
-	<%= render "messages/check_messages.js" %>
-</script>
-
-<%= render "groups/card", group: @group %>
+<% if @group %>
+  <script>
+	  <%= render "messages/check_messages.js" %>
+  </script>
+  
+  <%= render "groups/card", group: @group %>
+<% end %>
 
 <% for message in @messages %>
 	<%= render "messages/card", message: message %>

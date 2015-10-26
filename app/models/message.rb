@@ -5,10 +5,28 @@ class Message < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
+  def self.between sender, receiver
+    messages = []
+    self.where(token: sender, receiver_token: receiver).each do |message|
+      messages << message
+    end
+    self.where(token: receiver, receiver_token: sender).each do |message|
+      messages << message
+    end
+    return messages.sort_by { |message| message.created_at }
+  end
+  
   def encrypt_message
-    if self.body.present? and self.group
+    if self.body.present?
+      key = if self.group
+        self.group.token
+      else
+        # for direct messaging between 2 users
+        self.token + self.receiver_token
+        # uses both of their tokens as the key
+      end
       self.salt = SecureRandom.random_bytes(64)
-      key = ActiveSupport::KeyGenerator.new(self.group.token).generate_key(self.salt)
+      key = ActiveSupport::KeyGenerator.new(key).generate_key(self.salt)
       encryptor = ActiveSupport::MessageEncryptor.new(key)
       self.body = encryptor.encrypt_and_sign(self.body)
     end

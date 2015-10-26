@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023213537) do
+ActiveRecord::Schema.define(version: 20151025181438) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -79,11 +79,12 @@ ActiveRecord::Schema.define(version: 20151023213537) do
     t.integer  "group_id"
     t.text     "body"
     t.binary   "salt"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "token"
     t.string   "image"
     t.string   "group_token"
+    t.string   "receiver_token"
   end
 
   create_table "notes", force: :cascade do |t|

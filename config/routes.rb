@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   post 'messages/create', as: 'messages'
   get 'messages/instant_messages', to: 'messages#instant_messages'
   get 'groups/:group_token/chat', to: 'messages#index', as: 'chat'
+  get 'secret/:receiver_token', to: 'messages#index', as: 'secret_chat'
   post 'chat', to: 'messages#new_chat', as: 'new_chat'
   get 'messages/add_image', as: 'add_message_image'
 
