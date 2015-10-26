@@ -13,6 +13,10 @@ class Group < ActiveRecord::Base
     self.proposals.where(action: :update_manifesto)
   end
   
+  def messages
+    Message.where group_token: self.token
+  end
+  
   def manifestos
     Manifesto.where group_token: self.token
   end

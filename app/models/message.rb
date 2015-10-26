@@ -5,6 +5,10 @@ class Message < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
+  def group
+    Group.find_by_token self.group_token
+  end
+  
   def self.between sender, receiver
     messages = []
     self.where(token: sender, receiver_token: receiver).each do |message|
@@ -20,10 +24,10 @@ class Message < ActiveRecord::Base
     if self.body.present?
       key = if self.group
         self.group.token
-      else
+      elsif self.token and self.receiver_token
         # for direct messaging between 2 users
-        self.token + self.receiver_token
-        # uses both of their tokens as the key
+        self.token[0..10] + self.receiver_token[0..10]
+        # uses half of both of their tokens as the key
       end
       self.salt = SecureRandom.random_bytes(64)
       key = ActiveSupport::KeyGenerator.new(key).generate_key(self.salt)

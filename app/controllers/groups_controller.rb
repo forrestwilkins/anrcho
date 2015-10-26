@@ -23,11 +23,7 @@ class GroupsController < ApplicationController
       if params[:local]
         set_location @group
       end
-      unless @group.pass_protected
-        # redirect to pass phrase
-      else
-        redirect_to group_path(@group.token)
-      end
+      redirect_to group_path(@group.token)
     else
       redirect_to :back
     end

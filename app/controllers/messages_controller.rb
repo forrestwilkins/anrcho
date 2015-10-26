@@ -28,14 +28,11 @@ class MessagesController < ApplicationController
   
   def create
     @new_message = Message.new # for ajax, new form
-    @group = Group.find_by_id params[:group_id]
+    @group = Group.find_by_token params[:group_token]
     @message = Message.new(params[:message].permit(:body))
+    @message.receiver_token = params[:receiver_token]
+    @message.group_token = params[:group_token]
     @message.token = security_token
-    if params[:group_id] and @group
-      @message.group_token = @group.token
-    else
-      @message.receiver_token = params[:receiver_token]
-    end
     if @message.save
       unless @group
         redirect_to secret_chat_path(params[:receiver_token])
