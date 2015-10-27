@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
   end
   
   def new_chat
-    @group = Group.find_by_token(cookies[:last_chat_token]) if cookies[:last_chat_token]
+    @group = Group.find_by_token(cookies[:last_chat_token]) \
+      if cookies[:last_chat_token]
     @group = Group.new if @group.nil? or @group.expires?
     if @group and @group.token
       redirect_to chat_path(@group.token)
@@ -35,20 +36,23 @@ class MessagesController < ApplicationController
     @message.token = security_token
     if @message.save
       unless @group
+        # notification to go here
         redirect_to secret_chat_path(params[:receiver_token])
       end
+    else
+      redirect_to :back unless @group
     end
   end
   
   def index
     @new_message = Message.new
-    @receiver = params[:receiver_token]
+    @receiver_token = params[:receiver_token]
     @group = Group.find_by_token(params[:group_token])
     if params[:group_token] and @group
       cookies.permanent[:last_chat_token] = @group.token
       set_last_im @group; @messages ||= @group.messages.last 5
-    else
-      @messages = Message.between security_token, @receiver
+    elsif @receiver_token.present?
+      @messages = Message.between security_token, @receiver_token
     end
   end
   

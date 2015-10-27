@@ -5,7 +5,9 @@
 	  <%= render "messages/check_messages.js" %>
   </script>
   
-  <%= render "groups/card", group: @group %>
+  <%= render "groups/card", group: @group %>  
+<% else %>
+  <%= render "token/card" %>
 <% end %>
 
 <% for message in @messages %>

@@ -1,0 +1,9 @@
+<!-- token -->
+
+<div class="card">
+	<div class="card_corner_cut_out"></div>
+	<%= render "token/avatar", token: @receiver_token, position: :token_card_link %>
+  <div class="vertical_padding" align="center">
+    <%= link_to @receiver_token, search_path(query: @receiver_token) %>
+  </div>
+</div>

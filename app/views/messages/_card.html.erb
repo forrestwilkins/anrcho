@@ -3,6 +3,7 @@
 <div class="card">
 	<div class="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: message.token, position: :token_card_link %>
+	<%= render "messages/time_ago", message: message %>
 	<div align="center">
 		<% if message.image.url %>
 			<%= image_tag message.image, class: :embedded_image %>
