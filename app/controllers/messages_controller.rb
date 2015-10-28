@@ -52,7 +52,7 @@ class MessagesController < ApplicationController
       cookies.permanent[:last_chat_token] = @group.token
       set_last_im @group; @messages ||= @group.messages.last 5
     elsif @receiver_token.present?
-      @messages = Message.between security_token, @receiver_token
+      @messages = Message.between(security_token, @receiver_token).last 5
     end
   end
   
