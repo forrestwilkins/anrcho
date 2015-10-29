@@ -3,10 +3,10 @@ class Note < ActiveRecord::Base
   
   scope :unseen, -> { where seen: [nil, false] }
   
-  def self.notify action, item, receiver=nil
+  def self.notify action, item=nil, receiver=nil, sender=nil
     self.create(
       receiver_token: (receiver.nil? ? item.token : receiver),
-      item_token: item.unique_token,
+      item_token: (item.nil? ? sender : item.unique_token),
       action: action
     )
   end

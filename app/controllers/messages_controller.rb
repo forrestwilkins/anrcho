@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
     @message.token = security_token
     if @message.save
       unless @group
-        # notification to go here
+        Note.notify :message_received, nil, params[:receiver_token], security_token
         redirect_to secret_chat_path(params[:receiver_token])
       end
     else
@@ -45,14 +45,15 @@ class MessagesController < ApplicationController
   end
   
   def index
+    msg_limit = 4 # how many to display
     @new_message = Message.new
     @receiver_token = params[:receiver_token]
     @group = Group.find_by_token(params[:group_token])
     if params[:group_token] and @group
       cookies.permanent[:last_chat_token] = @group.token
-      set_last_im @group; @messages ||= @group.messages.last 5
+      set_last_im @group; @messages ||= @group.messages.last msg_limit
     elsif @receiver_token.present?
-      @messages = Message.between(security_token, @receiver_token).last 5
+      @messages = Message.between(security_token, @receiver_token).last msg_limit
     end
   end
   

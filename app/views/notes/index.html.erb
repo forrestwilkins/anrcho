@@ -4,6 +4,8 @@
   <div class="card">
     <div class="note_message">
       <% case note.action.to_sym %>
+      <% when :message_received %>
+        <%= link_to note.message, secret_chat_path(note.item_token) %>
       <% when :ratified, :commented, :proposal_revised %>
         <%= link_to note.message, show_proposal_path(note.item_token) %>
       <% when :proposal_blocked, :revision_submitted %>
