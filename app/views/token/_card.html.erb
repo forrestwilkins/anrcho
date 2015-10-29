@@ -4,9 +4,10 @@
 	<div class="card_corner_cut_out"></div>
 	<%= render "token/avatar", token: token, position: :token_card_link %>
   <div class="vertical_padding" align="center">
-    <% if @between %>
+    <% if @last_between %>
+      <%= render "token/time_ago", message: @last_between %> 
       <%= link_to "Messages with #{@receiver_token}", secret_chat_path(token) %>
-    <% else %>       
+    <% else %>
       <%= link_to token, search_path(query: token) %>
     <% end %>
   </div>

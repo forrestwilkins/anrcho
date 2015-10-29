@@ -53,8 +53,8 @@ class SearchController < ApplicationController
       and security_token != @query and _class.find_by_token(@query)
       @new_message = Message.new
       @receiver_token = @query
-      @between = Message.between(security_token,
-        @receiver_token).present?
+      @last_between = Message.between(security_token,
+        @receiver_token).last
     end
   end
   
