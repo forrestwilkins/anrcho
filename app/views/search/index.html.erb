@@ -4,7 +4,9 @@
 	<%= render "search/new" %>
 </div>
 
-<% if @receiver_token %>
+<% if @between %>
+  <%= render "token/card", token: @receiver_token %>
+<% elsif @receiver_token %>
   <%= render "messages/new" %>
 <% end %>
 

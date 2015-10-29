@@ -2,8 +2,12 @@
 
 <div class="card">
 	<div class="card_corner_cut_out"></div>
-	<%= render "token/avatar", token: @receiver_token, position: :token_card_link %>
+	<%= render "token/avatar", token: token, position: :token_card_link %>
   <div class="vertical_padding" align="center">
-    <%= link_to @receiver_token, search_path(query: @receiver_token) %>
+    <% if @between %>
+      <%= link_to "Messages with #{@receiver_token}", secret_chat_path(token) %>
+    <% else %>       
+      <%= link_to token, search_path(query: token) %>
+    <% end %>
   </div>
 </div>

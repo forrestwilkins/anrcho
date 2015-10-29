@@ -7,7 +7,7 @@
   
   <%= render "groups/card", group: @group %>  
 <% else %>
-  <%= render "token/card" %>
+  <%= render "token/card", token: @receiver_token %>
 <% end %>
 
 <% for message in @messages %>

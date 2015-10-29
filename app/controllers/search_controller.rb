@@ -10,12 +10,7 @@ class SearchController < ApplicationController
     session[:query] = @query; @results = []
     if @query.present?
       [Proposal, Comment, Group, Manifesto].each do |_class|
-        # to render direct message form in search
-        if _class != Group and _class != Manifesto \
-          and security_token != @query and _class.find_by_token(@query)
-          @new_message = Message.new
-          @receiver_token = @query
-        end
+        messages_between _class # link to existing messages or new form
         _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
           # searches by proposal type
@@ -50,6 +45,18 @@ class SearchController < ApplicationController
   end
   
   private
+  
+  def messages_between _class
+    # to render direct message form in search
+    # or link to messages already between users
+    if _class != Group and _class != Manifesto \
+      and security_token != @query and _class.find_by_token(@query)
+      @new_message = Message.new
+      @receiver_token = @query
+      @between = Message.between(security_token,
+        @receiver_token).present?
+    end
+  end
   
   def scan_text item, query, match=false
     if item.respond_to? :body
