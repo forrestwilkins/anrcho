@@ -16,28 +16,18 @@ class MessagesController < ApplicationController
     end
   end
   
-  def instant_messages
-    @group = Group.find_by_token(params[:token])
-    last_im = eval(cookies[:last_im].to_s)
-    @instant_messages = []; for message in @group.messages
-      @instant_messages << message if last_im.class.eql? Hash \
-        and message.id > last_im[:message_id].to_i \
-        and last_im[:group_token].eql? @group.token
-    end
-    set_last_im @group, @instant_messages
-  end
-  
   def create
     @new_message = Message.new # for ajax, new form
     @group = Group.find_by_token params[:group_token]
+    @receiver_token = params[:receiver_token]
     @message = Message.new(params[:message].permit(:body))
-    @message.receiver_token = params[:receiver_token]
+    @message.receiver_token = @receiver_token
     @message.group_token = params[:group_token]
     @message.token = security_token
     if @message.save
       unless @group
-        Note.notify :message_received, nil, params[:receiver_token], security_token
-        redirect_to secret_chat_path(params[:receiver_token])
+        Note.notify :message_received, nil, @receiver_token, security_token
+        redirect_to secret_chat_path(@receiver_token)
       end
     else
       redirect_to :back unless @group
@@ -57,18 +47,51 @@ class MessagesController < ApplicationController
     end
   end
   
+  def instant_messages
+    @group = Group.find_by_token(params[:token])
+    @receiver_token = params[:token] unless @group
+    @instant_messages = []
+    # from group or secret chat between two users
+    @messages = if @group
+      @group.messages
+    else
+      Message.between security_token, params[:token]
+    end
+    for message in @messages
+      @instant_messages << message if check_last_im(message)
+    end
+    set_last_im params[:token], @instant_messages
+  end
+  
   private
   
+  def check_last_im message
+    # eval to inflate hash from string
+    puts "LAST IM: #{cookies[:last_im]}"
+    in_sequence = false; last_im = eval(cookies[:last_im].to_s)
+    if last_im.class.eql? Hash and message.id > last_im[:message_id].to_i
+      if (@group and last_im[:group_token].eql? @group.token) \
+        or (!@group and last_im[:receiver_token].eql? @receiver_token)
+        in_sequence = true # meaning not the last message
+      end
+    end
+    return in_sequence
+  end
+  
   # keeps track of last message loaded
-  def set_last_im group, instant_messages=nil
+  def set_last_im token=nil, instant_messages=nil
     message_id = if instant_messages.present?
       instant_messages.last.id
-    elsif group.messages.present?
-      group.messages.last.id
+    # last message on page load, before ajax call
+    elsif @group and @group.messages.present?
+      @group.messages.last.id
+    elsif @receiver_token and @messages.present?
+      @messages.last.id
     else
       nil
     end
-    cookies[:last_im] = { message_id: message_id,
-      group_token: group.token }.to_s
+    last_im = { message_id: message_id }
+    last_im[(@group.present? ? :group_token : :receiver_token)] = token
+    cookies[:last_im] = last_im.to_s if last_im[:message_id]
   end
 end

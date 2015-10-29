@@ -1,10 +1,10 @@
 <!-- messages -->
 
+<script>
+  <%= render "messages/check_messages.js" %>
+</script>
+
 <% if @group %>
-  <script>
-	  <%= render "messages/check_messages.js" %>
-  </script>
-  
   <%= render "groups/card", group: @group %>  
 <% else %>
   <%= render "token/card", token: @receiver_token %>

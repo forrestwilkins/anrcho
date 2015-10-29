@@ -8,6 +8,7 @@ class PagesController < ApplicationController
     @loading = false
     cookies.permanent[:loads] = "0"
     cookies.permanent[:manifesto_tip] = false
+    cookies.permanent[:last_im] = ""
     redirect_to root_url
   end
   

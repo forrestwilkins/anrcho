@@ -1,6 +1,6 @@
 // messages
 
-<% if @group %>
+<% if @group or @receiver_token %>
   var form = $("#new_message_form");
   var anchor = $("#message_form_anchor");
 
