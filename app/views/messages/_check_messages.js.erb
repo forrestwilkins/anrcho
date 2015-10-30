@@ -1,11 +1,14 @@
 // messages
 
-setInterval(function() {
-	if ($("#instant_messages_anchor").length) {
-		$.ajax({
-			type: "GET",
-			url: "/messages/instant_messages",
-			data: $.param({token: "<%= (@group.present? ? @group.token : @receiver_token) %>"})
-		});
-	}
-}, 2500);
+function check_messages() {
+  setInterval(function() {
+	  if ($("#instant_messages_anchor").length) {
+		  $.ajax({
+			  type: "GET",
+			  url: "/messages/instant_messages",
+			  data: $.param({token: "<%= (@group.present? ? @group.token : @receiver_token) %>"})
+		  });
+	  }
+  }, 2500);
+}
+check_messages();

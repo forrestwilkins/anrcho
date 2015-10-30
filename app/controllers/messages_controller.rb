@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
     if @message.save
       unless @group
         Note.notify :message_received, nil, @receiver_token, security_token
-        redirect_to secret_chat_path(@receiver_token)
+        redirect_to secret_chat_path(@receiver_token) if @query # from search only
       end
     else
       redirect_to :back unless @group
@@ -41,9 +41,11 @@ class MessagesController < ApplicationController
     @group = Group.find_by_token(params[:group_token])
     if params[:group_token] and @group
       cookies.permanent[:last_chat_token] = @group.token
-      set_last_im @group; @messages ||= @group.messages.last msg_limit
+      @messages ||= @group.messages.last msg_limit
+      set_last_im @group.token, @messages
     elsif @receiver_token.present?
       @messages = Message.between(security_token, @receiver_token).last msg_limit
+      set_last_im @receiver_token, @messages
     end
   end
   
@@ -67,7 +69,6 @@ class MessagesController < ApplicationController
   
   def check_last_im message
     # eval to inflate hash from string
-    puts "LAST IM: #{cookies[:last_im]}"
     in_sequence = false; last_im = eval(cookies[:last_im].to_s)
     if last_im.class.eql? Hash and message.id > last_im[:message_id].to_i
       if (@group and last_im[:group_token].eql? @group.token) \

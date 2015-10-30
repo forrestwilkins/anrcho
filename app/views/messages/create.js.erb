@@ -1,9 +1,10 @@
 // messages
 
-<% if @group or @receiver_token %>
+function refresh_new_message_form() {
   var form = $("#new_message_form");
   var anchor = $("#message_form_anchor");
-
   form.remove();
   anchor.after("<%=j render 'messages/new' %>");
-<% end %>
+}
+
+refresh_new_message_form();

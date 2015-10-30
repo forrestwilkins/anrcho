@@ -1,7 +1,10 @@
 // messages
 
 <% if @instant_messages.present? %>
-	var anchor = $("#instant_messages_anchor");
-	anchor.after("<%=j render 'messages/instant_messages' %>");
-	anchor.remove(); $("#instant_messages_anchor").scrollView();
+  function load_instant_messages() {
+    var anchor = $("#instant_messages_anchor");
+	  anchor.after("<%=j render 'messages/instant_messages' %>");
+	  anchor.remove(); $("#instant_messages_anchor").scrollView();
+  }
+  load_instant_messages();
 <% end %>
