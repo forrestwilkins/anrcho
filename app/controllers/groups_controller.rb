@@ -10,6 +10,15 @@ class GroupsController < ApplicationController
     @proposed_manifestos = @group.proposed_manifestos
   end
   
+  def index
+    # a list of all groups viewed so far
+    views = View.where(token: security_token).where.not(group_token: nil)
+    @groups = []; for view in views
+      @groups << view.group unless @groups.include? view.group
+    end
+    @groups.reverse!
+  end
+  
   def new
     @group = Group.new
   end
