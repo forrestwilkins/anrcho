@@ -18,7 +18,7 @@ class Note < ActiveRecord::Base
       proposal_revised: "Your proposal has been revised.",
       commented: "Someone commented on your proposal.",
       replied: "Someone replied to your comment.",
-      message_received: "You received a message." }
+      message_received: "You've received a message." }
     return _actions[action.to_sym]
   end
   

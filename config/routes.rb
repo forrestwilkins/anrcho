@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get 'secret/:receiver_token', to: 'messages#index', as: 'secret_chat'
   post 'chat', to: 'messages#new_chat', as: 'new_chat'
   get 'messages/add_image', as: 'add_message_image'
-  get 'messages/inbox', as: 'inbox'
+  get 'inbox', to: 'messages#inbox', as: 'inbox'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
