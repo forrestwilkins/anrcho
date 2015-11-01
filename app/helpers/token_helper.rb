@@ -1,4 +1,16 @@
 module TokenHelper
+  def card_link token
+    link_text = if @results_shown or @inbox_shown or @secret_chat_shown
+      "Messages with #{(@receiver_token.nil? ? token : @receiver_token)}"
+    end
+    link_path = if @results_shown or @inbox_shown
+      secret_chat_path(token)
+    elsif @secret_chat_shown
+      search_path(query: token)
+    end
+    return { text: link_text, path: link_path }
+  end
+  
   def avatar_pattern chars
     # pattern based on chars, in following order:
     # pixels chosen, colors chosen

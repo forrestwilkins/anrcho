@@ -7,7 +7,7 @@ class SearchController < ApplicationController
   
   def index
     @query = params[:query].present? ? params[:query] : session[:query]
-    session[:query] = @query; @results = []
+    session[:query] = @query; @results = []; @results_shown = true
     if @query.present?
       [Proposal, Comment, Group, Manifesto].each do |_class|
         messages_between _class # link to existing messages or new form

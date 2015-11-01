@@ -1,4 +1,22 @@
 class MessagesController < ApplicationController
+  def inbox
+    @inbox_shown = true
+    @receiver_tokens = []
+    messages = Message.where.not receiver_token: nil
+    sent = messages.where token: security_token
+    received = messages.where receiver_token: security_token
+    for message in sent
+      unless @receiver_tokens.include? message.receiver_token
+        @receiver_tokens << message.receiver_token
+      end
+    end
+    for message in received
+      unless @receiver_tokens.include? message.token
+        @receiver_tokens << message.token
+      end
+    end
+  end
+  
   def add_image
   end
   
@@ -35,6 +53,7 @@ class MessagesController < ApplicationController
   end
   
   def index
+    @secret_chat_shown = true
     msg_limit = 4 # how many to display
     @new_message = Message.new
     @receiver_token = params[:receiver_token]
