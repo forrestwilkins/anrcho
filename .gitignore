@@ -21,3 +21,12 @@
 
 # Ignore bundle installs
 /Gemfile.lock
+
+# Ignore cache files
+._*
+
+
+# Ignore hidden files by default
+.*
+!.gitignore
+!.gitkeep
