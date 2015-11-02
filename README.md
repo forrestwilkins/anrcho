@@ -6,3 +6,6 @@ some local event, allowing anyone to support, block, or discuss any proposal mad
 this model of consensus, anyone can begin organizing locally, securely, and on a peer to peer
 basis with the members of their community.
 http://anrcho.com/
+
+Anrcho is free and open source software, as specified by the
+GNU General Public License included in this repository.
