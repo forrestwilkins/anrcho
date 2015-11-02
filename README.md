@@ -7,5 +7,4 @@ this model of consensus, anyone can begin organizing locally, securely, and on a
 basis with the members of their community.
 http://anrcho.com/
 
-Anrcho is free and open source software, as specified by the
-GNU General Public License included in this repository.
+Anrcho is free and open source software, as specified above by the GNU General Public License.
