@@ -55,7 +55,6 @@ class MessagesController < ApplicationController
   end
   
   def index
-    expires_now # no caching
     @secret_chat_shown = true
     msg_limit = 4 # how many to display
     @new_message = Message.new
