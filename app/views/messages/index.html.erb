@@ -1,8 +1,7 @@
 <!-- messages -->
 
 <script>
-  <%= render "messages/check_messages.js",
-    token: (@group.present? ? @group.token : @receiver_token) %>
+  <%= render "messages/check_messages.js" %>
 </script>
 
 <% if @group %>

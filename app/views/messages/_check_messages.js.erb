@@ -6,7 +6,7 @@ function check_messages() {
 		  $.ajax({
 			  type: "GET",
 			  url: "/messages/instant_messages",
-			  data: $.param({token: "<%= token %>"})
+			  data: $.param({token: "<%= (@group.present? ? @group.token : @receiver_token) %>"})
 		  });
 	  }
   }, 2500);
