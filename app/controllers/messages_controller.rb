@@ -45,7 +45,9 @@ class MessagesController < ApplicationController
     if @message.save
       unless @group
         Note.notify :message_received, nil, @receiver_token, security_token
-        redirect_to secret_chat_path(@receiver_token) if @query # from search only
+      end
+      if params[:from_search].eql? "true"
+        redirect_to secret_chat_path(@receiver_token)
       end
     else
       redirect_to :back unless @group
@@ -53,6 +55,7 @@ class MessagesController < ApplicationController
   end
   
   def index
+    expires_now # no caching
     @secret_chat_shown = true
     msg_limit = 4 # how many to display
     @new_message = Message.new
@@ -113,5 +116,6 @@ class MessagesController < ApplicationController
     last_im = { message_id: message_id }
     last_im[(@group.present? ? :group_token : :receiver_token)] = token
     cookies[:last_im] = last_im.to_s if last_im[:message_id]
+    puts "LAST IM: #{last_im}"
   end
 end

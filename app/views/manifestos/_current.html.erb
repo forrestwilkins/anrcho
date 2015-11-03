@@ -1,9 +1,5 @@
 <!-- manifestos -->
 
-<script>
-	// manifestos fader script goes here
-</script>
-
 <div class="card" id="current_manifesto_card" <%= (defined?(hidden) and !hidden) ? "" : "hidden" %>>
   <% unless @about_page %>
 	  <%= link_to toggle_manifesto_path, remote: true do %>
@@ -26,6 +22,7 @@
 		</p>
 	</div>
 	<% end %>
+	<%= link_to "How does the site work?", tips_path, class: :bottom_right_link %>
 </div>
 
 

@@ -5,6 +5,7 @@
 		<%= form_for @new_message, url: messages_path, method: :post, remote: @query.nil? do |f| %>
 			<%= hidden_field_tag :receiver_token, @receiver_token unless @group.present? %>
 			<%= hidden_field_tag :group_token, @group.token if @group %>
+			<%= hidden_field_tag :from_search, @query.present? %>
 			<table>
 				<tr>
 					<td>
