@@ -63,10 +63,10 @@ class MessagesController < ApplicationController
     if params[:group_token] and @group
       cookies.permanent[:last_chat_token] = @group.token
       @messages ||= @group.messages.last msg_limit
-      set_last_im @group.token, @messages
+      set_last_im @group.token
     elsif @receiver_token.present?
       @messages = Message.between(security_token, @receiver_token).last msg_limit
-      set_last_im @receiver_token, @messages
+      set_last_im @receiver_token
     end
   end
   
@@ -83,7 +83,7 @@ class MessagesController < ApplicationController
     for message in @messages
       @instant_messages << message if check_last_im(message)
     end
-    set_last_im params[:token], @instant_messages
+    set_last_im params[:token]
   end
   
   private
@@ -101,9 +101,9 @@ class MessagesController < ApplicationController
   end
   
   # keeps track of last message loaded
-  def set_last_im token=nil, instant_messages=nil
-    message_id = if instant_messages.present?
-      instant_messages.last.id
+  def set_last_im token=nil
+    message_id = if @instant_messages.present?
+      @instant_messages.last.id
     # last message on page load, before ajax call
     elsif @group and @group.messages.present?
       @group.messages.last.id
@@ -115,6 +115,5 @@ class MessagesController < ApplicationController
     last_im = { message_id: message_id }
     last_im[(@group.present? ? :group_token : :receiver_token)] = token
     cookies[:last_im] = last_im.to_s if last_im[:message_id]
-    puts "LAST IM: #{last_im}"
   end
 end
