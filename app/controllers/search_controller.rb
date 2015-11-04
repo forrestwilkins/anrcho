@@ -9,8 +9,8 @@ class SearchController < ApplicationController
     @query = params[:query].present? ? params[:query] : session[:query]
     session[:query] = @query; @results = []; @results_shown = true
     if @query.present?
+      setup_messages_between # renders form or link to messages
       [Proposal, Comment, Group, Manifesto].each do |_class|
-        messages_between _class # link to existing messages or new form
         _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
           # searches by proposal type
@@ -46,15 +46,19 @@ class SearchController < ApplicationController
   
   private
   
-  def messages_between _class
+  def setup_messages_between
     # to render direct message form in search
     # or link to messages already between users
-    if _class != Group and _class != Manifesto \
-      and security_token != @query and _class.find_by_token(@query)
-      @new_message = Message.new
-      @receiver_token = @query
-      @last_between = Message.between(security_token,
-        @receiver_token).last
+    [Proposal, Comment, View, Vote].each do |_class|
+      if security_token != @query
+        if _class.find_by_token(@query)
+          @new_message = Message.new
+          @receiver_token = @query
+          @last_between = Message.between(security_token,
+            @receiver_token).last
+          break
+        end
+      end
     end
   end
   
