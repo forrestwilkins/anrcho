@@ -2,7 +2,7 @@
 
 <!-- named after dmenu from linux -->
 
-<div id="dmenu" hidden>
+<div id="dmenu" <%= 'hidden' unless low_data %>>
 	<%= link_to "Home", root_url, id: :nav_menu_link %>
 	<span id="nav_menu_link">·</span>
 	<%= link_to "Chat", new_chat_path, method: :post, id: :nav_menu_link %>

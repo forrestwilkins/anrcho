@@ -1,0 +1,14 @@
+<!-- proposals -->
+
+<% if proposal.title.present? %>
+  <%= link_to show_proposal_path(proposal.unique_token) do %>
+		<p class="proposal_title_text"><%= proposal.title %></p>
+  <% end %>
+<% end %>
+		  
+<% if proposal.image.url %>
+  <p><%= image_tag proposal.image, id: :proposal_image %></p>
+<% end %>
+<p class="proposal_body_text" id="<%= 'justified_body_text' if proposal.body.size > 150 %>">
+  <%= render "app/body", item: proposal %>
+</p>

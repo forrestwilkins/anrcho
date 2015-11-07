@@ -1,34 +1,31 @@
 <!-- proposals -->
 
 <div class="card" id="proposal_card_<%= proposal.id %>">
-	<div class="card_corner_cut_out"></div>
-	<%= render "proposals/time_ago", proposal: proposal %>
-	<!-- shows type of proposal to be motioned -->
-	<%= render "proposals/action_type", proposal: proposal %>
-	<!-- to be triggered when user casts the ending vote -->
-	<div id="ratification_glimmer_anchor_<%= proposal.id %>"></div>
-	<%= render "proposals/ratification_glimmer", proposal: proposal %>
-	<%= render "token/avatar", token: proposal.token, position: :token_card_link %>
-	<%= render "proposals/seent", proposal: proposal %>
-	<div id="proposal_card_spacer"></div>
-	<div align="center">
-		<% if proposal.title.present? %>
-		  <%= link_to show_proposal_path(proposal.unique_token) do %>
-  			<p class="proposal_title_text"><%= proposal.title %></p>
-			<% end %>
-		<% end %>
-		<% if proposal.image.url %>
-			<p><%= image_tag proposal.image, id: :proposal_image %></p>
-		<% end %>
-		<p class="proposal_body_text" id="<%= 'justified_body_text' if proposal.body.size > 150 %>">
-		  <%= render "app/body", item: proposal %>
-		</p>
-		<!-- anchor for reinserting the link table -->
-		<div id="link_table_anchor_<%= proposal.id %>"></div>
-		<!-- link table encapsulated as partial -->
-		<%= render "proposals/link_table", proposal: proposal %>
-		<!-- anchor for inserting new comment form -->
-		<div id="new_form_anchor_<%= proposal.id %>"></div>
-	</div>
+  <% if low_data %>
+    <hr>
+    <%= render "proposals/content", proposal: proposal %>
+    <%= render "proposals/link_table", proposal: proposal %>
+    <hr>
+  <% else %>
+  	<div class="card_corner_cut_out"></div>
+	  <%= render "proposals/time_ago", proposal: proposal %>
+	  <!-- shows type of proposal to be motioned -->
+	  <%= render "proposals/action_type", proposal: proposal %>
+	  <!-- to be triggered when user casts the ending vote -->
+	  <div id="ratification_glimmer_anchor_<%= proposal.id %>"></div>
+	  <%= render "proposals/ratification_glimmer", proposal: proposal %>
+	  <%= render "token/avatar", token: proposal.token, position: :token_card_link %>
+	  <%= render "proposals/seent", proposal: proposal %>
+	  <div id="proposal_card_spacer"></div>
+	  <div align="center">
+      <%= render "proposals/content", proposal: proposal %>
+		  <!-- anchor for reinserting the link table -->
+		  <div id="link_table_anchor_<%= proposal.id %>"></div>
+		  <!-- link table encapsulated as partial -->
+		  <%= render "proposals/link_table", proposal: proposal %>
+		  <!-- anchor for inserting new comment form -->
+		  <div id="new_form_anchor_<%= proposal.id %>"></div>
+	  </div>
+  <% end %>
 </div>
 
