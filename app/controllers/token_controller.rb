@@ -1,5 +1,6 @@
 class TokenController < ApplicationController
   def update
+    # is viewing twice upon renew of token in dev
     unless request.bot? or not ENV['RAILS_ENV'].eql? 'development'
       cookies.permanent[:ip] = request.remote_ip.to_s
       cookies.permanent[:token] = SecureRandom.urlsafe_base64

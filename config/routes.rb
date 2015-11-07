@@ -38,8 +38,9 @@ Rails.application.routes.draw do
   get 'renew', to: 'token#update'
   
   # pages
-  get 'pages/more', as: 'more'
   get 'fib', to: 'pages#fib', as: 'fib'
+  get 'pages/low_data', as: 'low_data'
+  get 'pages/more', as: 'more'
   get 'pages/finish_loading'
   
   # messages

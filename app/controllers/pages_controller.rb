@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  def finish_loading
-    build_proposal_feed :all
-    cookies.permanent[:loads] = (cookies[:loads].to_i + 1).to_s
+  def low_data
+    cookies.permanent[:low_data] = true
+    redirect_to root_url
   end
   
   def fib
@@ -10,6 +10,11 @@ class PagesController < ApplicationController
     cookies.permanent[:manifesto_tip] = false
     cookies.permanent[:last_im] = ""
     redirect_to root_url
+  end
+  
+  def finish_loading
+    build_proposal_feed :all
+    cookies.permanent[:loads] = (cookies[:loads].to_i + 1).to_s
   end
   
   def more
