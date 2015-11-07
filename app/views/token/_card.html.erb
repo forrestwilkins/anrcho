@@ -1,12 +1,16 @@
 <!-- token -->
 
-<% last_between = Message.between(token, security_token).last %>
+<% if low_data %>
+  <%= link_to card_link(token)[:text], card_link(token)[:path] %>
+<% else %>
+  <% last_between = Message.between(token, security_token).last %>
 
-<div class="card">
-	<div class="card_corner_cut_out"></div>
-	<%= render "token/avatar", token: token, position: :token_card_link %>
-  <div class="vertical_padding" align="center">
-    <%= render("token/time_ago", message: last_between, token: token) if last_between %>
-    <%= link_to card_link(token)[:text], card_link(token)[:path] %>
+  <div class="card">
+	  <div class="card_corner_cut_out"></div>
+	  <%= render "token/avatar", token: token, position: :token_card_link %>
+    <div class="vertical_padding" align="center">
+      <%= render("token/time_ago", message: last_between, token: token) if last_between %>
+      <%= link_to card_link(token)[:text], card_link(token)[:path] %>
+    </div>
   </div>
-</div>
+<% end %>

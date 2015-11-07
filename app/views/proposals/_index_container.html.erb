@@ -14,6 +14,10 @@
 	    <div id="insert_form_anchor"></div>
     </div>
   </div>
+  
+  <% if low_data %>
+    <hr>
+  <% end %>
 
   <!-- allows user to switch between differen proposal categories -->
   <%= render "proposals/section_links" unless @all_items.empty? %>

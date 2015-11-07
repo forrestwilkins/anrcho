@@ -11,7 +11,13 @@
 	<span id="nav_menu_link">·</span>
 	<%= link_to "Groups", groups_path, id: :nav_menu_link %>
 	<span id="nav_menu_link">·</span>
-	<%= link_to "Low data", low_data_path, id: :nav_menu_link %>
+	
+  <% if low_data %>
+    <%= link_to "High data", high_data_path %>
+  <% else %>
+	  <%= link_to "Low data", low_data_path, id: :nav_menu_link %>
+  <% end %>
+  
 	<span id="nav_menu_link">·</span>
 	<%= link_to "Load", fib_path, id: :nav_menu_link %>
 	<span id="nav_menu_link">·</span>

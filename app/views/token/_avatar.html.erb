@@ -5,16 +5,20 @@
 <% clean_token = token.gsub(/[^0-9a-z]/i, '') %>
 <% unique_name = rand_string %>
 
-<script>
-	<%= render "token/pattern.js", pattern: pattern, token: clean_token, unique_name: unique_name %>
-</script>
+<% if low_data %>
+  <%= link_to token, search_path(query: token) %>
+<% else %>
+  <script>
+	  <%= render "token/pattern.js", pattern: pattern, token: clean_token, unique_name: unique_name %>
+  </script>
 
-<%= link_to search_path(query: token), class: "#{defined?(position) ? position : nil}",
-  id: "#{defined?(id) ? id : nil}" do %>
-	<div id="avatar_container">
-		<% num = 0; for char in chars %>
-			<div class="avatar_pixel" id="avatar_pixel_<%= num.to_s + '_' + clean_token + '_' + unique_name %>"
-			  style="background:rgb(<%= awesome_colors(char, chars)[:string] %>);"></div>
-		<% num += 1; end %>
-	</div>
+  <%= link_to search_path(query: token), class: "#{defined?(position) ? position : nil}",
+    id: "#{defined?(id) ? id : nil}" do %>
+	  <div id="avatar_container">
+		  <% num = 0; for char in chars %>
+			  <div class="avatar_pixel" id="avatar_pixel_<%= num.to_s + '_' + clean_token + '_' + unique_name %>"
+			    style="background:rgb(<%= awesome_colors(char, chars)[:string] %>);"></div>
+		  <% num += 1; end %>
+	  </div>
+  <% end %>
 <% end %>

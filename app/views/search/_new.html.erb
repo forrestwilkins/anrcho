@@ -9,9 +9,13 @@
 					<%= text_field_tag :query, nil, placeholder: placeholder %>
 				</td>
 				<td>
-					<button type="submit" name="commit">
-					  <i class="fa fa-search"></i>
-					</button>
+				  <% if low_data %>
+				    <%= submit_tag "Search" %>
+				  <% else %>
+					  <button type="submit" name="commit">
+					    <i class="fa fa-search"></i>
+					  </button>
+				  <% end %>
 				</td>
 			</tr>
 		</table>

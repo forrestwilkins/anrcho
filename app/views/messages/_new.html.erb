@@ -17,9 +17,13 @@
 						<%= f.text_area :body, placeholder: "Send a message..." %>
 					</td>
 					<td>
-					  <button type="submit" name="commit">
-					    <i class="fa fa-send"></i>
-					  </button>
+					  <% if low_data %>
+					    <%= f.submit "Send" %>
+					  <% else %>
+					    <button type="submit" name="commit">
+					      <i class="fa fa-send"></i>
+					    </button>
+					  <% end %>
 					</td>
 				</tr>
 			</table>

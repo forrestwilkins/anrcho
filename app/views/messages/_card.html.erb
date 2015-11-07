@@ -1,19 +1,19 @@
 <!-- messages -->
 
 <div class="card">
-	<div class="card_corner_cut_out"></div>
-	<%= render "token/avatar", token: message.token, position: :token_card_link %>
-	<%= render "messages/time_ago", message: message %>
-	<div align="center">
-		<% if message.image.url %>
-			<%= image_tag message.image, class: :embedded_image %>
-		<% end %>
-		<% if message.body.present? %>
-			<p>
-				<% for word in decrypt_message(message).split(" ") %>
-					<%= render "app/embed", word: word %>
-				<% end %>
-			</p>
-		<% end %>
-	</div>
+  <% if low_data %>
+    <hr>
+      <%= render "token/avatar", token: message.token %>
+      <%= render "messages/content", message: message %>
+    <hr>
+  <% else %>
+	  <div class="card_corner_cut_out"></div>
+	  <%= render "token/avatar", token: message.token, position: :token_card_link %>
+	  <%= render "messages/time_ago", message: message %>
+	  <div align="center">
+      <%= render "messages/content", message: message %>
+	  </div>
+  <% end %>
 </div>
+
+

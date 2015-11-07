@@ -2,9 +2,14 @@
 
 <div class="card" id="proposal_card_<%= proposal.id %>">
   <% if low_data %>
-    <hr>
-    <%= render "proposals/content", proposal: proposal %>
-    <%= render "proposals/link_table", proposal: proposal %>
+    <hr>    
+  	  <%= render "token/avatar", token: proposal.token %>
+      <%= render "proposals/content", proposal: proposal %>
+	    <!-- anchor for reinserting the link table -->
+	    <div id="link_table_anchor_<%= proposal.id %>"></div>
+      <%= render "proposals/link_table", proposal: proposal %>
+	    <!-- anchor for inserting new comment form -->
+	    <div id="new_form_anchor_<%= proposal.id %>"></div>
     <hr>
   <% else %>
   	<div class="card_corner_cut_out"></div>
