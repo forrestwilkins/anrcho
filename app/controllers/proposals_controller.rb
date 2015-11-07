@@ -1,4 +1,11 @@
 class ProposalsController < ApplicationController
+  def show_image
+    @proposal = Proposal.find_by_unique_token params[:token]
+    unless @proposal
+      redirect_to '/404'
+    end
+  end
+  
   def add_image
   end
   
