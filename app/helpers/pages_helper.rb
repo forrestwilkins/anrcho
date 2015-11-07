@@ -1,4 +1,8 @@
 module PagesHelper
+  def low_data
+    cookies[:low_data].present?
+  end
+  
   def fib_seq size
     # returns fibonacci
     # sequence of desired length

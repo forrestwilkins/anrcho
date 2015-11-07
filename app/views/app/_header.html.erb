@@ -11,6 +11,10 @@
 
 <%= render "token/avatar", token: security_token,
 	position: :current_token_link, id: :current_token_link %>
+	
+<% if low_data %>
+  <%= link_to "High data", high_data_path %>
+<% end %>
 
 <div id="spacing_header"></div>
 

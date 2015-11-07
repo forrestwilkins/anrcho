@@ -1,4 +1,9 @@
 class PagesController < ApplicationController
+  def high_data
+    cookies.permanent[:low_data] = ""
+    redirect_to root_url
+  end
+  
   def low_data
     cookies.permanent[:low_data] = true
     redirect_to root_url
@@ -7,7 +12,7 @@ class PagesController < ApplicationController
   def fib
     @loading = false
     cookies.permanent[:loads] = "0"
-    cookies.permanent[:manifesto_tip] = false
+    cookies.permanent[:manifesto_tip] = ""
     cookies.permanent[:last_im] = ""
     redirect_to root_url
   end
