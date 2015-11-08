@@ -2,4 +2,7 @@
 
 <% for token in @receiver_tokens %>
   <%= render "token/card", token: token %>
+  <% if low_data %>
+    <hr>
+  <% end %>
 <% end %>
