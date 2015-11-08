@@ -9,20 +9,29 @@
 	  <% end %>
 	<% end %>
 	<%= link_to manifestos_path do %>
-	<div align="center">
-		<p id="manifesto_welcome_text">
-			Welcome to Anrcho.
-		</p>
-		<p id="current_manifesto_text">
-			<% if current_manifesto %>
-				<%= current_manifesto.body.html_safe %>
-			<% else %>
-				There aren't any ratified manifestos yet.
-			<% end %>
-		</p>
-	</div>
+	  <div align="center">
+		  <p id="manifesto_welcome_text">
+			  Welcome to Anrcho.
+		  </p>
+		  <% unless low_data %>
+		    <p id="current_manifesto_text">
+			    <% if current_manifesto %>
+				    <%= current_manifesto.body.html_safe %>
+			    <% else %>
+				    There aren't any ratified manifestos yet.
+			    <% end %>
+		    </p>
+		  <% end %>
+	  </div>
+	<% end %>
+	<% if low_data %>
+	  <%= current_manifesto.body if current_manifesto %>
+	  <hr>
 	<% end %>
 	<%= link_to "How does the site work?", tips_path, class: :bottom_right_link %>
+	<% if low_data %>
+	  <hr>
+	<% end %>
 </div>
 
 
