@@ -2,7 +2,18 @@
 
 <% group_token = @group ? @group.token : nil %>
 
-<% unless low_data %>
+<% if low_data %>
+  <div align="center">
+    <% for sym in [:voting, :revision, :ratified, :all] %>
+      <%= link_to sym.to_s.capitalize, switch_section_path(
+        section: sym, group_token: group_token),
+        remote: true %>
+      <% unless sym.eql? :all %>
+        <span>·</span>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
   <script>
     <%= render "proposals/fader.js" %>
   </script>
@@ -29,10 +40,4 @@
 		  </div>
 	  <% end %>
   </div>
-<% else %>
-  <% for sym in [:voting, :revision, :ratified, :all] %>
-    <%= link_to sym.to_s.capitalize, switch_section_path(
-      section: sym, group_token: group_token),
-      remote: true %>
-  <% end %>
 <% end %>

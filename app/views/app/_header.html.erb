@@ -9,6 +9,10 @@
 
 <%= render "notes/nav_link" %>
 
+<% if low_data %>
+  <span>·</span>
+<% end %>
+
 <%= render "token/avatar", token: security_token,
 	position: :current_token_link, id: :current_token_link %>
 
