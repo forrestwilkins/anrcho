@@ -1,12 +1,14 @@
 <!-- groups -->
 
 <div class="card">
-	<div class="card_corner_cut_out"></div>
-	<%= render "token/avatar", token: group.token, position: :token_card_link %>
-	<%= render "groups/time_ago", group: group %>
-	<%= render "groups/seent", group: group %>
+  <% unless low_data %>
+	  <div class="card_corner_cut_out"></div>
+	  <%= render "token/avatar", token: group.token, position: :token_card_link %>
+	  <%= render "groups/time_ago", group: group %>
+	  <%= render "groups/seent", group: group %>
+	<% end %>
 	<div align="center">
-		<% group_link_path = @group_shown ? search_path(group.token) : group_path(group.token) %>
+		<% group_link_path = @group_shown ? search_path(query: group.token) : group_path(group.token) %>
 		<p><%= link_to "Group #{group.token}", group_link_path %></p>
 		
 		<% if group.hashtags.present? %>
@@ -21,6 +23,9 @@
 		<% if @group_shown %>
 			<%= render "groups/nav_table", group: group %>
 			<div id="insert_form_anchor"></div>
+			<% if low_data %>
+			  <hr>
+			<% end %>
 		<% end %>
 	</div>
 </div>
