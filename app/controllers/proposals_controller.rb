@@ -54,6 +54,7 @@ class ProposalsController < ApplicationController
       @proposal.seent security_token if probably_human
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes
+      @votes = @proposal.votes
       if params[:votes]
         @show_votes = true
       elsif params[:revisions]

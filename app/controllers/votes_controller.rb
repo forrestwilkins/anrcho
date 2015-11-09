@@ -14,14 +14,14 @@ class VotesController < ApplicationController
       @down_vote = Vote.down_vote(@proposal, security_token)
     end
   end
-    
+   
   def cast_up_vote
-    @proposal = Proposal.find(params[:proposal_id])
+    @proposal = Proposal.find_by_unique_token(params[:token])
     @up_vote = Vote.up_vote(@proposal, security_token, params[:body])
   end
   
   def cast_down_vote
-    @proposal = Proposal.find(params[:proposal_id])
+    @proposal = Proposal.find_by_unique_token(params[:token])
     @down_vote = Vote.down_vote(@proposal, security_token, params[:body])
   end
   

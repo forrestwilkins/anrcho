@@ -2,7 +2,7 @@
 
 <div id="new_up_vote_form_<%= @proposal.id %>">
 	<%= form_tag cast_up_vote_path, method: :post, remote: true do |f| %>
-	  <%= hidden_field_tag :proposal_id, @proposal.id %>
+	  <%= hidden_field_tag :token, @proposal.unique_token %>
 		<p>
 			<%= text_area_tag :body, nil, placeholder: "Why do you support this proposal?" %>
 		</p>

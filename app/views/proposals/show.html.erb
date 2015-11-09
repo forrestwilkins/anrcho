@@ -6,7 +6,7 @@
 <%= render "votes/voter_links", label: "Against", votes: @down_votes %>
 
 <% if @show_votes %>
-  <% for vote in @up_votes %>
+  <% for vote in @votes %>
     <%= render "votes/card", vote: vote if vote.body.present? %>
   <% end %>
   <% unless @up_votes.present? %>

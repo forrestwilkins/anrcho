@@ -8,7 +8,7 @@ class Vote < ActiveRecord::Base
   def verifiable? current_token
     _verifiable = false
     unless self.verified
-      if unique_token.present?
+      if self.unique_token.present?
         unless current_token.eql? self.token
           _verifiable = true
         end
