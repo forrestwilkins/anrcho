@@ -9,7 +9,7 @@
   <% for vote in @votes %>
     <%= render "votes/card", vote: vote if vote.body.present? %>
   <% end %>
-  <% unless @up_votes.present? %>
+  <% unless @votes.present? %>
     <div class="card">
       <p align="center">There aren't any votes to verify.</p>
     </div>

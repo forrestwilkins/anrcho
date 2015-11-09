@@ -1,11 +1,15 @@
 <!-- votes -->
 
 <div class="card">
-	<div class="card_corner_cut_out"></div>
-	<%= render "token/avatar", token: vote.token, position: :token_card_link %>
-	<%= render "votes/time_ago", vote: vote %>
+  <% unless low_data %>
+	  <div class="card_corner_cut_out"></div>
+	  <%= render "token/avatar", token: vote.token, position: :token_card_link %>
+	  <%= render "votes/time_ago", vote: vote %>
+	<% else %>
+	  <hr>
+	<% end %>
 	
-	<div align="center">
+	<div align="<%= 'center' unless low_data %>">
 		<p class="comment_body_text" id="<%= 'justified_body_text' if vote.body.size > 150 %>">
 		  <%= render "app/body", item: vote %>
 		</p>
@@ -18,4 +22,8 @@
 	<strong class="action_type_label">
 	  Motion: <%= vote.up? ? "vote_of_support" : (vote.down? ? "vote_to_block" : "") %>
 	</strong>
+	
+	<% if low_data %>
+	  <hr>
+	<% end %>
 </div>
