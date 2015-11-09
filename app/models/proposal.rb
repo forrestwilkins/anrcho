@@ -145,7 +145,7 @@ class Proposal < ActiveRecord::Base
   
   def ratifiable?
     !self.ratified and self.down_votes.size.zero? \
-      and self.verified_votes.size > ratification_threshold
+      and self.verified_up_votes.size > ratification_threshold
   end
   
   def ratification_threshold
@@ -162,8 +162,12 @@ class Proposal < ActiveRecord::Base
   	end
   end
   
-  def verified_votes
+  def verified_up_votes
     self.up_votes.where verified: true
+  end
+  
+  def verified_down_votes
+    self.down_votes.where verified: true
   end
   
   def up_votes

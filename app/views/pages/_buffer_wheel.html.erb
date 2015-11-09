@@ -1,19 +1,25 @@
 <!-- pages -->
 
 <% if all_items.present? and all_items.size > page_size %>
-	<div align="center" id="buffer_wheel">
-		<script>
-			<%= render "pages/glimmer.js" %>
-		</script>
+  <% if low_data %>
+    <strong>
+      Loading...
+    </strong>
+  <% else %>
+	  <div align="center" id="buffer_wheel">
+		  <script>
+			  <%= render "pages/glimmer.js" %>
+		  </script>
 
-		<div id="avatar_container">
-			<% 16.times do |num| %>
-				<% rgb = random_color %>
-				<div class="avatar_pixel" id="loading_grid_pixel_<%= num %>"
-					style="background:rgb(<%= "#{rgb[0]}, #{rgb[1]}, #{rgb[2]}" %>);"></div>
-			<% end %>
-		</div>
-	</div>
+		  <div id="avatar_container">
+			  <% 16.times do |num| %>
+				  <% rgb = random_color %>
+				  <div class="avatar_pixel" id="loading_grid_pixel_<%= num %>"
+					  style="background:rgb(<%= "#{rgb[0]}, #{rgb[1]}, #{rgb[2]}" %>);"></div>
+			  <% end %>
+		  </div>
+	  </div>
+	<% end %>
 <% end %>
 
 <div id="footer_spacing"></div>
