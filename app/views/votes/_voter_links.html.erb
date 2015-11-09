@@ -6,6 +6,13 @@
       <%= link_to "#{label} #{votes.size}",
         show_proposal_path(token: @proposal.unique_token, votes: true), class: :voter_tokens_label %>
     </strong>
+    
+    <% if label.eql? "For" and not (@proposal.requires_revision or @proposal.ratified) %>
+      <strong class="action_type_label">
+        <%= "Votes to ratification: #{@proposal.votes_to_ratify}" %>
+      </strong>
+    <% end %>
+    
     <div class="voter_tokens_container">
       <% for vote in votes.last 6 %>
         <div class="voter_token_container">
