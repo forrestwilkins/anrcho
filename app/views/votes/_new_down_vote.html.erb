@@ -1,0 +1,11 @@
+<!-- votes -->
+
+<div id="new_down_vote_form_<%= @proposal.id %>">
+	<%= form_tag cast_down_vote_path, method: :post, remote: true do |f| %>
+	  <%= hidden_field_tag :proposal_id, @proposal.id %>
+		<p>
+			<%= text_area_tag :body, nil, placeholder: "Why are you blocking this proposal?" %>
+		</p>
+		<%= submit_tag "Block" %>
+	<% end %>
+</div>

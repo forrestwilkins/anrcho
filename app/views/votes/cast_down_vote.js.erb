@@ -3,16 +3,16 @@
 // proposal_id is actually declared/defined in new_up_vote
 // and still accessible here from there
 
-function remove_new_vote_form() {
+function remove_down_vote_form() {
   var link_table = $("#link_table_" + proposal_id);
   var table_anchor = $("#link_table_anchor_" + proposal_id);
-  var new_vote_form = $("#new_up_vote_form_" + proposal_id);
+  var new_vote_form = $("#new_down_vote_form_" + proposal_id);
   
   link_table.remove();
   new_vote_form.remove();
   table_anchor.after("<%=j render 'proposals/link_table', proposal: @proposal %>");
 }
 
-remove_new_vote_form();
+remove_down_vote_form();
 
 

@@ -1,9 +1,9 @@
 // proposals
 
-<% if @up_vote %>  
+<% if @down_vote %>  
   var proposal_id = <%= @proposal.id %>;
   
-  function new_up_vote_form() {
+  function new_down_vote_form() {
     var up_vote_link = $("#up_vote_proposal_" + proposal_id);
     var down_vote_link = $("#down_vote_proposal_" + proposal_id);
     var table_anchor = $("#link_table_anchor_" + proposal_id);
@@ -12,11 +12,11 @@
     var table = $("#link_table_" + proposal_id);
     
     if (!form.length) {
-      up_vote_link.css("font-size", "17.5px");
-      down_vote_link.css("font-size", "15px");
-      form_anchor.after("<%=j render 'votes/new_up_vote' %>");
+      up_vote_link.css("font-size", "15px");
+      down_vote_link.css("font-size", "17.5px");
+      form_anchor.after("<%=j render 'votes/new_down_vote' %>");
     }
   }
   
-  new_up_vote_form();
+  new_down_vote_form();
 <% end %>

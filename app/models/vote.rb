@@ -32,15 +32,15 @@ class Vote < ActiveRecord::Base
     return vote
   end
   
-  def self.down_vote obj, token
+  def self.down_vote obj, token, body=""
     unless token.eql? obj.token
       vote = obj.votes.find_by_token(token) if obj.votes.find_by_token(token)
       if not vote
-        vote = obj.votes.create flip_state: 'down', token: token
-      elsif vote.up?
-        vote.update(flip_state: 'down')
-      elsif vote.down?
-        vote.destroy
+        vote = obj.votes.create flip_state: 'down', token: token, body: body
+      else
+        vote.body = body if body.present?
+        vote.flip_state = 'down'
+        vote.save
       end
       obj.evaluate
     end

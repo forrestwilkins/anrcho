@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   
   # votes
   get 'for/:token', to: 'votes#new_up_vote', as: 'new_up_vote'
+  get 'against/:token', to: 'votes#new_down_vote', as: 'new_down_vote'
   post 'votes/cast_up_vote', to: 'votes#cast_up_vote', as: 'cast_up_vote'
-  get 'against/:token', to: 'votes#down_vote', as: 'down_vote'
+  post 'votes/cast_down_vote', to: 'votes#cast_down_vote', as: 'cast_down_vote'
   get 'verify/:token', to: 'votes#verify', as: 'verify_vote'
   get 'vote/:token', to: 'votes#show', as: 'show_vote'
   
