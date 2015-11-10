@@ -148,7 +148,7 @@ class Proposal < ActiveRecord::Base
   end
   
   def ratifiable?
-    !self.ratified and self.down_votes.size.zero? \
+    !self.ratified and self.verified_down_votes.size.zero? \
       and self.verified_up_votes.size > self.ratification_threshold
   end
   
