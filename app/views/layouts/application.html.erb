@@ -2,8 +2,23 @@
 <html>
 	<head>
 	  <title>Anrcho</title>
-	  <%= stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true) unless low_data %>
+	  <% if low_data %>
+	    <style>
+	      html {
+	        background: black;
+	        color: white;
+	      }
+	      
+	      a {
+	        color: LightGray;
+	      }
+	    </style>
+	  <% else %>
+	  	<%= stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true) %>
+	  <% end %>
+	 
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  
 	  <%= csrf_meta_tags %>
 	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	</head>
