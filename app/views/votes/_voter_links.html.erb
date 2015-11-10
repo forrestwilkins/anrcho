@@ -8,6 +8,10 @@
     </strong>
     
     <% if label.eql? "For" and not (@proposal.requires_revision or @proposal.ratified) %>
+      <strong class="top_right_link">
+        <%= "Ratified: #{@proposal.verified_up_votes.size}" %>
+      </strong>
+      
       <strong class="action_type_label">
         <%= "Votes to ratification: #{@proposal.votes_to_ratify}" %>
       </strong>
