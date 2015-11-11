@@ -144,7 +144,7 @@ class Proposal < ActiveRecord::Base
   end
   
   def requires_revision?
-    return self.down_votes.size > 0
+    return self.verified_down_votes.size > 0
   end
   
   def ratifiable?

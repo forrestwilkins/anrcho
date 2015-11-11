@@ -1,21 +1,22 @@
 <!-- votes -->
 
 <% unless votes.size.zero? %>
+  <% path_to_proposal = show_proposal_path(token: @proposal.unique_token, votes: true) %>
+  
   <div class="card" id="voter_links_card">
     <strong>
-      <%= link_to "#{label}: #{votes.size}",
-        show_proposal_path(token: @proposal.unique_token, votes: true), class: :voter_tokens_label %>
+      <%= link_to "#{label}: #{votes.size}", path_to_proposal, class: :voter_tokens_label %>
     </strong>
     
     <% if label.eql? "For" and not (@proposal.requires_revision or @proposal.ratified) %>
-      <strong class="top_right_link">
-        <%= "Verified: #{@proposal.verified_up_votes.size}" %>
-      </strong>
-      
-      <strong class="action_type_label">
-        <%= "Votes to ratification: #{@proposal.votes_to_ratify}" %>
-      </strong>
+      <% verified_label = "Verified: #{@proposal.verified_up_votes.size}" %>
+      <%= link_to "Votes to ratification: #{@proposal.votes_to_ratify}",
+        path_to_proposal, class: :action_type_label %>
+    <% elsif label.eql? "Against" %>
+      <% verified_label = "Verified: #{@proposal.verified_down_votes.size}" %>
     <% end %>
+    
+    <%= link_to verified_label, path_to_proposal, class: :top_right_link %>
     
     <div class="voter_tokens_container">
       <% for vote in votes.last 6 %>

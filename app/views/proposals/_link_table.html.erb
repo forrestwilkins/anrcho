@@ -18,8 +18,9 @@
 				<td>·</td>
 				<td>
 					<% _class = down_voted?(proposal) ? :voted_on : nil %>
-					<%= link_to "Against", new_down_vote_path(proposal.unique_token),
-					  remote: true, class: _class, id: "down_vote_proposal_#{proposal.id}" %>
+					<%= link_to "Against#{(' ' + proposal.down_votes.size.to_s) unless proposal.down_votes.size.zero?}",
+					  new_down_vote_path(proposal.unique_token), remote: true,
+					  class: _class, id: "down_vote_proposal_#{proposal.id}" %>
 				</td>
 			<% else %>
 				<td>
