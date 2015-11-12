@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025181438) do
+ActiveRecord::Schema.define(version: 20151112031526) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20151025181438) do
     t.string   "revised_action"
     t.string   "unique_token"
     t.string   "group_token"
+    t.integer  "version"
   end
 
   create_table "views", force: :cascade do |t|
@@ -131,8 +132,8 @@ ActiveRecord::Schema.define(version: 20151025181438) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "proposal_id"
     t.string   "flip_state"
     t.integer  "comment_id"
@@ -140,6 +141,8 @@ ActiveRecord::Schema.define(version: 20151025181438) do
     t.string   "body"
     t.boolean  "verified"
     t.string   "unique_token"
+    t.boolean  "moot"
+    t.integer  "proposal_version"
   end
 
 end

@@ -36,13 +36,15 @@ class Proposal < ActiveRecord::Base
       case action.to_sym
       when :revision
         Note.notify :proposal_revised, self
-        self.proposal.votes.destroy_all
         self.proposal.update(
           requires_revision: false,
           action: self.revised_action,
+          version: self.version,
           title: self.title,
           body: self.body
         )
+        self.proposal.votes.update_all moot: true,
+          proposal_version: self.proposal.version
       end
     # proposals to groups
     elsif self.group
@@ -175,11 +177,11 @@ class Proposal < ActiveRecord::Base
   end
   
   def up_votes
-    self.votes.up_votes
+    self.votes.up_votes.where moot: [nil, false]
   end
   
   def down_votes
-    self.votes.down_votes
+    self.votes.down_votes.where moot: [nil, false]
   end
   
   def seent current_token

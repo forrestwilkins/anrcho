@@ -1,4 +1,6 @@
 class ProposalsController < ApplicationController
+  before_filter :bots_to_404
+  
   def show_image
     @proposal = Proposal.find_by_unique_token params[:token]
     unless @proposal
@@ -10,7 +12,6 @@ class ProposalsController < ApplicationController
   end
   
   def index
-    redirect_to '/404' if request.bot?
     if cookies[:loads].to_i.zero?
       @loading = true
     end
@@ -92,10 +93,15 @@ class ProposalsController < ApplicationController
       @proposal.action = "revision"
       @proposal.proposal_id = params[:proposal_id]
       @proposal.revised_action = params[:revised_action]
+      @proposal.version = Proposal.find(params[:proposal_id]).version.to_i + 1
     end
   end
   
   def proposal_params
     params[:proposal].permit(:title, :body, :action, :image, :misc_data)
+  end
+  
+  def bots_to_404
+    redirect_to '/404' if request.bot?
   end
 end
