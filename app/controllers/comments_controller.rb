@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
       if params[:proposal_shown] or params[:comment_id]
         redirect_to :back
       end
-    elsif params[:comment_id]
+    else
       redirect_to :back
     end
   end

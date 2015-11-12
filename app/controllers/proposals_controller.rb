@@ -55,6 +55,7 @@ class ProposalsController < ApplicationController
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes
       @votes = @proposal.votes
+      @proposal.evaluate
       if params[:votes]
         @show_votes = true
       elsif params[:revisions]
