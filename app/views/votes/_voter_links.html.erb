@@ -8,7 +8,7 @@
       <%= link_to "#{label}: #{votes.size}", path_to_proposal, class: :voter_tokens_label %>
     </strong>
     
-    <% if label.eql? "For" and not (@proposal.requires_revision or @proposal.ratified) %>
+    <% if label.eql? "For" %>
       <% verified_label = "Verified: #{@proposal.verified_up_votes.size}" %>
       <%= link_to "Votes to ratification: #{@proposal.votes_to_ratify}",
         path_to_proposal, class: :action_type_label %>
