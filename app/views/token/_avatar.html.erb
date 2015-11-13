@@ -6,7 +6,7 @@
 <% unique_name = rand_string %>
 
 <% if low_data %>
-  <%= link_to token, search_path(query: token) %>
+  temp_id: <%= link_to token, search_path(query: token) %>
 <% else %>
   <script>
 	  <%= render "token/pattern.js", pattern: pattern, token: clean_token, unique_name: unique_name %>

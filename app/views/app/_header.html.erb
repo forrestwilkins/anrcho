@@ -2,19 +2,24 @@
 	
 <%= render "app/dmenu" %>
 
+<% if low_data %>
+  <hr>
+<% end %>
+
 <div id="current_token_link_anchor"></div>
 
 <%= link_to '<i class="fa fa-terminal fa-2x"></i>'.html_safe,
 	toggle_menu_path, id: :toggle_menu_link, remote: true %>
 
-<%= render "notes/nav_link" %>
+
+<%= render "token/avatar", token: security_token,
+	position: :current_token_link, id: :current_token_link %>
 
 <% if low_data %>
   <span>·</span>
 <% end %>
 
-<%= render "token/avatar", token: security_token,
-	position: :current_token_link, id: :current_token_link %>
+<%= render "notes/nav_link" %>
 
 <% if low_data %>
   <hr>
