@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+  
+  simple_captcha:
+    label: "Confirm you are human"
+    placeholder: "Input letters from the image"

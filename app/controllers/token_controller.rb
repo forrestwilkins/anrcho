@@ -6,6 +6,7 @@ class TokenController < ApplicationController
       cookies.permanent[:token] = SecureRandom.urlsafe_base64
       cookies.permanent[:ip_timestamp] = DateTime.current.to_s
       cookies.permanent[:token_timestamp] = DateTime.current.to_s
+      cookies.permanent[:simple_captcha_validated] = ""
       @token = cookies[:token]
       redirect_to root_url
     else

@@ -1,4 +1,8 @@
 module VotesHelper
+  def humanity_confirmed?
+    cookies[:simple_captcha_validated].present?
+  end
+  
   def recently_up_voted? proposal
     vote = proposal.up_votes.find_by_token(security_token)
     return (up_voted? proposal and vote.created_at > 1.hour.ago)

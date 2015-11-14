@@ -1,0 +1,15 @@
+<!-- votes -->
+
+<% unless humanity_confirmed? %>
+  <div class="card" align="center">
+    <p>
+      Confirm you're human to verify votes
+    </p>
+    <%= form_tag confirm_humanity_path do |f| %>
+      <p>
+        <%= show_simple_captcha %>
+      </p>
+      <%= submit_tag "Confirm" %>
+    <% end %>
+  </div>
+<% end %>

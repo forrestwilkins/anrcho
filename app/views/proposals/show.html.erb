@@ -6,9 +6,12 @@
 <%= render "votes/voter_links", label: "Against", votes: @down_votes %>
 
 <% if @show_votes %>
+  <%= render "votes/confirm_humanity" %>
+  
   <% for vote in @votes %>
     <%= render "votes/card", vote: vote if vote.body.present? %>
   <% end %>
+  
   <% unless @votes.present? %>
     <div class="card">
       <p align="center">There aren't any votes to verify.</p>

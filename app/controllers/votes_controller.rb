@@ -26,10 +26,19 @@ class VotesController < ApplicationController
   end
   
   def verify
-    @vote = Vote.find_by_unique_token params[:token]
-    if @vote.verifiable? security_token
-      @vote.update verified: true
-      @vote.proposal.evaluate
+    if cookies[:simple_captcha_validated].present?
+      @vote = Vote.find_by_unique_token params[:token]
+      if @vote.verifiable? security_token
+        @vote.update verified: true
+        @vote.proposal.evaluate
+      end
+    end
+    redirect_to :back
+  end
+  
+  def confirm_humanity
+    if simple_captcha_valid?
+      cookies.permanent[:simple_captcha_validated] = true
     end
     redirect_to :back
   end

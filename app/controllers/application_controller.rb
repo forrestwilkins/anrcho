@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :security_token, :paginate, :page_size, :reset_page,
     :char_codes, :set_location, :build_proposal_feed, :probably_human, :rand_string
   
+  include SimpleCaptcha::ControllerHelpers
+  
   def build_proposal_feed section, group=nil
     reset_page; session[:current_proposal_section] = section.to_s
     proposals = if group then group.proposals else Proposal.globals end
@@ -37,6 +39,7 @@ class ApplicationController < ActionController::Base
       cookies[:token_timestamp].to_datetime < 1.week.ago
       cookies.permanent[:token] = SecureRandom.urlsafe_base64
       cookies.permanent[:token_timestamp] = DateTime.current
+      cookies.permanent[:simple_captcha_validated] = ""
     end
     return cookies[:token].to_s
   end

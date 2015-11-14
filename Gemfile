@@ -50,12 +50,7 @@ gem 'useragent'
 gem 'browser'
 gem 'bot-away'
 gem 'voight_kampff'
-
-# languages
-gem 'whatlanguage'
-gem 'bing_translator'
-gem 'google-translate'
-gem 'easy_translate'
+gem "simple_captcha2"
 
 # fonts and glyphs
 gem 'font-awesome-sass'
