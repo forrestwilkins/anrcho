@@ -53,7 +53,6 @@ class ProposalsController < ApplicationController
     if @proposal
       @proposal_shown = true
       @proposal.seent security_token if probably_human
-      @simple_captcha_valid = simple_captcha_valid?
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes
       @votes = @proposal.votes
