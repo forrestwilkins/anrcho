@@ -2,6 +2,8 @@ class Vote < ActiveRecord::Base
   belongs_to :proposal
   belongs_to :comment
   
+  has_many :hashtags
+  
   before_create :gen_unique_token
   
   def verifiable? current_token

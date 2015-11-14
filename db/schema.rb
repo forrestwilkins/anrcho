@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113203323) do
+ActiveRecord::Schema.define(version: 20151114152614) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151113203323) do
     t.string   "tag"
     t.integer  "index"
     t.string   "token"
+    t.integer  "vote_id"
   end
 
   create_table "manifestos", force: :cascade do |t|

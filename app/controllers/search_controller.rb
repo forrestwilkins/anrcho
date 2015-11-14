@@ -10,7 +10,7 @@ class SearchController < ApplicationController
     session[:query] = @query; @results = []; @results_shown = true
     if @query.present?
       setup_messages_between # renders form or link to messages
-      [Proposal, Comment, Group, Manifesto].each do |_class|
+      [Proposal, Vote, Comment, Group, Manifesto].each do |_class|
         _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
           # searches by proposal type
@@ -37,7 +37,7 @@ class SearchController < ApplicationController
           if item.respond_to? :location and item.location.to_s.include? @query.to_s
             match = true
           end
-          match = false if item.is_a? Group and item.hashtags.empty?
+          match = false if (item.is_a? Group or item.is_a? Vote) and item.hashtags.empty?
           @results << item if match
         end
       end
@@ -64,7 +64,7 @@ class SearchController < ApplicationController
   
   def scan_text item, query, match=false
     if item.respond_to? :body
-      match = true if scan item.body, query
+      match = true if item.body.present? and scan item.body, query
     end
     return match
   end

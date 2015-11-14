@@ -1,35 +1,37 @@
 <!-- votes -->
 
-<div class="card">
-  <% unless low_data %>
-	  <div class="card_corner_cut_out"></div>
-	  <%= render "token/avatar", token: vote.token, position: :token_card_link %>
-	  <%= render "votes/time_ago", vote: vote %>
-	<% else %>
-	  <hr>
-	<% end %>
+<% if vote.present? and vote.body.present? %>
+  <div class="card">
+    <% unless low_data %>
+	    <div class="card_corner_cut_out"></div>
+	    <%= render "token/avatar", token: vote.token, position: :token_card_link %>
+	    <%= render "votes/time_ago", vote: vote %>
+	  <% else %>
+	    <hr>
+	  <% end %>
 	
-	<div align="<%= 'center' unless low_data %>">
-		<p class="comment_body_text" id="<%= 'justified_body_text' if vote.body.size > 150 %>">
-		  <%= render "app/body", item: vote %>
-		</p>
-  
-    <% if humanity_confirmed? %>
-      <%= link_to("Verify", verify_vote_path(vote.unique_token),
-        data: { confirm: "Are you sure you want to verify this vote?" }) \
-        if vote.verifiable? security_token %>
-    <% end %>
-	</div>
+	  <div align="<%= 'center' unless low_data %>">
+		  <p class="comment_body_text" id="<%= 'justified_body_text' if vote.body.size > 150 %>">
+		    <%= render "app/body", item: vote %>
+		  </p>
+    
+      <% if humanity_confirmed? %>
+        <%= link_to("Verify", verify_vote_path(vote.unique_token),
+          data: { confirm: "Are you sure you want to verify this vote?" }) \
+          if vote.verifiable? security_token %>
+      <% end %>
+	  </div>
 	
-	<% if vote.verified %>
-	  <%= link_to 'Verified <i class="fa fa-check"></i>'.html_safe, "/#", class: :verified_label %>
-	<% end %>
+	  <% if vote.verified %>
+	    <%= link_to 'Verified <i class="fa fa-check"></i>'.html_safe, "/#", class: :verified_label %>
+	  <% end %>
 	
-	<strong class="action_type_label">
-	  Motion: <%= vote.up? ? "vote_of_support" : (vote.down? ? "vote_to_block" : "") %>
-	</strong>
+	  <strong class="action_type_label">
+	    Motion: <%= vote.up? ? "vote_of_support" : (vote.down? ? "vote_to_block" : "") %>
+	  </strong>
 	
-	<% if low_data %>
-	  <hr>
-	<% end %>
-</div>
+	  <% if low_data %>
+	    <hr>
+	  <% end %>
+  </div>
+<% end %>

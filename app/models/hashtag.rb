@@ -2,6 +2,7 @@ class Hashtag < ActiveRecord::Base
   belongs_to :proposal
   belongs_to :comment
   belongs_to :group
+  belongs_to :vote
   
   def trending?
     matches = Hashtag.where tag: self.tag

@@ -18,11 +18,13 @@ class VotesController < ApplicationController
   def cast_up_vote
     @proposal = Proposal.find_by_unique_token(params[:token])
     @up_vote = Vote.up_vote(@proposal, security_token, params[:body])
+    Hashtag.extract @up_vote
   end
   
   def cast_down_vote
     @proposal = Proposal.find_by_unique_token(params[:token])
     @down_vote = Vote.down_vote(@proposal, security_token, params[:body])
+    Hashtag.extract @down_vote
   end
   
   def verify
