@@ -21,6 +21,10 @@
     <% end %>
 	</div>
 	
+	<% if vote.verified %>
+	  <%= link_to 'Verified <i class="fa fa-check"></i>'.html_safe, "/#", class: :verified_label %>
+	<% end %>
+	
 	<strong class="action_type_label">
 	  Motion: <%= vote.up? ? "vote_of_support" : (vote.down? ? "vote_to_block" : "") %>
 	</strong>
