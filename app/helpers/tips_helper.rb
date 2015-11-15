@@ -3,7 +3,7 @@ module TipsHelper
     learned = false
     case tip.to_sym
     when :manifesto
-      if cookies[:manifesto_tip]
+      if cookies[:manifesto_tip].present?
         learned = true
       end
     end
