@@ -30,7 +30,11 @@ class VotesController < ApplicationController
   def reverse
     @vote = Vote.find_by_unique_token params[:token]
     if @vote.down? and @vote.verified
-      
+      @vote.votes.create flip_state: 'down'
+      if @vote.votes_to_reverse.zero?
+        @vote.proposal.update requires_revision: false
+        @vote.update verified: false
+      end
     end
     redirect_to :back
   end
@@ -38,7 +42,7 @@ class VotesController < ApplicationController
   def verify
     if cookies[:simple_captcha_validated].present?
       @vote = Vote.find_by_unique_token params[:token]
-      if @vote.verifiable? security_token
+      if @vote.verifiable? security_token and not @vote.proposal.requires_revision
         @vote.update verified: true
         @vote.proposal.evaluate
       end

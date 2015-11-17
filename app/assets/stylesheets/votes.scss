@@ -12,9 +12,16 @@
   right: 10px;
 }
 
-.verified_label {
+.votes_to_reverse_label {
   position: absolute;
 	font-size: 11px;
   bottom: 2.5px;
   left: 5px;
+}
+
+.verified_label {
+  position: absolute;
+	font-size: 11px;
+  top: 5px;
+  left: 38.5px;
 }
