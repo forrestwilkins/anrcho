@@ -8,6 +8,14 @@ class Vote < ActiveRecord::Base
   
   before_create :gen_unique_token
   
+  def reversible? current_token
+    unless self.votes.find_by_token current_token
+      if votes_to_reverse.zero?
+        true
+      end
+    end
+  end
+  
   def votes_to_reverse
     self.proposal.ratification_threshold - self.votes.where(flip_state: 'down').size
   end

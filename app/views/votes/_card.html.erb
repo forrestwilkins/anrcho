@@ -23,7 +23,7 @@
       
       <% if vote.down? and vote.verified %>
         <%= link_to "Votes to reverse: #{vote.votes_to_reverse}", "/#", class: :votes_to_reverse_label %>
-        <%= link_to "Reverse", reverse_vote_path(vote.unique_token), method: :post %>
+        <%= link_to "Reverse", reverse_vote_path(vote.unique_token), method: :post if vote.reversible? security_token %>
       <% end %>
 	  </div>
 	
