@@ -27,6 +27,14 @@ class VotesController < ApplicationController
     Hashtag.extract @down_vote
   end
   
+  def reverse
+    @vote = Vote.find_by_unique_token params[:token]
+    if @vote.down? and @vote.verified
+      
+    end
+    redirect_to :back
+  end
+  
   def verify
     if cookies[:simple_captcha_validated].present?
       @vote = Vote.find_by_unique_token params[:token]

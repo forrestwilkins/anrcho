@@ -1,7 +1,9 @@
 class Vote < ActiveRecord::Base
   belongs_to :proposal
   belongs_to :comment
+  belongs_to :vote
   
+  has_many :votes
   has_many :hashtags
   
   before_create :gen_unique_token
