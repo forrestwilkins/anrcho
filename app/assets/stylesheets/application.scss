@@ -47,6 +47,11 @@ a {
 	color: black;
 }
 
+textarea {
+  width: 95%;
+  height: 75px;
+}
+
 ::-webkit-input-placeholder {
 	font-size: 12.5px;
 }
@@ -93,6 +98,10 @@ a {
 	@include corner_link;
 	left: $x_left_gap;
 	bottom: 10px;
+}
+
+#body_text_area {
+  rows: 10;
 }
 
 #justified_body_text {
