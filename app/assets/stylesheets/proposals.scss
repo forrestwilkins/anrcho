@@ -7,7 +7,6 @@
 	text-align: center;
 	float: left;
 	height: 100%;
-	width: 25%;
 }
 
 .views_count_icon {
@@ -92,16 +91,31 @@
 
 #voting_section {
 	@include section;
+	width: 25%;
 }
 
 #revision_section {
 	@include section;
+	width: 25%;
 }
 
 #ratified_section {
 	@include section;
+	width: 25%;
 }
 
 #all_section {
 	@include section;
+	width: 25%;
 }
+
+#votes_section {
+  @include section;
+	width: 50%;
+}
+
+#comments_section {
+  @include section;
+	width: 50%;
+}
+

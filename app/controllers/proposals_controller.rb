@@ -77,6 +77,11 @@ class ProposalsController < ApplicationController
     build_feed params[:section], @group
   end
   
+  # Sub sections: :votes, :comments
+  def switch_sub_section
+    redirect_to :back
+  end
+  
   private
   
   def build_feed section, group=nil

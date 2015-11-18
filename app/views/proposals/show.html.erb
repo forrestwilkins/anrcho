@@ -2,10 +2,12 @@
 
 <%= render "proposals/card", proposal: @proposal %>
 
-<%= render "votes/voter_links", label: "For", votes: @up_votes %>
-<%= render "votes/voter_links", label: "Against", votes: @down_votes %>
+<%= render "proposals/sub_section_links", proposal: @proposal %>
 
 <% if @show_votes %>
+  <%= render "votes/voter_links", label: "For", votes: @up_votes %>
+  <%= render "votes/voter_links", label: "Against", votes: @down_votes %>
+  
   <%= render "votes/confirm_humanity" %>
   
   <% for vote in @votes %>
