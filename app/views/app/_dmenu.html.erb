@@ -5,6 +5,11 @@
 <div id="dmenu" <%= 'hidden' unless low_data %>>
 	<%= link_to "Home", root_url, id: :nav_menu_link %>
 	<span id="nav_menu_link">·</span>
+	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path),
+		remote: true, id: :nav_menu_link %>
+	<span id="nav_menu_link">·</span>
+	<%= link_to "Tutorial", tips_path, id: :nav_menu_link %>
+	<span id="nav_menu_link">·</span>
 	<%= link_to "Chat", new_chat_path, method: :post, id: :nav_menu_link %>
 	<span id="nav_menu_link">·</span>
 	<%= link_to "Inbox", inbox_path, id: :nav_menu_link %>
@@ -20,9 +25,4 @@
   
 	<span id="nav_menu_link">·</span>
 	<%= link_to "Load", fib_path, id: :nav_menu_link %>
-	<span id="nav_menu_link">·</span>
-	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path),
-		remote: true, id: :nav_menu_link %>
-	<span id="nav_menu_link">·</span>
-	<%= link_to "Tutorial", tips_path, id: :nav_menu_link %>
 </div>
