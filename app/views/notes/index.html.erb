@@ -12,6 +12,8 @@
         <%= link_to note.message, show_proposal_path(token: note.item_token, revisions: true) %>
       <% when :replied %>
         <%= link_to note.message, show_comment_path(note.item_token) %>
+      <% when :commented_vote %>
+        <%= link_to note.message, show_vote_path(note.item_token) %>
       <% end %>
     </div>
   </div>

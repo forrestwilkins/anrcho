@@ -1,10 +1,23 @@
 <!-- comments -->
 
-<div id="new_comment_form_<%= @new_comment.proposal.id %>">
-	<%= form_for @new_comment, url: proposal_comments_path, method: :post, remote: true do |f| %>
+<% if @vote %>
+  <!-- comments on votes -->
+  <% form_id = @vote.id %>
+  <% form_path = comments_path %>
+<% else %>
+  <!-- comments on proposals -->
+  <% form_id = @new_comment.proposal.id %>
+  <% form_path = proposal_comments_path %>
+<% end %>
+
+<div id="new_comment_form_<%= form_id %>">
+	<%= form_for @new_comment, url: form_path, method: :post, remote: (!@vote.present?) do |f| %>
+	  <%= hidden_field_tag :vote_id, @vote.id if @vote %>
 		<p>
 			<%= f.text_area :body, placeholder: "Leave a comment..." %>
 		</p>
 		<%= f.submit "Comment" %>
 	<% end %>
 </div>
+
+

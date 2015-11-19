@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post 'votes/cast_down_vote', to: 'votes#cast_down_vote', as: 'cast_down_vote'
   post 'reverse/:token', to: 'votes#reverse', as: 'reverse_vote'
   get 'verify/:token', to: 'votes#verify', as: 'verify_vote'
-  post 'votes/confirm_humanity', as: 'confirm_humanity' 
+  post 'votes/confirm_humanity', as: 'confirm_humanity'
   
   # comments
   get 'comments/:token', to: 'comments#show', as: 'show_comment'

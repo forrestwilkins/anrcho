@@ -59,6 +59,8 @@ class VotesController < ApplicationController
   
   def show
     @vote = Vote.find_by_unique_token params[:token]
+    @comments = @vote.comments
+    @new_comment = Comment.new
   end
   
   private

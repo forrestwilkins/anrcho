@@ -5,6 +5,7 @@ class Vote < ActiveRecord::Base
   
   has_many :votes
   has_many :hashtags
+  has_many :comments
   
   before_create :gen_unique_token
   

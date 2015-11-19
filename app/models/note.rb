@@ -16,6 +16,7 @@ class Note < ActiveRecord::Base
       proposal_blocked: "Someone blocked your proposal.",
       revision_submitted: "Someone proposed a revision to your proposal.",
       proposal_revised: "Your proposal has been revised.",
+      commented_vote: "Someone commented on your vote.",
       commented: "Someone commented on your proposal.",
       replied: "Someone replied to your comment.",
       message_received: "You've received a message." }

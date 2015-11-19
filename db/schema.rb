@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117031617) do
+ActiveRecord::Schema.define(version: 20151119001648) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151117031617) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "unique_token"
+    t.integer  "vote_id"
   end
 
   create_table "groups", force: :cascade do |t|

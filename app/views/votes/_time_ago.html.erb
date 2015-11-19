@@ -2,7 +2,7 @@
 
 <% unless vote.unique_token.nil? %>
   <% _time_ago = time_ago(time_ago_in_words(vote.created_at)) %>
-  <%= link_to show_proposal_path(vote.proposal.unique_token), class: :top_right_link do %>
+  <%= link_to show_vote_path(vote.unique_token), class: :top_right_link do %>
     <strong><%= _time_ago %></strong>
   <% end %>
 <% end %>
