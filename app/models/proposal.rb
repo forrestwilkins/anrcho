@@ -66,7 +66,9 @@ class Proposal < ActiveRecord::Base
           body: self.body
         )
       when :postpone_expiration
+        self.group.update expires_at: (Date.today + 14).to_s
       when :change_ratification_threshold
+        self.group.update ratification_threshold: 20
       end
     # global proposals
     else

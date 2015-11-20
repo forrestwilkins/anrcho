@@ -31,7 +31,8 @@ class Group < ActiveRecord::Base
   end
   
   def expires?
-    if self.expires_at.nil? and self.created_at.to_date < 1.week.ago
+    if ( self.expires_at.nil? and self.created_at.to_date < 1.week.ago ) \
+      or ( self.expires_at.present? and self.expires_at.to_date.eql? Date.today )
       self.destroy!
       return true
     else

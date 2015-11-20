@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119001648) do
+ActiveRecord::Schema.define(version: 20151119222050) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -36,14 +36,15 @@ ActiveRecord::Schema.define(version: 20151119001648) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "token"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.text     "location"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "expires_at"
     t.string   "passphrase"
     t.boolean  "pass_protected"
+    t.integer  "ratification_threshold"
   end
 
   create_table "hashtags", force: :cascade do |t|
@@ -123,6 +124,8 @@ ActiveRecord::Schema.define(version: 20151119001648) do
     t.string   "unique_token"
     t.string   "group_token"
     t.integer  "version"
+    t.integer  "misc_int"
+    t.string   "misc_string"
   end
 
   create_table "simple_captcha_data", force: :cascade do |t|

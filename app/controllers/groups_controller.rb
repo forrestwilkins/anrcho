@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @group = Group.new(group_params)
+    @group = Group.new
     if @group.save
       if params[:hashtags]
         Hashtag.add_from params[:hashtags], @group
@@ -52,6 +52,6 @@ class GroupsController < ApplicationController
   end
   
   def group_params
-    params[:group].permit(:private)
+    params.require(:group).permit(:private)
   end
 end
