@@ -50,8 +50,4 @@ class GroupsController < ApplicationController
       redirect_to "/404"
     end
   end
-  
-  def group_params
-    params.require(:group).permit(:private)
-  end
 end
