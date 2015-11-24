@@ -14,13 +14,15 @@
 			  Welcome to Anrcho.
 		  </p>
 		  <% unless low_data %>
-		    <p id="current_manifesto_text">
-			    <% if current_manifesto %>
+			  <% if current_manifesto %>
+		      <p id="current_manifesto_text">
 				    <%= current_manifesto.body.html_safe %>
-			    <% else %>
+		      </p>
+	      <% else %>
+	        <p align="center">
 				    There aren't any ratified manifestos yet.
-			    <% end %>
-		    </p>
+		      </p>
+	      <% end %>
 		  <% end %>
 	  </div>
 	<% end %>

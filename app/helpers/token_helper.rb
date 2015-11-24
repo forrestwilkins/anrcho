@@ -1,7 +1,7 @@
 module TokenHelper
   def card_link token
     link_text = if @results_shown or @inbox_shown or @secret_chat_shown
-      "Messages with #{(@receiver_token.nil? ? token : @receiver_token)}"
+      "#{@messages_between.size} message(s) with #{(@receiver_token.nil? ? token : @receiver_token)}"
     end
     link_path = if @results_shown or @inbox_shown
       secret_chat_path(token)
