@@ -102,6 +102,10 @@ class Vote < ActiveRecord::Base
     return avg ? avg : 0
   end
   
+  def self.verified
+    where verified: true
+  end
+  
   def self.up_votes
     where flip_state: 'up'
   end

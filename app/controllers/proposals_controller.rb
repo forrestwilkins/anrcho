@@ -53,19 +53,25 @@ class ProposalsController < ApplicationController
     if @proposal
       @proposal_shown = true
       @proposal.seent security_token if probably_human
+      
+      # gets all votes for and against
       @up_votes = @proposal.up_votes
       @down_votes = @proposal.down_votes
       @votes = @proposal.votes
-      @proposal.evaluate
+      
+      # gets all comments/discussion
+      @comments = @proposal.comments
+      @comment = Comment.new
+      
+      # gets any revisions to proposal
+      @revisions = @proposal.proposals
+      @revision = Proposal.new
+      
       if params[:votes]
         @show_votes = true
-      elsif params[:revisions]
-        @revisions = @proposal.proposals
-        @revision = Proposal.new
-      else
-        @comments = @proposal.comments
-        @comment = Comment.new
       end
+      
+      @proposal.evaluate
     else
       redirect_to '/404'
     end
