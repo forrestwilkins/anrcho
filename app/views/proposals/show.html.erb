@@ -1,5 +1,9 @@
 <!-- proposals -->
 
+<% if @group.present? %>
+  <%= render "groups/card", group: @group %>
+<% end %>
+
 <%= render "proposals/card", proposal: @proposal %>
 <%= render "proposals/sub_section_links", proposal: @proposal %>
 

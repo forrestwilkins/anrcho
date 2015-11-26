@@ -67,7 +67,7 @@ class Proposal < ActiveRecord::Base
         )
       when :postpone_expiration
         self.group.update expires_at: (Date.today + 14).to_s
-      when :change_ratification_threshold
+      when :set_ratification_threshold
         self.group.update ratification_threshold: 25
       when :limit_views
         self.group.update view_limit: 3
@@ -141,7 +141,7 @@ class Proposal < ActiveRecord::Base
       add_locale: "Set your locale as the groups",
       disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",
-      change_ratification_threshold: "Set ratification threshold to 25",
+      set_ratification_threshold: "Set ratification threshold to 25",
       update_manifesto: "Propose a group manifesto",
       limit_views: "Expire at view limit of 3" }
   end
