@@ -1,32 +1,25 @@
 <!-- proposals -->
 
 <%= render "proposals/card", proposal: @proposal %>
-
 <%= render "proposals/sub_section_links", proposal: @proposal %>
 
 <% if @show_votes %>
   <%= render "votes/voter_links", label: "For", votes: @up_votes %>
   <%= render "votes/voter_links", label: "Against", votes: @down_votes %>
-  
   <%= render "votes/confirm_humanity" %>
-  
   <% for vote in @votes %>
     <%= render "votes/card", vote: vote if vote.body.present? %>
   <% end %>
   
-  <% unless @votes.present? %>
-    <div class="card">
-      <p align="center">There aren't any votes to verify.</p>
-    </div>
-  <% end %>
-<% elsif params[:revisions] and @proposal.requires_revision %>
+<% elsif @show_revisions %>
 	<% for revision in @revisions %>
 		<%= render "proposals/card", proposal: revision %>
 	<% end %>
 	<div class="card">
 		<%= render "proposals/new_revision" %>
 	</div>
-<% elsif params[:revisions].nil? %>
+	
+<% elsif @show_comments %>
 	<% for comment in @comments %>
 		<%= render "comments/card", comment: comment %>
 	<% end %>

@@ -11,7 +11,7 @@
 		    <div class="section_text">Votes</div>
 	    </div>
     <% end %>
-    <%= link_to show_proposal_path(proposal.unique_token) do %>
+    <%= link_to show_proposal_path(token: proposal.unique_token, comments: true) do %>
 	    <div id="comments_section">
 		    <div class="section_text">Comments</div>
 	    </div>

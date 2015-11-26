@@ -67,7 +67,11 @@ class ProposalsController < ApplicationController
       @revisions = @proposal.proposals
       @revision = Proposal.new
       
-      if params[:votes]
+      if params[:revisions] and @proposal.requires_revision
+        @show_revisions = true
+      elsif params[:comments] or @votes.empty?
+        @show_comments = true
+      else
         @show_votes = true
       end
       
