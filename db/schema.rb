@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119222050) do
+ActiveRecord::Schema.define(version: 20151126041549) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20151119222050) do
     t.string   "passphrase"
     t.boolean  "pass_protected"
     t.integer  "ratification_threshold"
+    t.integer  "view_limit"
   end
 
   create_table "hashtags", force: :cascade do |t|

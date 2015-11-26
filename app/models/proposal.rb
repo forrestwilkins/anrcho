@@ -68,7 +68,9 @@ class Proposal < ActiveRecord::Base
       when :postpone_expiration
         self.group.update expires_at: (Date.today + 14).to_s
       when :change_ratification_threshold
-        self.group.update ratification_threshold: 20
+        self.group.update ratification_threshold: 25
+      when :limit_views
+        self.group.update view_limit: 3
       end
     # global proposals
     else
@@ -139,12 +141,13 @@ class Proposal < ActiveRecord::Base
       add_locale: "Set your locale as the groups",
       disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",
-      change_ratification_threshold: "Change ratification threshold",
-      update_manifesto: "Propose a group manifesto" }
+      change_ratification_threshold: "Set ratification threshold to 25",
+      update_manifesto: "Propose a group manifesto",
+      limit_views: "Expire at view limit of 3" }
   end
   
   def votes_to_ratify
-    self.ratification_threshold - self.verified_up_votes.size
+    (self.ratification_threshold - self.verified_up_votes.size).to_i + 1
   end
   
   def requires_revision?
@@ -157,12 +160,19 @@ class Proposal < ActiveRecord::Base
   end
   
   def ratification_threshold
-    _threshold = 10
+    # dynamic threshold able to be set by group proposal
+    _threshold = if self.group and self.group.ratification_threshold.present?
+      self.group.ratification_threshold
+    else
+      5
+    end
+    # views for group if present
     _views = if self.group
       self.group.views
     else
       self.views
     end
+    # uses views as threshold if higher
   	if _views.size > _threshold
   		return _views.size / 2
   	else

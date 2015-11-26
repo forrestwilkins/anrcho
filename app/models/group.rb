@@ -6,8 +6,9 @@ class Group < ActiveRecord::Base
   has_many :hashtags
   has_many :proposals
   has_many :messages
-  before_save :generate_token,
-    :generate_passphrase
+  
+  before_create :generate_token
+  before_save :generate_passphrase
   
   def proposed_manifestos
     self.proposals.where(action: :update_manifesto)
@@ -31,8 +32,9 @@ class Group < ActiveRecord::Base
   end
   
   def expires?
-    if ( self.expires_at.nil? and self.created_at.to_date < 1.week.ago ) \
-      or ( self.expires_at.present? and self.expires_at.to_date.eql? Date.today )
+    if (self.expires_at.nil? and self.created_at.to_date < 1.week.ago) \
+      or (self.expires_at.present? and self.expires_at.to_date.eql? Date.today) \
+      or (self.view_limit.present? and self.views.size >= self.view_limit)
       self.destroy!
       return true
     else

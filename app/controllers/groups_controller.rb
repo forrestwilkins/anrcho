@@ -14,7 +14,9 @@ class GroupsController < ApplicationController
     # a list of all groups viewed so far
     views = View.where(token: security_token).where.not(group_token: nil)
     @groups = []; for view in views
-      @groups << view.group unless @groups.include? view.group
+      if view.group.present? and not view.group.expires?
+        @groups << view.group unless @groups.include? view.group
+      end
     end
     @groups.reverse!
   end
