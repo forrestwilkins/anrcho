@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   def inbox
+    Message.delete_old
     @inbox_shown = true
     @receiver_tokens = []
     messages = Message.where.not receiver_token: nil
@@ -55,6 +56,7 @@ class MessagesController < ApplicationController
   end
   
   def index
+    Message.delete_old
     @secret_chat_shown = true
     msg_limit = 4 # how many to display
     @new_message = Message.new

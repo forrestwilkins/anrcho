@@ -5,6 +5,10 @@ class Message < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
+  def self.delete_old
+    delete_all "created_at < '#{1.week.ago}'"
+  end
+  
   def group
     Group.find_by_token self.group_token
   end
