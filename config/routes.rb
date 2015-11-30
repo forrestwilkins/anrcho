@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   post 'chat', to: 'messages#new_chat', as: 'new_chat'
   get 'messages/add_image', as: 'add_message_image'
   get 'inbox', to: 'messages#inbox', as: 'inbox'
+  
+  # tips
+  get 'tutorial', to: 'tips#index', as: 'tutorial'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
