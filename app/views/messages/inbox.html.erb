@@ -1,8 +1,18 @@
 <!-- messages -->
 
+<h2 class="standard_page_header">Inbox</h2>
+
 <% for token in @receiver_tokens %>
   <%= render "token/card", token: token %>
   <% if low_data %>
     <hr>
   <% end %>
+<% end %>
+
+<% if @receiver_tokens.empty? %>
+  <div class="card">
+    <p align="center">
+      You currently have zero messages.
+    </p>
+  </div>
 <% end %>
