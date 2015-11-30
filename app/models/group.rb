@@ -31,6 +31,10 @@ class Group < ActiveRecord::Base
     Banner.where group_token: self.token
   end
   
+  def self.delete_all_old
+    delete_all "created_at < '#{1.week.ago}'"
+  end
+  
   def expires?
     if (self.expires_at.nil? and self.created_at.to_date < 1.week.ago) \
       or (self.expires_at.present? and self.expires_at.to_date.eql? Date.today) \

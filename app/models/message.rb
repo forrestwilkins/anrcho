@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
-  def self.delete_old
+  def self.delete_all_old
     delete_all "created_at < '#{1.week.ago}'"
   end
   

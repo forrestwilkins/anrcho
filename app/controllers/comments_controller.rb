@@ -1,8 +1,13 @@
 class CommentsController < ApplicationController
   def show
+    Comment.delete_all_old
     @comment = Comment.find_by_unique_token(params[:token])
-    @replies = @comment.replies
-    @reply = Comment.new
+    if @comment.present?    
+      @replies = @comment.replies
+      @reply = Comment.new
+    else
+      redirect_to "/404"
+    end
   end
   
   def new
