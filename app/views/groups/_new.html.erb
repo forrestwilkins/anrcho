@@ -3,7 +3,7 @@
 <div align="center" id="new_group_form">
 	<%= form_for @group do |f| %>
 		<p>
-			<%= text_field_tag :hashtags, nil, placeholder: "Hashtags (optional)" %>
+			<%= f.text_area :body, placeholder: "Description (optional)" %>
 		</p>
 		<p>
 			<%= f.label "Local" %>

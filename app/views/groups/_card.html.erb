@@ -11,13 +11,10 @@
 		<% group_link_path = @group_shown ? search_path(query: group.token) : group_path(group.token) %>
 		<p><%= link_to "Group #{group.token}", group_link_path %></p>
 		
-		<% if group.hashtags.present? %>
-			<p>
-				<% for tag in group.hashtags %>
-					<%= link_to tag.tag, search_path(query: tag.tag) %>
-					<%= " " %>
-				<% end %>
-			</p>
+		<% if group.body.present? %>
+      <p id="<%= 'justified_body_text' if group.body.size > 150 %>">
+        <%= render "app/body", item: group %>
+      </p>
 		<% end %>
 		
 		<% if @group_shown %>

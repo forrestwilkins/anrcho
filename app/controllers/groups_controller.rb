@@ -27,14 +27,12 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @group = Group.new
+    @group = Group.new params[:group].permit(:body)
     if @group.save
-      if params[:hashtags]
-        Hashtag.add_from params[:hashtags], @group
-      end
       if params[:local]
         set_location @group
       end
+      Hashtag.extract @group
       redirect_to group_path(@group.token)
     else
       redirect_to :back
