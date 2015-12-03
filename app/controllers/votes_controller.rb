@@ -29,11 +29,12 @@ class VotesController < ApplicationController
   
   def reverse
     @vote = Vote.find_by_unique_token params[:token]
-    if @vote.down? and @vote.verified
-      @vote.votes.create flip_state: 'down'
-      if @vote.reversible? security_token
+    if @vote.down? and @vote.verified and not @vote.votes.find_by_token security_token
+      @vote.votes.create flip_state: 'down', token: security_token
+      if @vote.votes_to_reverse.zero?
         @vote.proposal.update requires_revision: false
         @vote.update verified: false
+        @vote.votes.destroy_all
       end
     end
     redirect_to :back

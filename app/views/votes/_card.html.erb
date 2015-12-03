@@ -9,7 +9,7 @@
 	  <% else %>
 	    <hr>
 	  <% end %>
-	
+	  
 	  <div align="<%= 'center' unless low_data %>">
 		  <p class="comment_body_text" id="<%= 'justified_body_text' if vote.body.size > 150 %>">
 		    <%= render "app/body", item: vote %>
@@ -22,13 +22,14 @@
       <% end %>
       
       <% if vote.down? and vote.verified %>
-        <%= link_to "Votes to reverse: #{vote.votes_to_reverse}", "/#", class: :votes_to_reverse_label %>
-        <%= link_to "Reverse", reverse_vote_path(vote.unique_token), method: :post if vote.reversible? security_token %>
+        <%= link_to "Votes to reverse: #{vote.votes_to_reverse}", show_vote_path(vote), class: :votes_to_reverse_label %>
+        <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) \
+          unless vote.votes.find_by_token security_token %>
       <% end %>
 	  </div>
 	  
 	  <% if vote.verified %>
-	    <%= link_to 'Verified <i class="fa fa-check"></i>'.html_safe, "/#", class: :verified_label %>
+	    <%= link_to 'Verified <i class="fa fa-check"></i>'.html_safe, show_vote_path(vote), class: :verified_label %>
 	  <% end %>
 	  
 	  <strong class="action_type_label">
