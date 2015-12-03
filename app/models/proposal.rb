@@ -127,12 +127,15 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { request_feature: "A new feature",
-      meetup: "Plan a local meetup",
-      bug_fix: "A fix to a bug",
-      update_manifesto: "A new manifesto",
-      general: "A general statement or idea",
-      just_a_test: "A test proposal" }
+    { 
+      general: "General statement or idea",
+      direct_action: "Plan some direct action",
+      cooperative: "Form a cooperative",
+      meetup: "Local meetup",
+      update_manifesto: "New manifesto",
+      request_feature: "New feature",
+      bug_fix: "Fix to a bug",
+      just_a_test: "Test proposal" }
   end
   
   def self.group_action_types
