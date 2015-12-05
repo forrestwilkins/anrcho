@@ -51,7 +51,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find_by_unique_token(params[:token])
     @group = @proposal.group if @proposal
     if @proposal
-      @proposal_shown = true
+      @proposal_shown = true; View.delete_all_old
       @proposal.seent security_token if probably_human
       
       # gets all votes for and against
