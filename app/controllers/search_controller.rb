@@ -15,12 +15,14 @@ class SearchController < ApplicationController
   end
   
   def toggle_menu
-    if session[:nav_menu_shown].present?
-      session[:nav_menu_shown] = ''
+    # if nav menu is already open and was opened in the last 10 seconds
+    if session[:nav_menu_shown].present? and session[:nav_menu_shown_at].to_datetime > 10.second.ago
       @nav_menu_shown = true
+      session[:nav_menu_shown] = ''
     else
-      session[:nav_menu_shown] = true
       @nav_menu_shown = false
+      session[:nav_menu_shown] = true
+      session[:nav_menu_shown_at] = DateTime.current
     end
   end
   
