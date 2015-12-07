@@ -1,0 +1,18 @@
+<!-- search -->
+
+<h2 class="standard_page_header">Locales</h2>
+
+<% for locale in @locales %>
+  <%= render "token/card", token: locale.token %>
+  <% if low_data %>
+    <hr>
+  <% end %>
+<% end %>
+
+<% if @locales.empty? %>
+  <div class="card">
+    <p align="center">
+      No locales have been broadcasted lately.
+    </p>
+  </div>
+<% end %>

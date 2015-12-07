@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :security_token, :paginate, :page_size, :reset_page,
-    :char_codes, :set_location, :build_proposal_feed, :probably_human, :rand_string
+  helper_method :security_token, :paginate, :page_size, :reset_page, :char_codes, :get_location,
+    :set_location, :build_proposal_feed, :probably_human, :rand_string
   
   include SimpleCaptcha::ControllerHelpers
   
@@ -17,6 +17,26 @@ class ApplicationController < ActionController::Base
     for item in @items
       item.seent security_token if probably_human
     end
+  end
+  
+  def get_location
+    address = nil; locale = nil
+    ip = request.remote_ip
+    geoip = GeoIP.new('GeoLiteCity.dat').city(ip)
+    if defined? geoip and geoip
+      if geoip.latitude and geoip.longitude
+        geocoder = Geocoder.search("#{geoip.latitude}, #{geoip.longitude}").first
+        if geocoder and geocoder.formatted_address
+          address = geocoder.formatted_address
+        end
+      end
+    end
+    locale = if address.present?
+      { address: address, lat: geoip.latitude, lon: geoip.longitude }
+    else
+      {}
+    end
+    return locale
   end
   
   def set_location item, ip=nil

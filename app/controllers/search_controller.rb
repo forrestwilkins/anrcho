@@ -1,4 +1,19 @@
 class SearchController < ApplicationController
+  def locales
+    @locales = View.locales
+  end
+  
+  def broadcast_locale
+    locale = get_location
+    @view = View.new token: security_token, location: locale[:address],
+      latitude: locale[:lat], longitude: locale[:lon]
+    if @view.location.present? and @view.save
+      redirect_to locales_path
+    else
+      redirect_to :back
+    end
+  end
+  
   def toggle_menu  
   end
   

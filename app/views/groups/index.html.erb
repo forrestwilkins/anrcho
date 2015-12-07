@@ -18,4 +18,12 @@
   <%= render "groups/card", group: group %>
 <% end %>
 
+<% if @groups.empty? %>
+  <div class="card">
+    <p align="center">
+      You haven't visited any groups lately.
+    </p>
+  </div>
+<% end %>
+
 

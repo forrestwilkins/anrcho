@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get 'search', to: 'search#index', as: 'search'
   get 'search/new', to: 'search#new', as: 'new_search'
   get 'search/toggle_menu', as: 'toggle_menu'
+  post 'broadcast_locale', to: 'search#broadcast_locale', as: 'broadcast_locale'
+  get 'locales', to: 'search#locales', as: 'locales'
   
   # tokens
   get 'token', to: 'token#index', as: 'token'
