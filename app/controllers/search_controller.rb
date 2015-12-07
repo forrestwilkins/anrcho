@@ -14,7 +14,14 @@ class SearchController < ApplicationController
     end
   end
   
-  def toggle_menu  
+  def toggle_menu
+    if session[:nav_menu_shown].present?
+      session[:nav_menu_shown] = ''
+      @nav_menu_shown = true
+    else
+      session[:nav_menu_shown] = true
+      @nav_menu_shown = false
+    end
   end
   
   def new
