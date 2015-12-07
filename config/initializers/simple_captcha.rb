@@ -3,7 +3,7 @@ SimpleCaptcha.setup do |sc|
   sc.image_size = '120x40'
 
   # default: 5
-  sc.length = 6
+  sc.length = 5
 
   # default: simply_blue
   # possible values:

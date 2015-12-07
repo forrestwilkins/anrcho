@@ -135,17 +135,17 @@ class Proposal < ActiveRecord::Base
       update_manifesto: "New manifesto",
       request_feature: "New feature",
       bug_fix: "Fix to a bug",
-      just_a_test: "Test proposal" }
+      just_a_test: "Test motion" }
   end
   
   def self.group_action_types
     { add_hashtags: "Add hashtags",
-      update_banner: "Propose a group banner",
+      update_banner: "Update group banner",
       add_locale: "Set your locale as the groups",
       disband_early: "Disband, effective immediately",
       postpone_expiration: "Postpone expiration of the group",
       set_ratification_threshold: "Set ratification threshold to 25",
-      update_manifesto: "Propose a group manifesto",
+      update_manifesto: "Update group manifesto",
       limit_views: "Expire at view limit of 3" }
   end
   
