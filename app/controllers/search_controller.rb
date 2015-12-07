@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def locales
-    @locales = View.locales.reverse
+    @locales = View.locales.last(10).reverse
   end
   
   def broadcast_locale
