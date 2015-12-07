@@ -4,10 +4,10 @@ class SearchController < ApplicationController
   end
   
   def broadcast_locale
-    locale = get_location
+    locale = get_location # returns as a hash
     @view = View.new token: security_token, location: locale[:address],
       latitude: locale[:lat], longitude: locale[:lon]
-    if @view.location.present? and @view.save
+    if @view.location.present? and not View.locales.where(token: security_token).present? and @view.save
       redirect_to locales_path
     else
       redirect_to :back
