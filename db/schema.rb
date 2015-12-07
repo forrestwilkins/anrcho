@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207033649) do
+ActiveRecord::Schema.define(version: 20151207064122) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20151207033649) do
     t.text     "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "unique_token"
   end
 
   create_table "votes", force: :cascade do |t|

@@ -1,0 +1,8 @@
+<!-- search -->
+
+<!-- A long time ago in a galaxy far, far away... -->
+
+<% _time_ago = time_ago(time_ago_in_words(locale.created_at)) %>
+<%= link_to "/#", class: :top_right_link do %>
+  <strong><%= _time_ago %></strong>
+<% end %>

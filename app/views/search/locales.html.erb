@@ -3,7 +3,7 @@
 <h2 class="standard_page_header">Locales</h2>
 
 <% for locale in @locales %>
-  <%= render "token/card", token: locale.token %>
+  <%= render "search/locale_card", locale: locale %>
   <% if low_data %>
     <hr>
   <% end %>
