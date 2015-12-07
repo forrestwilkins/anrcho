@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'proposals#index'
   
   # proposals
-  get 'proposal/:token', to: 'proposals#show', as: 'show_proposal'
+  get 'motion/:token', to: 'proposals#show', as: 'show_proposal'
   get 'proposals/:token/show_image', to: 'proposals#show_image', as: 'proposal_image'
   get 'proposals/switch_section/:section', to: 'proposals#switch_section', as: 'switch_section'
   get 'proposals/switch_sub_section/:section', to: 'proposals#switch_sub_section', as: 'switch_sub_section'
