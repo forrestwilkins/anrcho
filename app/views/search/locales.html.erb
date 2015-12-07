@@ -1,6 +1,6 @@
 <!-- search -->
 
-<h2 class="standard_page_header">Locales</h2>
+<h2 class="standard_page_header">Locales <i class="fa fa-globe"></i></h2>
 
 <% for locale in @locales %>
   <%= render "search/locale_card", locale: locale %>
@@ -12,7 +12,8 @@
 <% if @locales.empty? %>
   <div class="card">
     <p align="center">
-      No locales have been broadcasted lately.
+      No locales have been broadcasted lately. 
+      <%= link_to "Click here", broadcast_locale_path, method: :post %> to try broadcasting your own locale.
     </p>
   </div>
 <% end %>
