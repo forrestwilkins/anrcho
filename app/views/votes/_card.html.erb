@@ -26,12 +26,12 @@
           <%= link_to "Votes to reverse: #{vote.votes_to_reverse}",
             show_vote_path(vote), class: :votes_to_reverse_label %>
           <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) \
-            unless vote.votes.find_by_token security_token %>
+            if humanity_confirmed? and not vote.votes.find_by_token security_token %>
         <% elsif vote.down? %>
           <%= link_to "Votes to reverse block: #{vote.votes_to_reverse}",
             show_vote_path(vote), class: :votes_to_reverse_label %>
           <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) \
-            unless vote.votes.find_by_token security_token %>
+            if humanity_confirmed? and not vote.votes.find_by_token security_token %>
         <% end %>
       <% end %>
 	  </div>

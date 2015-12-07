@@ -31,7 +31,7 @@ class VotesController < ApplicationController
     @vote = Vote.find_by_unique_token params[:token]
     if @vote.verified and not @vote.votes.find_by_token security_token
       @vote.votes.create flip_state: 'down', token: security_token
-      if @vote.votes_to_reverse.zero?
+      if @vote.votes_to_reverse <= 0
         if @vote.up?
           @vote.proposal.update ratified: false
         elsif @vote.down?
