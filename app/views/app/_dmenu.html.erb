@@ -3,26 +3,25 @@
 <!-- named after dmenu from linux -->
 
 <div id="dmenu" <%= 'hidden' unless low_data %>>
-	<%= link_to "Home", root_url, id: :nav_menu_link %>
+	<%= link_to "Home", root_url, id: :dmenu_link %>
 	<span id="nav_menu_link">·</span>
-	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path),
-		remote: true, id: :nav_menu_link %>
+	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path), remote: true, id: :dmenu_link %>
 	<span id="nav_menu_link">·</span>
-	<%= link_to "Tutorial", tutorial_path, id: :nav_menu_link %>
+	<%= link_to "Tutorial", tutorial_path, id: :dmenu_link %>
 	<span id="nav_menu_link">·</span>
-	<%= link_to "Chat", new_chat_path, method: :post, id: :nav_menu_link %>
+	<%= link_to "Chat", new_chat_path, method: :post, id: :dmenu_link %>
 	<span id="nav_menu_link">·</span>
-	<%= link_to "Inbox", inbox_path, id: :nav_menu_link %>
+	<%= link_to "Inbox", inbox_path, id: :dmenu_link %>
 	<span id="nav_menu_link">·</span>
-	<%= link_to "Groups", groups_path, id: :nav_menu_link %>
+	<%= link_to "Groups", groups_path, id: :dmenu_link %>
 	<span id="nav_menu_link">·</span>
 	
   <% if low_data %>
     <%= link_to "High energy", high_data_path %>
   <% else %>
-	  <%= link_to "Low energy", low_data_path, id: :nav_menu_link %>
+	  <%= link_to "Low energy", low_data_path, id: :dmenu_link %>
   <% end %>
   
 	<span id="nav_menu_link">·</span>
-	<%= link_to "Load", fib_path, id: :nav_menu_link %>
+	<%= link_to "Load", fib_path, id: :dmenu_link %>
 </div>

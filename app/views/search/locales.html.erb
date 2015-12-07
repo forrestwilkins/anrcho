@@ -1,6 +1,9 @@
 <!-- search -->
 
-<h2 class="standard_page_header">Locales <i class="fa fa-globe"></i></h2>
+<h2 class="standard_page_header">
+  Locales <%= link_to broadcast_locale_path, method: :post, class: "fa fa-globe",
+    title: "Click here to broadcast your current locale." do; end %>
+</h2>
 
 <% for locale in @locales %>
   <%= render "search/locale_card", locale: locale %>

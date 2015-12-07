@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.fa-globe {
+  color: white;
+  font-size: 30px;
+}
+
 #search_form_table {
 	padding-top: 11.5px;
 	padding-bottom: 5px;
@@ -16,7 +21,7 @@
   left: 47.5px;
 }
 
-#nav_menu_link {
+#dmenu_link {
 	color: white;
 	font-size: 13px;
 	padding-right: 5px;
