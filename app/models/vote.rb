@@ -13,6 +13,16 @@ class Vote < ActiveRecord::Base
     self.proposal.ratification_threshold - self.votes.where(flip_state: 'down').size
   end
   
+  def could_be_reversed? current_token
+    could_be = false
+    if self.verified
+      unless (self.votes.find_by_token current_token or self.proposal.token.eql? current_token)
+        could_be = true
+      end
+    end
+    return could_be
+  end
+  
   def verifiable? current_token
     _verifiable = false
     unless self.verified

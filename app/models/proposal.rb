@@ -127,8 +127,7 @@ class Proposal < ActiveRecord::Base
   end
   
   def self.action_types
-    { 
-      general: "General statement or idea",
+    { general: "General statement or idea",
       direct_action: "Plan some direct action",
       cooperative: "Form a cooperative",
       meetup: "Local meetup",

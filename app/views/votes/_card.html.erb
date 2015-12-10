@@ -15,23 +15,20 @@
 		    <%= render "app/body", item: vote %>
 		  </p>
       
-      <% if humanity_confirmed? %>
+      <% if humanity_confirmed? and vote.verifiable? security_token and not vote.proposal.requires_revision %>
         <%= link_to("Verify", verify_vote_path(vote.unique_token),
-          data: { confirm: "Are you sure you want to verify this vote?" }) \
-          if vote.verifiable? security_token and not vote.proposal.requires_revision %>
+          data: { confirm: "Are you sure you want to verify this vote?" }) %>
       <% end %>
       
-      <% if vote.verified %>
+      <% if humanity_confirmed? and vote.could_be_reversed? security_token %>
         <% if vote.up? and vote.proposal.ratified %>
           <%= link_to "Votes to reverse: #{vote.votes_to_reverse}",
             show_vote_path(vote), class: :votes_to_reverse_label %>
-          <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) \
-            if humanity_confirmed? and not vote.votes.find_by_token security_token %>
-        <% elsif vote.down? %>
+          <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) %>
+        <% elsif vote.down? and vote.proposal.requires_revision? %>
           <%= link_to "Votes to reverse block: #{vote.votes_to_reverse}",
             show_vote_path(vote), class: :votes_to_reverse_label %>
-          <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) \
-            if humanity_confirmed? and not vote.votes.find_by_token security_token %>
+          <%= link_to("Reverse", reverse_vote_path(vote.unique_token), method: :post) %>
         <% end %>
       <% end %>
 	  </div>
