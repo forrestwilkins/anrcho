@@ -2,6 +2,7 @@
 
 <h2 class="standard_page_header">
   Locales <%= link_to broadcast_locale_path, method: :post, class: "fa fa-globe",
+    data: { confirm: "Are you sure you want to broadcast your locale?" },
     title: "Click here to broadcast your locale." do; end %>
 </h2>
 
@@ -16,7 +17,8 @@
   <div class="card">
     <p align="center">
       No locales have been broadcasted lately. 
-      <%= link_to "Click here", broadcast_locale_path, method: :post %> to try broadcasting your own locale.
+      <%= link_to "Click here", broadcast_locale_path, method: :post,
+        data: { confirm: "Are you sure you want to broadcast your locale?" } %> to try broadcasting your own locale.
     </p>
   </div>
 <% end %>
