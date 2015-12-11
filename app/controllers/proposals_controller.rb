@@ -13,7 +13,7 @@ class ProposalsController < ApplicationController
   
   def index
     if cookies[:loads].to_i.zero?
-      @loading = true
+      # @loading = true
     end
     build_feed :main
   end

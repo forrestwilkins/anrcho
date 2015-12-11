@@ -10,7 +10,15 @@
   <% if low_data %>
     <%= link_to "View attached image", proposal_image_path(proposal.unique_token) %>
   <% else %>
-    <p><%= image_tag proposal.image, id: :proposal_image %></p>
+    <p>
+      <% if @proposal_shown %>
+        <%= image_tag proposal.image, id: :proposal_image %>
+      <% else %>
+        <%= link_to show_proposal_path(proposal.unique_token) do %>
+          <%= image_tag proposal.image, id: :proposal_image %>
+        <% end %>
+      <% end %>
+    </p>
   <% end %>
 <% end %>
 
