@@ -16,11 +16,6 @@
 	<%= link_to "Inbox", inbox_path, id: :standard_nav_menu_link %>
 	
 	<%= link_to "Chat", new_chat_path, method: :post, id: :standard_nav_menu_link %>
-  
-	<%= link_to "Locales", locales_path, id: :standard_nav_menu_link %>
-  
-	<%= link_to "Broadcast locale", broadcast_locale_path, method: :post, id: :standard_nav_menu_link,
-    data: { confirm: "Are you sure you want to broadcast your locale?" } %>
 	
   <% if low_data %>
     <%= link_to "High energy", high_data_path %>

@@ -5,7 +5,7 @@
 		<%= hidden_field_tag :group_id, @group.id if @group %>
 		<script><%= render 'proposals/select_change.js', f_builder: f %></script>
 		<p>
-			<%= f.text_field :title, placeholder: "Title" %>
+			<%= f.text_field :title, placeholder: "Title (optional)" %>
 		</p>
 		<table>
 			<tr>
