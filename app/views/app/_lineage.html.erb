@@ -1,0 +1,24 @@
+<!-- app -->
+
+<div class="card">
+  <div align="center">
+    <% line.each do |key, val| %>
+      <% if val.present? %>
+        <% last_in_line = key.eql? line.to_a.last.first %>
+        <% case key %>
+        <% when :vote %>
+          <%= link_to "Vote", show_vote_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :comment %>
+          <%= link_to "Comment", show_comment_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :proposal %>
+          <%= link_to "Motion", show_proposal_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :group %>
+          <%= link_to "Group", group_path(val.token), id: (:last_in_line if last_in_line) %>
+        <% end %>
+        <%= '<b> > </b>'.html_safe unless last_in_line %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+

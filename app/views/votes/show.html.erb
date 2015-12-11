@@ -1,5 +1,9 @@
 <!-- votes -->
 
+<% if @vote.proposal.present? %>
+  <%= render "app/lineage", line: { group: @vote.proposal.group, proposal: @vote.proposal, vote: @vote } %>
+<% end %>
+
 <%= render "votes/card", vote: @vote %>
 
 <% for comment in @comments %>

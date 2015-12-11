@@ -1,7 +1,7 @@
 <!-- proposals -->
 
 <% if @group.present? %>
-  <%= render "groups/card", group: @group %>
+  <%= render "app/lineage", line: { group: @group, proposal: @proposal } %>
 <% end %>
 
 <%= render "proposals/card", proposal: @proposal %>

@@ -1,5 +1,9 @@
 <!-- comments -->
 
+<% if @comment.proposal.present? %>
+  <%= render "app/lineage", line: { group: @comment.proposal.group, proposal: @comment.proposal, comment: @comment } %>
+<% end %>
+
 <%= render "comments/card", comment: @comment %>
 
 <% for reply in @replies %>
