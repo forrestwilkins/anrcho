@@ -1,0 +1,13 @@
+// proposals
+
+function load_section_links() {
+  $(document).ready(function() {
+    $.ajax({
+      type: "GET",
+      url: "/proposals/load_section_links",
+			data: $.param({ group_token: "<%= (@group.token if @group.present?) %>" })
+    });
+  });
+}
+
+load_section_links();

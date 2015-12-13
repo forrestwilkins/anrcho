@@ -1,6 +1,10 @@
 class ProposalsController < ApplicationController
   before_filter :bots_to_404
   
+  def load_section_links
+    @group = Group.find_by_token(params[:group_token])
+  end
+  
   def show_image
     @proposal = Proposal.find_by_unique_token params[:token]
     unless @proposal

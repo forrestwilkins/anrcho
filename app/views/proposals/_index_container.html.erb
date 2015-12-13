@@ -3,6 +3,7 @@
 <div id="index_container">
   <script>
     <%= render "proposals/infinite_scroll.js" %>
+    <%= render "proposals/load_section_links_when_ready.js" %>
   </script>
   
   <div class="card">
@@ -19,9 +20,10 @@
     <hr>
   <% end %>
 
-  <!-- allows user to switch between differen proposal categories -->
-  <%= render "proposals/section_links" unless @all_items.empty? %>
-
+  <% unless @all_items.empty? %>
+    <div id="proposal_section_links_anchor"></div>
+  <% end %>
+  
   <div id="feed_container_anchor"></div>
   <%= render "proposals/feed_container" %>
 </div>

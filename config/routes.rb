@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'proposals/:token/show_image', to: 'proposals#show_image', as: 'proposal_image'
   get 'proposals/switch_section/:section', to: 'proposals#switch_section', as: 'switch_section'
   get 'proposals/switch_sub_section/:section', to: 'proposals#switch_sub_section', as: 'switch_sub_section'
+  get 'proposals/load_section_links', to: 'proposals#load_section_links'
   get 'proposals/add_image', as: 'add_proposal_image'
   post 'proposals/create', as: 'create_proposal'
   
