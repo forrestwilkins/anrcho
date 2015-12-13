@@ -44,10 +44,22 @@
 	padding: 5px 5px;
 }
 
+#menu_link_container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 45px;
+  height: 40px;
+  background: black;
+  opacity: 0.75;
+  z-index: 1;
+}
+
 #toggle_menu_link {
-	position: absolute;
+	position: fixed;
 	top: 7.5px;
 	left: 12.5px;
 	color: white;
 	font-size: 13px;
+	z-index: 2;
 }

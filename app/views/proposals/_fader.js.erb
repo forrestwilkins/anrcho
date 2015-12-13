@@ -59,4 +59,7 @@ function proposal_sections_fader() {
   }, change_speed);
 }
 
-proposal_sections_fader();
+if (!proposal_sections_fader_started) {
+  proposal_sections_fader();
+  var proposal_sections_fader_started = true;
+}
