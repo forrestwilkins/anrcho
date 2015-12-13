@@ -20,4 +20,7 @@ function avatar_pattern_<%=j unique_name %>() {
   }
 }
 
-avatar_pattern_<%=j unique_name %>();
+if (!avatar_pattern_<%=j unique_name %>_started) {
+  avatar_pattern_<%=j unique_name %>();
+  var avatar_pattern_<%=j unique_name %>_started = true;
+}

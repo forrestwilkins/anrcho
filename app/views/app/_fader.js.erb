@@ -35,4 +35,8 @@ function fader_<%= target_id %>() {
   }, change_speed);
 }
 
-fader_<%= target_id %>();
+if (!fader_<%= target_id %>_started) {
+  fader_<%= target_id %>();
+  var fader_<%= target_id %>_started = true;
+}
+
