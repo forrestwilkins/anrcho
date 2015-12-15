@@ -37,7 +37,7 @@
 	    <%= link_to 'Verified <i class="fa fa-check"></i>'.html_safe, show_vote_path(vote), class: :verified_label %>
 	  <% end %>
 	  
-	  <strong class="action_type_label">
+	  <strong class="action_type_label" style="color: <%= vote.up? ? 'green' : (vote.down? ? 'red' : '') %>;">
 	    Motion: <%= vote.up? ? "vote_of_support" : (vote.down? ? "vote_to_block" : "") %>
 	  </strong>
 	  
