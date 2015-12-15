@@ -2,6 +2,8 @@
 
 <div class="card">
   <div align="center">
+    <%= link_to '<i class="fa fa-home"></i>'.html_safe, root_url %>
+    <b> > </b>
     <% line.each do |key, val| %>
       <% if val.present? %>
         <% last_in_line = key.eql? line.to_a.last.first %>
