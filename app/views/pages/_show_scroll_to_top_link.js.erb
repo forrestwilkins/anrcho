@@ -2,7 +2,7 @@
 
 function show_scroll_to_top_link() {
   $(window).bindWithDelay("scroll", function() {
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
       $("#scroll_to_top_link").fadeIn();
     }
   }, 200);
