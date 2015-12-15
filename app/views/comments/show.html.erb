@@ -1,6 +1,8 @@
 <!-- comments -->
 
-<% if @comment.proposal.present? %>
+<% if @comment.comment.present? %>
+  <%= render "app/lineage", line: { comment: @comment.comment, reply: @comment } %>
+<% elsif @comment.proposal.present? %>
   <%= render "app/lineage", line: { group: @comment.proposal.group, proposal: @comment.proposal, comment: @comment } %>
 <% end %>
 

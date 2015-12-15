@@ -12,6 +12,8 @@
           <%= link_to "Vote", show_vote_path(val.unique_token), id: (:last_in_line if last_in_line) %>
         <% when :comment %>
           <%= link_to "Comment", show_comment_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :reply %>
+          <%= link_to "Reply", show_comment_path(val.unique_token), id: (:last_in_line if last_in_line) %>
         <% when :proposal %>
           <%= link_to "Motion", show_proposal_path(val.unique_token), id: (:last_in_line if last_in_line) %>
         <% when :group %>
