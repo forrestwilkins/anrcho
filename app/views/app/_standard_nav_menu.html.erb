@@ -6,14 +6,16 @@
   
   <%= link_to "Home", root_url, id: :standard_nav_menu_link %>
   
-	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path),
-		remote: true, id: :standard_nav_menu_link %>
+	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path), remote: true, id: :standard_nav_menu_link %>
   
 	<%= link_to "Tutorial", tutorial_path, id: :standard_nav_menu_link %>
 	
 	<%= link_to "Groups", groups_path, id: :standard_nav_menu_link %>
 	
 	<%= link_to "Inbox", inbox_path, id: :standard_nav_menu_link %>
+	
+	<%= link_to "Notes#{ ': ' + unseen_notes.size.to_s unless unseen_notes.size.zero? }",
+	  notes_path, id: :standard_nav_menu_link %>
 	
 	<%= link_to "Chat", new_chat_path, method: :post, id: :standard_nav_menu_link %>
 	
