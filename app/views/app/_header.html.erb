@@ -1,5 +1,7 @@
 <!-- app -->
 
+<%= render "pages/scroll_to_top" %>
+
 <%= render "app/standard_nav_menu" %>
 
 <% if low_data %>
@@ -30,3 +32,5 @@
 <% end %>
 
 <%= render "manifestos/current", hidden: learned?(:manifesto) %>
+
+

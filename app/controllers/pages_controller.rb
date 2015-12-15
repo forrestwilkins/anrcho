@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  def scroll_to_top
+  end
+  
   def high_data
     cookies.permanent[:low_data] = ""
     redirect_to root_url

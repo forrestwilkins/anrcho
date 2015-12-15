@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get 'fib', to: 'pages#fib', as: 'fib'
   get 'high_energy', to: 'pages#high_data', as: 'high_data'
   get 'low_energy', to: 'pages#low_data', as: 'low_data'
+  get 'pages/scroll_to_top', as: 'scroll_to_top'
   get 'pages/more', as: 'more'
   get 'pages/finish_loading'
   
