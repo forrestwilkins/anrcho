@@ -49,4 +49,7 @@ function proposal_sub_sections_fader() {
   }, change_speed);
 }
 
-proposal_sub_sections_fader();
+if (!proposal_sub_sections_fader_started) {
+  proposal_sub_sections_fader();
+  var proposal_sub_sections_fader_started = true;
+}
