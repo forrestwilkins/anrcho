@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def show
-    Comment.delete_all_old
     @comment = Comment.find_by_unique_token(params[:token])
     if @comment.present?    
       @replies = @comment.replies

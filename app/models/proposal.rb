@@ -216,6 +216,15 @@ class Proposal < ActiveRecord::Base
     View.where proposal_token: self.unique_token
   end
   
+  def revisions
+    self.proposals.where action: "revision"
+  end
+  
+  # all proposals need to be updated as version 1 before this can work
+  def old_versions
+    self.proposals.where.not(action: "revision").where "version < '#{ self.version.to_i }'"
+  end
+  
   private
   
   def gen_unique_token

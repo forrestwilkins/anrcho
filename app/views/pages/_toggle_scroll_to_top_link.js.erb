@@ -1,0 +1,17 @@
+// pages
+
+function toggle_scroll_to_top_link() {
+  var link_shown = false;
+  $(window).bindWithDelay("scroll", function() {
+    // show link when scrolled to the bottom and hide when scrolled back to top
+    if (!link_shown && $(window).scrollTop() + $(window).height() > $(document).height() - 5) {
+      $("#scroll_to_top_link").fadeIn();
+      link_shown = true;
+    } else if (link_shown && $(window).scrollTop() < 5) {
+      $("#scroll_to_top_link").fadeOut();
+      link_shown = false;
+    }
+  }, 200);
+}
+
+toggle_scroll_to_top_link();

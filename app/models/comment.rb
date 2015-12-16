@@ -10,10 +10,6 @@ class Comment < ActiveRecord::Base
   
   before_create :gen_unique_token
   
-  def self.delete_all_old
-    delete_all "created_at < '#{1.week.ago}'"
-  end
-  
   def replies
     self.comments
   end

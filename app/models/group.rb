@@ -4,7 +4,7 @@
 
 class Group < ActiveRecord::Base
   has_many :hashtags
-  has_many :proposals
+  has_many :proposals, dependent: :destroy
   has_many :messages
   
   before_create :generate_token
