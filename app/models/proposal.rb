@@ -36,15 +36,13 @@ class Proposal < ActiveRecord::Base
       case action.to_sym
       when :revision
         Note.notify :proposal_revised, self
-        self.proposal.update(
+        new_version = Proposal.create(self.proposal.attributes.merge(
           requires_revision: false,
           action: self.revised_action,
           version: self.version,
           title: self.title,
           body: self.body
-        )
-        self.proposal.votes.update_all moot: true,
-          proposal_version: self.proposal.version
+        ))
       end
     # proposals to groups
     elsif self.group
