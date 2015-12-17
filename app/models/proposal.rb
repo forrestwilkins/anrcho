@@ -43,6 +43,7 @@ class Proposal < ActiveRecord::Base
           title: self.title,
           body: self.body
         ))
+        self.proposal.update proposal_id: new_version.id
       end
     # proposals to groups
     elsif self.group
