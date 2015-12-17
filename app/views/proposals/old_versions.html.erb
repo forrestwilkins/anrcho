@@ -1,0 +1,7 @@
+<!-- proposals -->
+
+<h2 class="standard_page_header">Motion History</h2>
+
+<% for proposal in @old_versions %>
+  <%= render "proposals/card", proposal: proposal %>
+<% end %>

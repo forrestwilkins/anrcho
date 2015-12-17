@@ -1,6 +1,11 @@
 class ProposalsController < ApplicationController
   before_filter :bots_to_404
   
+  def old_versions
+    @proposal = Proposal.find_by_unique_token params[:token]
+    @old_versions = @proposal.old_versions
+  end
+  
   def load_section_links
     @group = Group.find_by_token(params[:group_token])
   end
@@ -70,6 +75,8 @@ class ProposalsController < ApplicationController
       # gets any revisions to proposal
       @revisions = @proposal.proposals
       @revision = Proposal.new
+      
+      @old_versions = @proposal.old_versions
       
       if params[:revisions] and @proposal.requires_revision
         @show_revisions = true

@@ -36,14 +36,17 @@ class Proposal < ActiveRecord::Base
       case action.to_sym
       when :revision
         Note.notify :proposal_revised, self
-        new_version = Proposal.create(self.proposal.attributes.merge(
+        new_version = self.proposal.dup
+        new_version.assign_attributes({
           requires_revision: false,
           action: self.revised_action,
           version: self.version,
           title: self.title,
           body: self.body
-        ))
-        self.proposal.update proposal_id: new_version.id
+        })
+        if new_version.save
+          self.proposal.update proposal_id: new_version.id
+        end
       end
     # proposals to groups
     elsif self.group
@@ -220,8 +223,13 @@ class Proposal < ActiveRecord::Base
   end
   
   # all proposals need to be updated as version 1 before this can work
+  # unless database started with version 1 proposals by default
   def old_versions
-    self.proposals.where.not(action: "revision").where "version < '#{ self.version.to_i }'"
+    versions = self.proposals.where.not(action: "revision").
+      where("version < '#{ self.version.to_i }'").sort_by do |version|
+      version.version
+    end
+    return versions
   end
   
   private
