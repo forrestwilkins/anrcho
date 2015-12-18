@@ -1,10 +1,10 @@
 <!-- proposals -->
 
-<h2 class="standard_page_header">Motion History</h2>
+<h2 class="standard_page_header">Motion history</h2>
 
 <%= render "proposals/card", proposal: @proposal %>
 
-<p class="discrete_title">Older versions:</p>
+<p class="discrete_title">Older versions</p>
 
 <% for proposal in @old_versions %>
   <%= render "proposals/card", proposal: proposal %>
