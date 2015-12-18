@@ -19,9 +19,11 @@
 	<% for revision in @revisions %>
 		<%= render "proposals/card", proposal: revision %>
 	<% end %>
-	<div class="card">
-		<%= render "proposals/new_revision" %>
-	</div>
+	<% unless @proposal.revised %>
+	  <div class="card">
+		  <%= render "proposals/new_revision" %>
+	  </div>
+	<% end %>
 	
 <% elsif @show_comments %>
 	<% for comment in @comments %>

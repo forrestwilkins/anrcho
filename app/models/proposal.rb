@@ -22,11 +22,15 @@ class Proposal < ActiveRecord::Base
   def evaluate
     if ratifiable?
       self.ratify!
+      puts "\nProposal #{self.id} was ratified!"
       return true
     elsif requires_revision?
       self.update requires_revision: true
+      puts "\nProposal #{self.id} now requires revision."
       Note.notify :proposal_blocked, self
       return nil
+    elsif self.revised
+      puts "\nProposal #{self.id} has been deprecated."
     end
   end
   
@@ -45,7 +49,10 @@ class Proposal < ActiveRecord::Base
           body: self.body
         })
         if new_version.save
-          self.proposal.update proposal_id: new_version.id
+          self.proposal.update(
+            proposal_id: new_version.id,
+            revised: true
+          )
         end
       end
     # proposals to groups
@@ -155,11 +162,11 @@ class Proposal < ActiveRecord::Base
   end
   
   def requires_revision?
-    return self.verified_down_votes.size > 0
+    self.verified_down_votes.size > 0 and not self.revised
   end
   
   def ratifiable?
-    !self.ratified and self.verified_down_votes.size.zero? \
+    !self.ratified and !(self.proposal.present? and self.proposal.revised) and self.verified_down_votes.size.zero? \
       and self.verified_up_votes.size > self.ratification_threshold
   end
   

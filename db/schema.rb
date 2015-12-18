@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216003037) do
+ActiveRecord::Schema.define(version: 20151218035216) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20151216003037) do
     t.integer  "version",            default: 1
     t.integer  "misc_int"
     t.string   "misc_string"
+    t.boolean  "revised"
   end
 
   create_table "simple_captcha_data", force: :cascade do |t|
