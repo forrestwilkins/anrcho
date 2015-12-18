@@ -1,0 +1,14 @@
+<!-- proposals -->
+
+<% if proposal.old_versions.present? %>
+  <%= link_to old_versions_path(proposal.unique_token), title: "Click here see the full history (older versions)." do %>
+    <div class="old_versions_count_icon">
+      <i class="fa fa-history"></i>
+      <strong class="views_count_size">
+        <%= proposal.old_versions.size %>
+      </strong>
+    </div>
+  <% end %>
+<% end %>
+
+

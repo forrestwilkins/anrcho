@@ -4,14 +4,6 @@
   <%= render "app/lineage", line: { group: @group, proposal: @proposal } %>
 <% end %>
 
-<% if @old_versions.present? %>
-  <div class="card">
-    <p align="center">
-      This is a revision. <%= link_to "Click here", old_versions_path(@proposal.unique_token) %> to see it's history.
-    </p>
-  </div>
-<% end %>
-
 <%= render "proposals/card", proposal: @proposal %>
 <%= render "proposals/sub_section_links", proposal: @proposal %>
 
