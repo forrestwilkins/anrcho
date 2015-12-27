@@ -5,7 +5,7 @@
 		<%= hidden_field_tag :group_id, @group.id if @group %>
 		<script><%= render 'proposals/select_change.js', f_builder: f %></script>
 		<p>
-			<%= f.text_field :title, placeholder: "Title (optional)" %>
+			<%= f.text_field :title, placeholder: "Title (optional)", class: :standard_text_field %>
 		</p>
 		<table>
 			<tr>
@@ -33,6 +33,8 @@
 			<%= check_box_tag :local %>
 		</p>
 		
-		<%= f.submit "Post" %>
+    <button type="submit" name="commit" class="standard_form_button">
+      <b>Post <i class="fa fa-pencil"></i></b>
+    </button>
 	<% end %>
 </div>
