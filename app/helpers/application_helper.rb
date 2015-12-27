@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def fa_icon icon_str
+    %Q[<i class="fa fa-#{icon_str}"></i>].html_safe
+  end
+  
   def time_ago(_time_ago)
     _time_ago = _time_ago + " ago"
     if _time_ago.include? "about"

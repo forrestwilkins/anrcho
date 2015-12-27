@@ -1,6 +1,6 @@
 <!-- messages -->
 
-<h2 class="standard_page_header">Inbox <i class="fa fa-comments-o"></i></h2>
+<h2 class="standard_page_header">Inbox <%= fa_icon "comments-o" %></h2>
 
 <% for token in @receiver_tokens %>
   <%= render "token/card", token: token %>
