@@ -4,24 +4,25 @@
   <%= link_to '<i class="fa fa-times fa-2x"></i>'.html_safe, toggle_menu_path,
     remote: true, id: :standard_nav_menu_link, align: :right %>
   
-  <%= link_to "Home", root_url, id: :standard_nav_menu_link %>
+  <%= link_to fa_icon("home", "Home"), root_url, id: :standard_nav_menu_link %>
   
-	<%= link_to "About", (@manifestos_index ? '/#' : toggle_manifesto_path), remote: true, id: :standard_nav_menu_link %>
+	<%= link_to fa_icon("info-circle", "About"), (@manifestos_index ? '/#' : toggle_manifesto_path),
+	  remote: true, id: :standard_nav_menu_link %>
   
-	<%= link_to "Tutorial", tutorial_path, id: :standard_nav_menu_link %>
+	<%= link_to fa_icon("question-circle", "Tutorial"), tutorial_path, id: :standard_nav_menu_link %>
 	
-	<%= link_to "Groups", groups_path, id: :standard_nav_menu_link %>
+	<%= link_to fa_icon("cubes", "Groups"), groups_path, id: :standard_nav_menu_link %>
 	
-	<%= link_to "Inbox", inbox_path, id: :standard_nav_menu_link %>
-	
-	<%= link_to "Notes#{ ': ' + unseen_notes.size.to_s unless unseen_notes.size.zero? }",
+	<%= link_to fa_icon("bell-o", "Notes#{ ': ' + unseen_notes.size.to_s unless unseen_notes.size.zero? }"),
 	  notes_path, id: :standard_nav_menu_link %>
 	
-	<%= link_to "Chat", new_chat_path, method: :post, id: :standard_nav_menu_link %>
+	<%= link_to fa_icon("inbox", "Inbox"), inbox_path, id: :standard_nav_menu_link %>
+	
+	<%= link_to fa_icon("comments-o", "Chat"), new_chat_path, method: :post, id: :standard_nav_menu_link %>
 	
   <% if low_data %>
     <%= link_to "High energy", high_data_path %>
   <% else %>
-	  <%= link_to "Low energy", low_data_path, id: :standard_nav_menu_link %>
+	  <%= link_to fa_icon("pagelines", "Eco"), low_data_path, id: :standard_nav_menu_link %>
   <% end %>
 </div>

@@ -1,6 +1,7 @@
 module ApplicationHelper
-  def fa_icon icon_str
-    %Q[<i class="fa fa-#{icon_str}"></i>].html_safe
+  def fa_icon icon, label=''
+    str = %Q[<i class="fa fa-#{icon}"></i>] + " " + label
+    return str.html_safe
   end
   
   def time_ago(_time_ago)
