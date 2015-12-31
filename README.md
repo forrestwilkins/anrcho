@@ -25,3 +25,5 @@ The default database is SQLite3.
 Cloud9: https://ide.c9.io/ethanwilkins/anrcho
 
 Trello: https://trello.com/b/h48L52IW
+
+SEO Keywords: voting platform, constitution
