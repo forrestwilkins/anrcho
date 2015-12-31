@@ -21,7 +21,6 @@ class PagesController < ApplicationController
   end
   
   def finish_loading
-    View.delete_all_old
     cookies.permanent[:loads] = (cookies[:loads].to_i + 1).to_s
     build_proposal_feed :all
   end

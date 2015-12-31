@@ -40,8 +40,7 @@ class GroupsController < ApplicationController
   end
   
   def show
-    Group.delete_all_old
-    View.delete_all_old; reset_page
+    Group.delete_all_old; reset_page
     @is_a_token = (params[:id].size > 5) ? true : false
     @group = Group.find_by_token(params[:id])
     unless @group.nil? or @group.expires?
