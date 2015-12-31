@@ -1,4 +1,4 @@
-Anrcho - An Anonymous, Open Source Social Network
+Anrcho - Change the world securely
 ======
 Anrcho is an anonymous social network designed to facilitate democratic organization and consensus
 building within local communities. Each post is in the form of proposal, to do some action or plan
