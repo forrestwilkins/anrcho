@@ -108,6 +108,11 @@ textarea {
   text-align: justify;
 }
 
+.header_icon_link {
+  color: white;
+  font-size: 30px;
+}
+
 .standard_page_header {
   color: white;
   text-align: center;
@@ -123,6 +128,10 @@ textarea {
 .standard_text_field {
   width: 55%;
   max-width: 200px;
+}
+
+.standard_image {
+  width: 98.5%;
 }
 
 .discrete_title {
@@ -162,3 +171,4 @@ textarea {
 #last_in_line {
   font-size: 17.5px;
 }
+

@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   
   # tips
   get 'tutorial', to: 'tips#index', as: 'tutorial'
+  get 'contributors', to: 'tips#contributors', as: 'contributors'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

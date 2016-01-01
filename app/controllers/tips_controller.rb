@@ -1,4 +1,7 @@
 class TipsController < ApplicationController
+  def contributors
+  end
+  
   def index
   end
   
