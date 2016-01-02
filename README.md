@@ -26,4 +26,6 @@ Cloud9: https://ide.c9.io/ethanwilkins/anrcho
 
 Trello: https://trello.com/b/h48L52IW
 
+IRC channel on Freenode: #anrcho
+
 SEO Keywords: voting platform, constitution
