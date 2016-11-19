@@ -48,7 +48,6 @@ gem 'gaffe'
 # user agent detection
 gem 'useragent'
 gem 'browser'
-gem 'bot-away'
 gem 'voight_kampff'
 gem "simple_captcha2"
 
@@ -63,6 +62,11 @@ gem 'twitter'
 # passphrase generation
 gem 'phonetic_alphabet'
 gem 'passphrase'
+
+group :production do
+  gem 'unicorn'
+  gem 'pg'
+end
 
 # Use Unicorn as the app server
 # gem 'unicorn'
