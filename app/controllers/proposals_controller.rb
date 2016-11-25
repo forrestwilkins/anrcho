@@ -21,6 +21,7 @@ class ProposalsController < ApplicationController
   end
   
   def index
+    @you_are_home = true
     if cookies[:loads].to_i.zero?
       # @loading = true
     end

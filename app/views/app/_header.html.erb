@@ -15,6 +15,11 @@
 <%= link_to '<i class="fa fa-bars fa-2x"></i>'.html_safe,
 	toggle_menu_path, id: :toggle_menu_link, remote: true %>
 
+<%= link_to '<i class="fa fa-search fa-lg"></i>'.html_safe, search_path, id: :search_nav_link %>
+	
+<%= link_to '<i class="fa fa-home fa-lg"></i>'.html_safe, root_url, id: :return_home_link,
+  title: "Return home" unless @you_are_home %>
+
 
 <%= render "token/avatar", token: security_token,
 	position: :current_token_link, id: :current_token_link %>
