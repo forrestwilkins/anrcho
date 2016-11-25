@@ -1,0 +1,42 @@
+<% repo_path = "https://github.com/ethanwilkins/anrcho" %>
+
+<% omouse_path = "https://github.com/omouse" %>
+<% marekjm_path = "https://github.com/marekjm" %>
+<% cesar_path = "https://www.behance.net/cesar-augusto" %>
+
+<% omouse_pr_path = "https://github.com/ethanwilkins/anrcho/pull/3" %>
+<% marekjm_pr_path = "https://github.com/ethanwilkins/anrcho/pull/2" %>
+
+<h2 class="standard_page_header">
+  Contributors <%= link_to repo_path, class: "fa fa-users header_icon_link" do; end %>
+</h2>
+
+<div class="card">
+  <h4 align="center">
+    Europe (Portugal, Poland)
+  </h4>
+  
+  <div class="justified_body_text">
+    <p>
+      In Poland, a developer by the name of <%= link_to "Marek Marecki (GitHub)", marekjm_path %> helped to clean up the project's repository by deleting hidden duplicate files that had been generated while developing Anrcho on OSX (never again) and even <%= link_to "updated .gitignore", marekjm_pr_path %> to prevent the issue from ever happening again.
+    </p>
+    
+    <div align="center">
+      <%= image_tag "anrcho_banner.gif", class: :standard_image %>
+    </div>
+    
+    <p>
+      A graphic designer in Portugal, named <%= link_to "César Rodrigues", cesar_path %>, designed the animated banner/logo shown above.
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <h4 align="center">
+    North America (Canada)
+  </h4>
+  
+  <p class="justified_body_text">
+    There is now an IRC channel set up on Freenode as #anrcho, thanks to <%= link_to "Rudolf Olah", omouse_path %>, a Canadian developer who also <%= link_to "wrote instructions", omouse_pr_path %> for setting up the test server. There's even a cloud based IDE on Cloud9 enabling anyone to begin working on Anrcho in collaboration with others, per their advice, among various other proposals which have helped the project greatly.
+  </p>
+</div>
