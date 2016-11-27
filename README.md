@@ -28,8 +28,8 @@ SEO Keywords: voting platform, constitution
 
 ## How Anrcho works
 
-Each post is in the form of a proposal, so other users can either vote for or against it. Before a vote can be counted officially, it must first have an accompanying body of text explaing the reasoning or logic behind their vote, therefore enabling peer review by other users that have already been verified as human (not a bot) by Captcha. Ratification of a proposal occurs only once a certain number of supporting votes have been verified.
+Each post is in the form of a proposal, so other users can either vote for or against it. Before a vote can be officially accounted for, it must first have an accompanying body of text explaing the reasoning or logic behind their vote, therefore enabling peer review by other users that have already been verified as human (not a bot) by Captcha. Ratification of a proposal occurs only once a certain number of supporting votes have been verified.
 
-If, on the other hand, a vote against a proposal is ever verified, that proposal will remain in a section for revision until a new version can be ratified and brought back to the initial voting phase, where official ratification is once again possible.
+If, on the other hand, a vote against a proposal is ever verified, that proposal will remain in a section for revision until a new version can be ratified and brought back to the initial voting phase where official ratification is once again possible.
 
-However, if a proposal is blocked, that vote to block can also be reversed if a majority vote is reached against it, instead of requiring any further revision, keeping a check and balance between minority and majority. This same process can actually apply to votes of support as well now, enabling you to reverse the blocking or ratification of any given proposal.
+However, if a proposal is blocked, that vote to block can also be reversed if a majority vote is reached against it, instead of requiring any further revision, keeping a check and balance between minority and majority. This same process can actually apply to votes of support as well, enabling anyone to reverse the blocking or ratification of any given proposal.
