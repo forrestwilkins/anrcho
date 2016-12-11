@@ -28,7 +28,7 @@ SEO Keywords: voting platform, constitution
 
 ## How Anrcho works
 
-Each post is in the form of a motion or proposal, so other users can either vote for or against said post/motion/proposal. Before a vote can be officially accounted for, it must first have an accompanying body of text explaing the reasoning or logic behind their vote, therefore enabling peer review by other users that have already been verified as human (non-bot) by Captcha. Ratification of a proposal occurs only once a certain number of supporting votes have been verified.
+Each post is in the form of a motion or proposal, so other users can either vote for or against said post/motion/proposal. Before a vote can be officially accounted for, it must first have an accompanying body of text explaing the reasoning or logic behind their vote, therefore enabling verification therefore peer review by other users that have already been verified as human (non-bot) by Captcha. Ratification of a proposal occurs only once a certain number of supporting votes have been verified.
 
 If, on the other hand, a vote against a proposal is ever verified, that proposal will remain in a section for revision until a new version can be ratified and brought back to the initial voting phase where official ratification is once again possible.
 

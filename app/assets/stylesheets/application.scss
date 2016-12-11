@@ -68,6 +68,12 @@ textarea {
 	@include card(white);
 }
 
+.dark_card {
+  @include card(rgb(10, 10, 10));
+  background: rgb(10, 10, 10);
+  color: white;
+}
+
 .notice_card {
 	@include card(rgb(50, 175, 225));
 }
@@ -170,5 +176,26 @@ textarea {
 
 #last_in_line {
   font-size: 17.5px;
+}
+
+.footer_banner {
+  padding-top: 10px;
+  width: 98.5%;
+}
+
+.footer_link {
+  color: white;
+  display: block;
+  padding-bottom: 10px;
+}
+
+.footer_link_img {
+  height: 35px;
+  width: 35px;
+  padding-right: 5px;
+}
+
+.footer_link_txt {
+  padding-bottom: 5px;
 }
 
