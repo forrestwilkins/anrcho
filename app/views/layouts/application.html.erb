@@ -27,24 +27,6 @@
 		<%= render "app/messages" %>
 		<%= yield %>
 		
-		<div class="dark_card">
-		  <div align="center">
-	      <%= link_to "https://github.com/ethanwilkins/anrcho", class: :footer_link,
-	        title: "Please contribute to, or browse, the source code on GitHub" do %>
-	        <%= image_tag "github.png", class: :footer_link_img %>
-	        All source code for Anrcho is available on GitHub
-	      <% end %>
-		    <%= link_to "http://kopimi.com/", class: :footer_link, title: "Kopimi, please feel free to copy Anrcho" do %>
-	        <%= image_tag "kopimi1.png", class: :footer_link_img %>
-          Feel free to copy this project or any of its components
-	      <% end %>
-	      <%= link_to "http://anrcho.tumblr.com/" do %>
-		      <%= image_tag "banner.gif", class: :footer_banner,
-		        title: "A gif from a contributor living in Portugal" %>
-		    <% end %>
-	    </div>
-		</div>
-		
 		<div id="footer_spacing_container"></div>
 	</body>
 </html>
