@@ -1,6 +1,6 @@
 Anrcho - Organize, resist, and build consensus
 ======
-Anrcho is an anonymous social network and voting platform built for the workers of the world, or an increasingy cyber-centric proletariat, designed to facilitate democratic organization and consensus building within local or international communities. Each post is in the form of a motion or proposal, to do some action or plan some local event, enabling anyone to support, block, or discuss any given proposal with complete and total anonymity. Via this model of consensus, anyone can begin organizing with the members of their community, locally or globally, the tools .
+Anrcho is an anonymous social network and voting platform built for the workers of the world, or an increasingy cyber-centric proletariat, designed to facilitate democratic organization and consensus building within local or international communities. Each post is in the form of a motion or proposal, to do some action or plan some local event, enabling anyone to support, block, or discuss any given proposal with complete and total anonymity. Via this model of consensus, anyone can begin organizing with the members of their community, locally or globally, the tools.
 https://anrcho.com/
 
 Anrcho is free and open source software, as specified above by the GNU General Public License.
@@ -9,7 +9,7 @@ Anrcho is free and open source software, as specified above by the GNU General P
 
 1. Download the package or clone themost repo.
 2. Install Ruby version 2.3.2 using RVM or the Ruby Installer
-3. Install ImageMagick: `sudo apt-gehttps://www.youtube.com/watch?v=b07sactDEKUt install imagemagick libmagickwand-dev`
+3. Install ImageMagick: `sudo apt-get install imagemagick libmagickwand-dev`
 4. Install Ruby gems: `bundle install`
 5. Setup the database: `bundle exec rake db:setup`
 6. Run the database migrations: `bundle exec rake db:migrate`
