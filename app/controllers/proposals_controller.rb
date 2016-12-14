@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
-  before_filter :bots_to_404
+  # disabled for now, for sharing to social media
+  # before_filter :bots_to_404
   
   def old_versions
     @proposal = Proposal.find_by_unique_token params[:token]
