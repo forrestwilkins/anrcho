@@ -4,22 +4,12 @@
 	<%= form_for @proposal do |f| %>
 		<%= hidden_field_tag :group_id, @group.id if @group %>
 		<script><%= render 'proposals/select_change.js', f_builder: f %></script>
-		<p>
-			<%= f.text_field :title, placeholder: "Title (optional)", class: :standard_text_field %>
-		</p>
-		<table>
-			<tr>
-				<td>
-					<%= f.text_area :body, placeholder: "Body" %>
-				</td>
-				<td>
-					<%= link_to add_proposal_image_path, remote: true do %>
-						<i class="fa fa-picture-o"></i>
-					<% end %>
-				</td>
-			</tr>
-		</table>
+		</br>
+		<%= f.text_area :body, placeholder: "Write your proposal here..." %>
 		
+	  <%= link_to add_proposal_image_path, remote: true, id: :add_image_icon_link, title: "Attach an image" do %>
+		  <i class="fa fa-picture-o fa-2x"></i>
+	  <% end %>
 		<p id="hidden_file_field" hidden><%= f.file_field :image %></p>
 		
 		<p><%= f.select :action, options_for_select(action_types(@group)),

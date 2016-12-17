@@ -35,6 +35,11 @@ $x_left_gap: 5px;
 	position: absolute;
 }
 
+@mixin standard_form_element {
+  width: 55%;
+  max-width: 275px;
+}
+
 html {
 	background: black;
 	font-family: Helvetica;
@@ -200,3 +205,37 @@ textarea {
   font-size: 12px;
 }
 
+.dark_text_field {
+  @include standard_form_element;
+  margin-bottom: 7.5px;
+  display: block;
+  background: rgb(25, 25, 25);
+  color: white;
+  border-width: 1px;
+}
+
+.dark_text_area {
+  background: rgb(25, 25, 25);
+  color: white;
+}
+
+.dark_form_button {
+  @include standard_form_element;
+  height: 35px;
+  background: rgb(25, 25, 25);
+  color: rgb(175, 175, 175);
+  border-color: rgb(10, 10, 10);
+}
+
+.white_link {
+  color: white;
+}
+
+.dark_link {
+  color: rgb(175, 175, 175);
+}
+
+.small_dark_link {
+  color: rgb(175, 175, 175);
+  font-size: 12px;
+}

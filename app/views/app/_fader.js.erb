@@ -1,12 +1,12 @@
 // app
 
-function fader_<%= target_id %>() {
+function fader_<%= target + "_" + target_id.to_s %>() {
   var rgb = [0, 0, 0]; // the targets color values
   var fat_rgb = [false, false, false]; // ensures pos/neg
-  var color_min = 25; // when it should go back up
+  var color_min = 1; // when it should go back up
   var color_max = 255; // when color should go back down
-  var change_rate = 1; // added/subbed each round
-  var change_speed = 1; // interval speed
+  var change_rate = <%= defined?(slow) ? 0.25 : 0.5 %>; // added/subbed each round
+  var change_speed = <%= defined?(slow) ? 15 : 2.5 %>; // interval speed, higher == slower
 
   for (var i=0; i < rgb.length; i++) {
 	  rgb[i] = Math.round(Math.random() * 255);
@@ -29,13 +29,14 @@ function fader_<%= target_id %>() {
 		  }
 	  }
 	  // actually applies change
-	  var target = $("#<%= target + target_id %>");
-	  target.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+	  var target = $("#<%= target + (target_id.present? ? '_' + target_id.to_s : '') %>");
+	  target.css("<%= defined?(background) ? 'background' : 'color' %>",
+	    "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
   }, change_speed);
 }
 
-if (!fader_<%= target_id %>_started) {
-  fader_<%= target_id %>();
-  var fader_<%= target_id %>_started = true;
+if (!fader_<%= target + "_" + target_id.to_s %>_started) {
+  fader_<%= target + "_" + target_id.to_s %>();
+  var fader_<%= target + "_" + target_id.to_s %>_started = true;
 }
 
