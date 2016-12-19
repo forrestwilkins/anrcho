@@ -24,6 +24,18 @@ class Message < ActiveRecord::Base
     return messages.sort_by { |message| message.created_at }
   end
   
+  def self.encrypt message, key
+    encryptor = ActiveSupport::MessageEncryptor.new(key)
+    message = encryptor.encrypt_and_sign(message)
+    return message
+  end
+  
+  def self.decrypt message, key
+	  encryptor = ActiveSupport::MessageEncryptor.new(key)
+    message = encryptor.decrypt_and_verify(message)
+    return message
+  end
+  
   def encrypt_message
     if self.body.present?
       key = if self.group
@@ -33,7 +45,7 @@ class Message < ActiveRecord::Base
         self.token[0..10] + self.receiver_token[0..10]
         # uses half of both of their tokens as the key
       end
-      self.salt = SecureRandom.random_bytes(64)
+      self.salt = BCrypt::Engine.generate_salt
       key = ActiveSupport::KeyGenerator.new(key).generate_key(self.salt)
       encryptor = ActiveSupport::MessageEncryptor.new(key)
       self.body = encryptor.encrypt_and_sign(self.body)
