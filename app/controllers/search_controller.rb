@@ -37,11 +37,6 @@ class SearchController < ApplicationController
       [Proposal, Vote, Comment, Group, Manifesto].each do |_class|
         _class.all.reverse.each do |item|
           match = false; match_by_hashtag = false
-          # searches by proposal type
-          if item.is_a? Proposal and item.action \
-            and scan item.action, @query
-            match = true
-          end
           # scans all text for query
           match = true if scan_text item, @query
           # scans all items for matching tags
@@ -53,14 +48,6 @@ class SearchController < ApplicationController
               end
             end
           end
-          # searches by token
-          if item.respond_to? :token and @query.eql? item.token
-            match = true
-          end
-          # searches by location
-          if item.respond_to? :location and item.location.to_s.include? @query.to_s
-            match = true
-          end
           match = false if (item.is_a? Group or item.is_a? Vote) and item.hashtags.empty?
           @results << item if match
         end
@@ -69,6 +56,29 @@ class SearchController < ApplicationController
   end
   
   private
+  
+  def scan_text item, query, match=false
+    [:body, :token, :unique_token, :action, :location].each do |sym|
+      if item.respond_to? sym and item.send(sym).present? 
+        match = true if scan item.send(sym), query
+      end
+    end
+    return match
+  end
+  
+  def scan text, query, match=false
+    for word in text.split(" ")
+      for key_word in query.split(" ")
+        if key_word.size > 2
+          if word == key_word or word == key_word.downcase or word == key_word.capitalize \
+            or word.include? key_word or word.include? key_word.downcase or word.include? key_word.capitalize
+            match = true
+          end
+        end
+      end
+    end
+    return match
+  end
   
   def setup_messages_between
     # to render direct message form in search
@@ -84,26 +94,5 @@ class SearchController < ApplicationController
         end
       end
     end
-  end
-  
-  def scan_text item, query, match=false
-    if item.respond_to? :body
-      match = true if item.body.present? and scan item.body, query
-    end
-    return match
-  end
-  
-  def scan text, query, match=false
-    for word in text.split(" ")
-      for key_word in query.split(" ")
-        if key_word.size > 2
-          if word == key_word.downcase or word == key_word.capitalize \
-            or word.include? key_word.downcase or word.include? key_word.capitalize
-            match = true
-          end
-        end
-      end
-    end
-    return match
   end
 end
