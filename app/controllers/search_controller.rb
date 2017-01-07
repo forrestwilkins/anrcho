@@ -50,7 +50,7 @@ class SearchController < ApplicationController
               end
             end
           end
-          match = false if (item.is_a? Group or item.is_a? Vote) and item.hashtags.empty?
+          match = false if item.is_a? Group and item.hashtags.empty?
           if match
             @results << item
             @result_types[item.class.to_s.downcase.to_sym] +=1
