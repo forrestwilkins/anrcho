@@ -14,6 +14,17 @@
   <%= render "messages/new" %>
 <% end %>
 
+<% unless @results.empty? %>
+  <div class="card">
+    <div align="center">
+      Search found <% i=1; @result_types.each do |type, count| %>
+        <%= "#{count} #{type.to_s}#{'s' if count > 1}#{', ' unless i.eql? @result_types.length}" unless count.zero? %>
+        <% i+=1 %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <% for item in @results %>
 	<% if item.present? and item.class.present? %>
 		<% _class = item.class.to_s.downcase %>

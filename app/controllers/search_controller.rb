@@ -32,6 +32,8 @@ class SearchController < ApplicationController
   def index
     @query = params[:query].present? ? params[:query] : session[:query]
     session[:query] = @query; @results = []; @results_shown = true
+    # to display different result types found for each query
+    @result_types = { group: 0, proposal: 0, vote: 0, comment: 0, manifesto: 0 }
     if @query.present?
       setup_messages_between # renders form or link to messages
       [Proposal, Vote, Comment, Group, Manifesto].each do |_class|
@@ -49,9 +51,14 @@ class SearchController < ApplicationController
             end
           end
           match = false if (item.is_a? Group or item.is_a? Vote) and item.hashtags.empty?
-          @results << item if match
+          if match
+            @results << item
+            @result_types[item.class.to_s.downcase.to_sym] +=1
+          end
         end
       end
+      # removes any types not found at all, for display to view with/without commas
+      @result_types.each { |key, val| @result_types.delete(key) if val.zero?  }
     end
   end
   
