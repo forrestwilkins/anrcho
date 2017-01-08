@@ -42,6 +42,17 @@ class SearchController < ApplicationController
           match = true if scan_text item, @query
           # scans comments for current item
           match = true if scan_comments item, @query
+          # a case for keywords used
+          case @query
+          when "proposals", "Proposals", "motions", "Motions"
+            match = true if _class.eql? Proposal
+          when "comments", "Comments"
+            match = true if _class.eql? Comment
+          when "groups", "Groups"
+            match = true if _class.eql? Group
+          when "manifestos", "Manifestos", "manifesto", "Manifesto"
+            match = true if _class.eql? Manifesto
+          end
           # groups only show in search when hashtags are added
           match = false if item.is_a? Group and item.hashtags.empty?
           if match
