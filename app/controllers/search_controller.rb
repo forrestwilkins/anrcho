@@ -46,6 +46,8 @@ class SearchController < ApplicationController
           case @query
           when "proposals", "Proposals", "motions", "Motions"
             match = true if _class.eql? Proposal
+          when "votes", "Votes"
+            match = true if _class.eql? Vote and item.body.present?
           when "comments", "Comments"
             match = true if _class.eql? Comment
           when "groups", "Groups"
