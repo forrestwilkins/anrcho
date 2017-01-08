@@ -37,19 +37,12 @@ class SearchController < ApplicationController
     if @query.present?
       setup_messages_between # renders form or link to messages
       [Proposal, Vote, Comment, Group, Manifesto].each do |_class|
-        _class.all.reverse.each do |item|
-          match = false; match_by_hashtag = false
+        _class.all.reverse.each do |item|; match = false
           # scans all text for query
           match = true if scan_text item, @query
-          # scans all items for matching tags
-          if item.respond_to? :hashtags
-            item.hashtags.each do |tag|
-              if @query.eql? tag.tag or "##{@query}".eql? tag.tag
-                match_by_hashtag = true
-                match = true
-              end
-            end
-          end
+          # scans comments for current item
+          match = true if scan_comments item, @query
+          # groups only show in search when hashtags are added
           match = false if item.is_a? Group and item.hashtags.empty?
           if match
             @results << item
@@ -58,16 +51,40 @@ class SearchController < ApplicationController
         end
       end
       # removes any types not found at all, for display to view with/without commas
-      @result_types.each { |key, val| @result_types.delete(key) if val.zero?  }
+      @result_types.each { |key, val| @result_types.delete(key) if val.zero? }
     end
   end
   
   private
   
+  def scan_comments item, query, match=false
+    if item.respond_to? :comments
+      item.comments.each do |comment|
+        match = true if scan_text comment, query
+        break if match
+      end
+    end
+    return match
+  end
+  
   def scan_text item, query, match=false
     [:body, :token, :unique_token, :action, :location].each do |sym|
       if item.respond_to? sym and item.send(sym).present? 
         match = true if scan item.send(sym), query
+      end
+      break if match
+    end
+    match = true if scan_tags item, query
+    return match
+  end
+  
+  def scan_tags item, query, match=false
+    if item.respond_to? :hashtags
+      item.hashtags.each do |tag|
+        if query.eql? tag.tag or "##{query}".eql? tag.tag
+          match = true
+        end
+        break if match
       end
     end
     return match
@@ -82,6 +99,7 @@ class SearchController < ApplicationController
             match = true
           end
         end
+        break if match
       end
     end
     return match
