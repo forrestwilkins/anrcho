@@ -5,6 +5,7 @@
 class Group < ActiveRecord::Base
   has_many :hashtags
   has_many :proposals, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   has_many :messages
   
   before_create :generate_token
@@ -12,6 +13,10 @@ class Group < ActiveRecord::Base
   
   def proposed_manifestos
     self.proposals.where(action: :update_manifesto)
+  end
+  
+  def tasks
+    Task.where group_token: self.token
   end
   
   def messages

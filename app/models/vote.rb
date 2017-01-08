@@ -71,6 +71,7 @@ class Vote < ActiveRecord::Base
       # recent votes on older proposals have more weight
       up_votes_weight += ((vote.created_at.to_date - obj.created_at.to_date).to_i / 2) + 1
     end # plus one for votes on recent proposals to still get valued
+    # number of objects accounted for
     points = up_votes_weight + obj.comments.size / 2
     points -= (Date.today - obj.created_at.to_date).to_i / 2
     points -= obj.views.size / 10 # raise the obscure to top
