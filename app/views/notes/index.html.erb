@@ -6,8 +6,10 @@
       <% case note.action.to_sym %>
       <% when :message_received %>
         <%= link_to note.message, secret_chat_path(note.item_token) %>
-      <% when :ratified, :commented, :proposal_revised %>
+      <% when :ratified, :proposal_revised %>
         <%= link_to note.message, show_proposal_path(note.item_token) %>
+      <% when :commented %>
+        <%= link_to note.message, show_proposal_path(note.item_token, comments: true) %>
       <% when :proposal_blocked, :revision_submitted %>
         <%= link_to note.message, show_proposal_path(token: note.item_token, revisions: true) %>
       <% when :replied %>

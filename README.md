@@ -1,6 +1,6 @@
 Anrcho - Organize, resist, and build consensus
 ======
-Anrcho is an anonymous voting platform designed to facilitate horizontal organization by streamlining the whole process of consensus decision making. Each post is in the form of a motion or proposal, to do some action or plan some local event, enabling anyone to support, block, or discuss any given proposal with complete and total anonymity. Via this open model of consensus, anyone can begin organizing with the members of their community, locally or globally.
+Anrcho is an anonymous voting platform designed to facilitate horizontal organization by streamlining the whole process of consensus decision making. Each post is in the form of a motion or proposal, to do some action or plan some local event, enabling anyone to support, block, or discuss any given proposal with complete and total anonymity. Via this open model of consensus, anyone can begin organizing with the members of their community on a peer to peer basis.
 https://anrcho.com/
 
 Anrcho is free and open source software, as specified above by the GNU General Public License.
