@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108214813) do
+ActiveRecord::Schema.define(version: 20170108232410) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -147,8 +147,9 @@ ActiveRecord::Schema.define(version: 20170108214813) do
     t.string   "title"
     t.text     "description"
     t.datetime "expires_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "delegate_name"
   end
 
   create_table "views", force: :cascade do |t|

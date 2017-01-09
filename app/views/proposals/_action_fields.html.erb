@@ -2,6 +2,10 @@
 
 <div id="action_fields">
 	<% case (defined?(field) ? field : nil) %>
+	<% when 'delegate_task' %>
+		<p>
+			<%= f_builder.text_area :misc_data, placeholder: "Name of the person you're delegating the task for..." %>
+		</p>
 	<% when 'add_hashtags' %>
 		<p>
 			<%= f_builder.text_field :misc_data, placeholder: "Add hashtags..." %>

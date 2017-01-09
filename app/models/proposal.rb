@@ -148,6 +148,7 @@ class Proposal < ActiveRecord::Base
   
   def self.group_action_types
     { add_hashtags: "Add hashtags",
+      delegate_task: "Delegate a task",
       update_banner: "Update group banner",
       add_locale: "Set your locale as the groups",
       disband_early: "Disband, effective immediately",
@@ -174,6 +175,7 @@ class Proposal < ActiveRecord::Base
     # dynamic threshold able to be set by group proposal
     _threshold = if self.group and self.group.ratification_threshold.present?
       self.group.ratification_threshold
+    # arbitrary number if neither group nor enough views present
     else
       5
     end
@@ -185,10 +187,10 @@ class Proposal < ActiveRecord::Base
     end
     # uses views as threshold if higher
   	if _views.size > _threshold
-  		return _views.size / 2
-  	else
-  		return _threshold / 2
+  	  # cuts in half for simple majority
+  		_threshold = _views.size / 2
   	end
+  	return _threshold
   end
   
   def verified_up_votes

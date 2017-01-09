@@ -6,6 +6,9 @@ $("#new_proposal_form").change(function(e) {
 		var anchor = $("#action_fields_anchor");
 		$("#action_fields").remove();
 		switch (option_selected.val()) {
+		  case 'delegate_task':
+		    anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'delegate_task' %>")
+		    break;
 			case 'add_hashtags':
 				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'add_hashtags' %>");
 				break;
