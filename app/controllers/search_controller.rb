@@ -57,6 +57,10 @@ class SearchController < ApplicationController
           end
           # groups only show in search when hashtags are added
           match = false if item.is_a? Group and item.hashtags.empty?
+          # group proposals follow the same logic
+          match = false if item.is_a? Proposal and item.group and item.group.hashtags.empty?
+          # and group votes follow the same logic as well
+          match = false if item.is_a? Vote and item.proposal.group and item.proposal.group.hashtags.empty?
           if match
             @results << item
             @result_types[item.class.to_s.downcase.to_sym] +=1
