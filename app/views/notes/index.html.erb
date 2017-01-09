@@ -8,7 +8,7 @@
         <%= link_to note.message, secret_chat_path(note.item_token) %>
       <% when :ratified, :proposal_revised %>
         <%= link_to note.message, show_proposal_path(note.item_token) %>
-      <% when :commented %>
+      <% when :commented, :also_commented %>
         <%= link_to note.message, show_proposal_path(note.item_token, comments: true) %>
       <% when :proposal_blocked, :revision_submitted %>
         <%= link_to note.message, show_proposal_path(token: note.item_token, revisions: true) %>

@@ -36,6 +36,12 @@ class CommentsController < ApplicationController
       if @proposal
         Note.notify :commented, @proposal \
           unless @proposal.token.eql? security_token
+        # notify other users who previously commented: "also commented"
+        for comment in @proposal.comments
+          unless comment.token.eql? security_token
+            Note.notify :also_commented, @proposal, comment.token
+          end
+        end
       elsif @parent_comment
         Note.notify :replied, @parent_comment \
           unless @parent_comment.token.eql? security_token
