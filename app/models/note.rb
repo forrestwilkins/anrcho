@@ -19,6 +19,7 @@ class Note < ActiveRecord::Base
       commented_vote: "Someone commented on your vote.",
       commented: "Someone commented on your proposal.",
       also_commented: "Someone also commented on a proposal.",
+      also_commented_vote: "Someone also commented on a vote.",
       replied: "Someone replied to your comment.",
       message_received: "You've received a message." }
     return _actions[action.to_sym]

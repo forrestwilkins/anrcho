@@ -48,6 +48,12 @@ class CommentsController < ApplicationController
       elsif @vote
         Note.notify :commented_vote, @vote \
           unless @vote.token.eql? security_token
+        # notify other users who previously commented: "also commented"
+        for comment in @vote.comments
+          unless comment.token.eql? security_token
+            Note.notify :also_commented_vote, @vote, comment.token
+          end
+        end
       end
       Hashtag.extract @comment
       if params[:proposal_shown] or params[:comment_id] or params[:vote_id]
