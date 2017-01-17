@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108232410) do
+ActiveRecord::Schema.define(version: 20170117032725) do
 
   create_table "banners", force: :cascade do |t|
     t.string   "image"
@@ -150,6 +150,16 @@ ActiveRecord::Schema.define(version: 20170108232410) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "delegate_name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "token"
+    t.string   "passphrase"
+    t.binary   "salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "auth_token"
   end
 
   create_table "views", force: :cascade do |t|

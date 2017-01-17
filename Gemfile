@@ -59,6 +59,9 @@ gem 'koala' # for facebook
 gem 'tumblr_client'
 gem 'twitter'
 
+# name generation
+gem 'name-generator'
+
 # passphrase generation
 gem 'phonetic_alphabet'
 gem 'passphrase'
